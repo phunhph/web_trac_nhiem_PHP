@@ -148,8 +148,9 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 lead">
+                                    <?php print_r($_SESSION['admin']['maadmin']) ?>
+                                </span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -284,226 +285,126 @@
                     <div class="row"></div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row" id="render_ky_thi">
                         <!-- Content Column -->
                         <!-- Color System -->
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-primary text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-primary btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-primary btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-primary btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-white-50 small">#4e73df</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-success text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-success btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-success btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-success btn-sm shadow border">
-                                                Quản lý
-                                            </button>
+                        <?php foreach ($kythi as $key => $value) : ?>
+                            <div class="col-lg-3 mb-4">
+                                <div class="card bg-dark text-white shadow">
+                                    <div class="card-body-item">
+                                        <p>Tên kỳ thi: <?= $value->getTenkythi() ?></p>
+                                        <p>Mã Kỳ thi: <?= $value->getMakythi() ?></p>
+                                        <p>Thời gian bắt đầu: </p>
+                                        <p><?= $value->getTgbatdua() ?></p>
+                                        <p>Thời gian kết thúc:</p>
+                                        <p><?= $value->getTgketthuc() ?></p>
+                                        <div class="row">
+                                            <div class="col-lg-3 mb-4">
+                                                <button type="button" class=" btn btn-secondary btn-sm shadow border btnFix" data-toggle="modal" data-target="#exampleModalLong" data-id="<?= $value->getMakythi() ?>">
+                                                    Sửa
+                                                </button>
+
+                                            </div>
+                                            <div class="col-lg-3 mb-4">
+                                                <button class="btn btn-secondary btn-sm shadow border btnDelete" data-id="<?= $value->getMakythi() ?>">
+                                                    Xoá
+                                                </button>
+                                            </div>
+                                            <div class="col-lg-6 mb-4">
+                                                <button class="btn btn-secondary btn-sm shadow border">
+                                                    Quản lý
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="text-white-50 small">#1cc88a</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-info text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-info btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-info btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-info btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-white-50 small">#36b9cc</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-warning text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-warning btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-warning btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-warning btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-white-50 small">#f6c23e</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-danger text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-danger btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-danger btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-danger btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-white-50 small">#e74a3b</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-secondary text-white shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-secondary btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-secondary btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-secondary btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-white-50 small">#858796</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 mb-4">
-                            <div class="card bg-light text-black shadow">
-                                <div class="card-body-item">
-                                    <p>Tên kỳ thi:</p>
-                                    <p>Mã Kỳ thi:</p>
-                                    <p>Thời gian bắt đầu:</p>
-                                    <p>Thời gian kết thúc:</p>
-                                    <div class="row">
-                                        <!-- Content Column -->
-                                        <!-- Color System -->
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-black btn-sm shadow border">
-                                                Sửa
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-3 mb-4">
-                                            <button class="btn btn-black btn-sm shadow border">
-                                                Xoá
-                                            </button>
-                                        </div>
-                                        <div class="col-lg-6 mb-4">
-                                            <button class="btn btn-black btn-sm shadow border">
-                                                Quản lý
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="text-black-50 small">#f8f9fc</div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach ?>
+
                         <div class="col-lg-3 mb-12">
-                            <div class="card bg-dark text-white shadow">
-                                <div class="card-body-item">
+                            <div class="card bg-secondary text-white shadow">
+                                <div class="card-body-item" data-toggle="modal" data-target="#createExam">
                                     <div class="card-body-item-add">
-                                        <div class="circle-with-cross"></div>
+                                        <div class="circle-with-cross">
+                                        </div>
                                     </div>
-                                    <div class="text-white-50 small">#5a5c69</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- sửa kỳ thi -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+                                        Sửa thông tin kỳ thi
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="ten" style="color: dimgray">Tên kỳ thi:</label>
+                                        <input type="text" class="form-control" name="ten_fix" id="ten_fix" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ma" style="color: dimgray">Mã kỳ thi:</label>
+                                        <input type="text" name="makythi_fix" class="form-control" id="makythi_fix" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="start" style="color: dimgray">Thời gian bắt đầu:</label>
+                                        <input type="datetime-local" class="form-control" name="start_fix" id="start_fix">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="end" style="color: dimgray">Thời gian kết thúc:</label>
+                                        <input type="datetime-local" class="form-control" name="end_fix" id="end_fix">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="save_fix">Lưu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- thêm mới kỳ thi -->
+                    <div class="modal fade" id="createExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
+                                        Tạo mới kỳ thi
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="ten" style="color: dimgray">Tên kỳ thi:</label>
+                                        <input type="text" class="form-control" id="ten_create" name="ten_create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ma" style="color: dimgray">Mã kỳ thi:</label>
+                                        <input type="text" class="form-control" id="ma_create" name="ma_create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="start" style="color: dimgray">Thời gian bắt đầu:</label>
+                                        <input type="datetime-local" class="form-control" id="start_crate" name="name_craete">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="end" style="color: dimgray">Thời gian kết thúc:</label>
+                                        <input type="datetime-local" class="form-control" id="end_create" name='end_create'>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                    <button type="button" class="btn btn-primary" id="create" data-dismiss="modal">Tạo
+                                        mới</button>
                                 </div>
                             </div>
                         </div>
@@ -555,7 +456,13 @@
             </div>
         </div>
     </div>
-
+    <!-- Script JavaScript -->
+    <script>
+        // Dữ liệu được chuyển đổi từ PHP sang JavaScript
+        var kythi = <?php echo json_encode($kythi); ?>;
+    </script>
+    <!-- js kỳ thi -->
+    <script src="assets/js/kythi.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

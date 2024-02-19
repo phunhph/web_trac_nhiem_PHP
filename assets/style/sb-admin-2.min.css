@@ -4252,7 +4252,7 @@ input[type="submit"].btn-block {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 215px; /* Đảm bảo chiều cao của card-body-item là 100% để nội dung căn giữa */
+  min-height: 295px; /* Đảm bảo chiều cao của card-body-item là 100% để nội dung căn giữa */
 }
 .circle-with-cross {
   width: 100px; /* Độ dài bằng đường kính */
@@ -4263,6 +4263,15 @@ input[type="submit"].btn-block {
 }
 .circle-with-cross:hover {
   cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+}
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .circle-with-cross:before,

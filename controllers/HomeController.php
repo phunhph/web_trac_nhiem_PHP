@@ -26,4 +26,32 @@ class HomeController
         $target = "assets/upload/imgthisinh/" . $this->examDAO->getProfile($_SESSION['user_info']['sbd']);
         require_once 'views/home/client/monthi.php';
     }
+    public function getDataAPI()
+    {
+        $kythi = $this->adminDAO->getKythi();
+        echo json_encode($kythi, JSON_UNESCAPED_UNICODE);
+        exit();
+    }
+    public function updateKyThi()
+    {
+        // Nhận dữ liệu từ phía front-end
+        $data = json_decode(file_get_contents("php://input"));
+        $this->adminDAO->updateKythi($data->makythi, $data->tgbatdua, $data->tgketthuc);
+        exit();
+    }
+    public function createKyThi()
+    {
+        // Nhận dữ liệu từ phía front-end
+        $data = json_decode(file_get_contents("php://input"));
+        $this->adminDAO->createKyThi($data->makythi, $data->tenkythi, $data->tgbatdua, $data->tgketthuc);
+        exit();
+    }
+
+    public function deleteKyThi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->adminDAO->deleteKyThi($data->id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        exit();
+    }
 }

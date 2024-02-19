@@ -24,4 +24,43 @@ class AdminDAO
 
         return $kythis;
     }
+    public function updateKyThi($makythi, $tgbatdau, $tgketthuc)
+    {
+        try {
+            $query = "UPDATE `kythi` SET `tgbatdau`=:tgbatdau, `tgketthuc`=:tgketthuc WHERE `makythi`=:makythi";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':makythi', $makythi);
+            $stmt->bindParam(':tgbatdau', $tgbatdau);
+            $stmt->bindParam(':tgketthuc', $tgketthuc);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function createKyThi($makythi, $tenkythi, $tgbatdau, $tgketthuc)
+    {
+        try {
+            $query = "INSERT INTO `kythi`(`makythi`, `tenkythi`, `tgbatdau`, `tgketthuc`) VALUES (:makythi, :tenkythi, :tgbatdau, :tgketthuc)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':makythi', $makythi, PDO::PARAM_STR);
+            $stmt->bindParam(':tenkythi', $tenkythi, PDO::PARAM_STR);
+            $stmt->bindParam(':tgbatdau', $tgbatdau, PDO::PARAM_STR); // or PDO::PARAM_INT
+            $stmt->bindParam(':tgketthuc', $tgketthuc, PDO::PARAM_STR); // or PDO::PARAM_INT
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    public function deleteKyThi($makythi)
+    {
+        try {
+            $query = "DELETE FROM `kythi` WHERE `makythi`=:makythi";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':makythi', $makythi, PDO::PARAM_STR);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

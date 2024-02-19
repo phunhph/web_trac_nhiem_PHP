@@ -50,6 +50,18 @@ class router
             case 'reportExam':
                 $this->examController->submitExam();
                 break;
+            case 'getDataAPI':
+                $this->homeController->getDataAPI();
+                break;
+            case 'updateKyThi':
+                $this->homeController->updateKyThi();
+                break;
+            case 'createKyThi':
+                $this->homeController->createKyThi();
+                break;
+            case 'deleteKyThi':
+                $this->homeController->deleteKyThi();
+                break;
             default:
 
                 echo '404 not found';
