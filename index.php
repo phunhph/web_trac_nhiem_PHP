@@ -6,12 +6,14 @@ class router
     private $loginController;
     private $homeController;
     private $examController;
+    private $quanlymonthiController;
 
     public function __construct()
     {
         $this->loginController = new LoginController();
         $this->homeController = new HomeController();
         $this->examController = new ExamController();
+        $this->quanlymonthiController = new QuanlyMonthiController();
     }
     public function route()
     {
@@ -63,7 +65,13 @@ class router
                 $this->homeController->deleteKyThi();
                 break;
             case 'quanlymonthi':
-                require_once 'views/quanlymonthi/admin/quanlymonthi.php';
+                $this->quanlymonthiController->index();
+                break;
+            case 'getmonthi':
+                $this->quanlymonthiController->getmonthi();
+                break;
+            case 'getnoidungthi':
+                $this->quanlymonthiController->getnoidungthi();
                 break;
             case 'quanlythisinh':
                 require_once 'views/quanlythisinh/admin/quanlythisinh.php';

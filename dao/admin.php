@@ -63,4 +63,20 @@ class AdminDAO
             echo "Error: " . $e->getMessage();
         }
     }
+    public function getNameKyThi()
+    {
+        $query = "SELECT makythi, tenkythi FROM kythi";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $kythis = array(); // Giả sử bạn muốn trả về một mảng các đối tượng KyThi
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            // Tạo một đối tượng KyThi và thêm vào mảng
+            $kythi = new KyThi($row->makythi, $row->tenkythi, null, null);
+            $kythis[] = $kythi;
+        }
+
+        return $kythis;
+    }
 }

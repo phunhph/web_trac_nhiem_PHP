@@ -13,7 +13,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -22,12 +24,9 @@
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/style/dtdanhmuc.css" type="text/css">
     <script src="assets/js/jquery-3.1.1.js"></script>
-    <script src="assets/js/dtdanhmuc.js"></script>
+
     <style>
-        #li3 {
-            color: rgba(255, 204, 0, 1);
-            font-weight: bolder
-        }
+
     </style>
 </head>
 
@@ -37,7 +36,8 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -160,12 +160,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -198,14 +200,20 @@
                     <div class="row">
                         <div class="col-xl-12 col-md-6 mb-4">
                             <div class="chitiet">
-                                <p class="h5 mb-0 text-gray-600">CHỌN KỲ THI</p>
-                                <select name="" id="">
-                                    <option value=""></option>
+                                <p class="h5 mb-4 text-gray-600">CHỌN KỲ THI</p>
+                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="kythi"
+                                    id="kythi">
+                                    <option value="...">...</option>
+                                    <?php foreach ($kythi as $key => $value) : ?>
+                                    <option value="<?= $value->getMaKyThi() ?>">
+                                        <?= $value->getTenKyThi() ?>
+                                    </option>
+                                    <?php endforeach; ?>
                                 </select>
 
                                 <hr>
-                                <p class="h5 mb-0 text-gray-600">DANH MỤC MÔN THI</p>
-                                <div class="card shadow mb-4">
+                                <p class="h5 mb-2 text-gray-600">DANH MỤC MÔN THI</p>
+                                <div class="card shadow mb-0">
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table table-bordered" id="" width="100%" cellspacing="0">
@@ -225,56 +233,26 @@
                                                         <th>Kết thúc</th>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody class="ttb2">
-                                                    <?php
-                                                    // $h = mysqli_query($connect, "select mamodun,tenmodun,tenkythi,batdau,ketthuc from modun,kythi where kythi.makythi=modun.makythi and kythi.makythi='" . $_SESSION['kythi'] . "'");
-                                                    $i = 1;
-                                                    while (5 > $i) {
-                                                        echo "<tr>";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'mamodun' . $i . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'tenmodun' . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'batdau' . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'ketthuc' . "
-						</td>
-						";
-                                                        echo "</tr>";
-                                                        $i++;
-                                                    }
-                                                    ?>
+                                                <tbody class="ttb2" id="monthi">
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="thaotac">
-                                    <form method="post" id="suamodun">
-                                        <span style="margin-left:1em; margin-bottom:1em;">Mã môn thi</span>
-                                        <input style="margin-left:1em; margin-bottom:1em;width:30em;" type='text' name='mmt' id='mmt' value='' autofocus><br>
-                                        <span style="margin-left:1em; margin-bottom:1em;">Tên môn thi</span>
-                                        <input style="margin-left:0.8em; margin-bottom:1em;width:30em;" type='text' name='tenmt' id='tenmt' value=''><br>
-                                        <span style="margin-left:1em; margin-bottom:1em;">Bắt đầu</span>
-                                        <input style="margin-left:2.9em; margin-bottom:1em;width:30em;" type='text' name='tkt' id='tkt' value=''><br>
-                                        <span style="margin-left:1em; margin-bottom:1em;">Kết thúc</span>
-                                        <input style="margin-left:2.5em; margin-bottom:1em;width:30em;" type='text' name='tkt2' id='tkt2' value=''>
-                                    </form>
-                                    <img id="add1" src="assets/image/add.png" width="33" height="33" title="Thêm mới" style="margin-left:4em;margin-top:1em; cursor:pointer;">
-                                    <img id="edit1" src="assets/image/edit.ico" width="33" height="33" title="Sửa" style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                    <img id="delete1" src="assets/image/delete.png" width="33" height="33" title="Xóa" style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                </div>
+                                <div class="thaotac" id="crud_monthi">
 
+                                </div>
 
                                 <hr>
-                                <p class="h5 mb-0 text-gray-600">DANH MỤC NỘI DUNG THI</p>
+                                <p class="h5 mb-4 mt  text-gray-600">CHỌN MÔN THI</p>
+                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="monthi_ops"
+                                    id="monthi_ops">
+                                    <option value="...">...</option>
+                                </select>
+
+                                <hr>
+                                <p class="h5 mb-2 text-gray-600">DANH MỤC NỘI DUNG THI</p>
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -295,50 +273,17 @@
                                                         <th>Kỳ thi</th>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody class="table12">
-                                                    <?php
-                                                    // $h = mysqli_query($connect, "select bode.mabode as mabode, bode.tenbode as tenbode,modun.tenmodun as tenmodun,kythi.tenkythi as tenkythi from modun,kythi,bode where kythi.makythi=modun.makythi and modun.mamodun=bode.mamodun and kythi.makythi='" . $_SESSION['kythi'] . "'");
-                                                    $i = 1;
-                                                    while (5 > $i) {
-                                                        echo "<tr>";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'mabode' . $i . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'tenbode' . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'tenmodun' . "
-						</td>
-						";
-                                                        echo "<td style='text-align:left; padding:0.5em 1em;'>
-							" . 'tenkythi' . "
-						</td>
-						";
-                                                        echo "</tr>";
-                                                        $i++;
-                                                    }
-                                                    ?>
+                                                <tbody class="table12" id='noidungthi'>
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="thaotac">
-                                    <form method="post" id="suamodun">
-                                        <span style="margin-left:1em; margin-bottom:1em;">Mã nội dung thi</span>
-                                        <input style="margin-left:1em; margin-bottom:1em;width:30em;" type='text' name='mmt1' id='mmt1' value='' autofocus><br>
-                                        <span style="margin-left:1em; margin-bottom:1em;">Tên nội dung thi</span>
-                                        <input style="margin-left:0.75em; margin-bottom:1em;width:30em;" type='text' name='tenmt1' id='tenmt1' value=''><br>
-                                        <span style="margin-left:1em; margin-bottom:1em;">Tên môn thi</span>
-                                        <input style="margin-left:2.83em; margin-bottom:1em;width:30em;" type='text' name='tkt1' id='tkt1' value=''>
-                                    </form>
-                                    <img id="add2" src="assets/image/add.png" width="33" height="33" title="Thêm mới" style="margin-left:4em;margin-top:1em; cursor:pointer;">
-                                    <img id="edit2" src="assets/image/edit.ico" width="33" height="33" title="Sửa" style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                    <img id="delete2" src="assets/image/delete.png" width="33" height="33" title="Xóa" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+
+                                <div class="thaotac" id='crud_noidungthi'>
+
                                 </div>
                             </div>
 
@@ -370,7 +315,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -407,7 +353,7 @@
     <!-- Page level plugins -->
     <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+    <script src="assets/js/dtdanhmuc.js"></script>
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
 </body>

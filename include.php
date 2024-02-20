@@ -4,3 +4,4 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 include './controllers/ExamController.php';
 include './controllers/HomeController.php';
 include './controllers/LoginController.php';
+include './controllers/QuanLyMonThiController.php';
