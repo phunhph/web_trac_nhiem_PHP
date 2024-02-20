@@ -24,7 +24,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -36,7 +36,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php?controller=homeAdmin">
                     <i class="fas fa-home"></i>
                     <span>Trang chủ</span></a>
             </li>
@@ -45,7 +45,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="quanlymon.html">
+                <a class="nav-link" href="index.php?controller=quanlymonthi">
                     <i class="fas fa-book"></i>
                     <span>Quản Lý môn thi</span></a>
             </li>
@@ -54,7 +54,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="quanlythisinh.html">
+                <a class="nav-link" href="index.php?controller=quanlythisinh">
                     <i class="fas fa-user"></i>
                     <span>Quản lý thí sinh</span></a>
             </li>
@@ -63,7 +63,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="soandethi.html">
+                <a class="nav-link" href="index.php?controller=soandethi">
                     <i class="fas fa-edit"></i>
                     <span>Soạn đề thi</span></a>
             </li>
@@ -72,7 +72,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="phanquyenthisinh.html">
+                <a class="nav-link" href="index.php?controller=phanquyenthi">
                     <i class="fas fa-lock"></i>
                     <span>Phân quyền thi</span></a>
             </li>
@@ -82,7 +82,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="soancautrucde.html">
+                <a class="nav-link" href="index.php?controller=soancautrucde">
                     <i class="fas fa-sitemap"></i>
                     <span>Soạn cấu trúc đề</span></a>
             </li>
@@ -91,7 +91,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="diemthi.html">
+                <a class="nav-link" href="index.php?controller=diemthi">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Điểm thi</span></a>
             </li>
@@ -100,7 +100,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="chitietbaithi.html">
+                <a class="nav-link" href="index.php?controller=chitietbaithi">
                     <i class="fas fa-file"></i>
                     <span>Chi tiết bài thi</span></a>
             </li>
@@ -109,7 +109,7 @@
             <hr class="sidebar-divider" />
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="tinhtrangthi.html">
+                <a class="nav-link" href="index.php?controller=tinhtrangthi">
                     <i class="fas fa-chart-line"></i>
                     <span>Tình trạng thi</span></a>
             </li>
@@ -379,19 +379,20 @@
                                     <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
                                         Tạo mới kỳ thi
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="ten" style="color: dimgray">Tên kỳ thi:</label>
-                                        <input type="text" class="form-control" id="ten_create" name="ten_create">
-                                    </div>
-                                    <div class="form-group">
                                         <label for="ma" style="color: dimgray">Mã kỳ thi:</label>
                                         <input type="text" class="form-control" id="ma_create" name="ma_create">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="ten" style="color: dimgray">Tên kỳ thi:</label>
+                                        <input type="text" class="form-control" id="ten_create" name="ten_create">
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="start" style="color: dimgray">Thời gian bắt đầu:</label>
                                         <input type="datetime-local" class="form-control" id="start_crate" name="name_craete">
@@ -402,7 +403,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id='huy'>Huỷ</button>
                                     <button type="button" class="btn btn-primary" id="create" data-dismiss="modal">Tạo
                                         mới</button>
                                 </div>

@@ -19,12 +19,12 @@ class HomeController
             } else {
                 $kythi = $this->adminDAO->getKythi();
                 require_once 'views/home/admin/home.php';
-                die();
             }
-        };
-        $moduns = $this->examDAO->getModun($_SESSION['user_info']['sbd']);
-        $target = "assets/upload/imgthisinh/" . $this->examDAO->getProfile($_SESSION['user_info']['sbd']);
-        require_once 'views/home/client/monthi.php';
+        } else {
+            $moduns = $this->examDAO->getModun($_SESSION['user_info']['sbd']);
+            $target = "assets/upload/imgthisinh/" . $this->examDAO->getProfile($_SESSION['user_info']['sbd']);
+            require_once 'views/home/client/monthi.php';
+        }
     }
     public function getDataAPI()
     {

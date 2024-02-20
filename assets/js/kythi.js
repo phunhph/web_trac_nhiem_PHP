@@ -64,6 +64,7 @@ document.getElementById("create").onclick = function () {
         var message = "Thêm mới kỳ thi thành công";
         showSuccessMessage(message);
         getDate();
+        resetform();
       } else {
         console.error("Lỗi:", xhr.status);
       }
@@ -199,3 +200,13 @@ function showSuccessMessage(mes) {
     document.body.removeChild(successMessage);
   }, 3000);
 }
+// xoá dữ liệu ở form
+function resetform() {
+  document.getElementById("ma_create").value = "";
+  document.getElementById("ten_create").value = "";
+  document.getElementById("start_crate").value = "";
+  document.getElementById("end_create").value = "";
+}
+
+document.getElementById("close").onclick = resetform;
+document.getElementById("huy").onclick = resetform;

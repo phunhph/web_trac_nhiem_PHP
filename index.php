@@ -29,9 +29,6 @@ class router
             case 'home':
                 $this->homeController->index();
                 break;
-            case 'homeAdmin':
-                $this->homeController->index();
-                break;
             case 'setupExam':
                 $this->examController->index();
                 break;
@@ -50,6 +47,9 @@ class router
             case 'reportExam':
                 $this->examController->submitExam();
                 break;
+            case 'homeAdmin':
+                $this->homeController->index();
+                break;
             case 'getDataAPI':
                 $this->homeController->getDataAPI();
                 break;
@@ -62,8 +62,31 @@ class router
             case 'deleteKyThi':
                 $this->homeController->deleteKyThi();
                 break;
+            case 'quanlymonthi':
+                require_once 'views/quanlymonthi/admin/quanlymonthi.php';
+                break;
+            case 'quanlythisinh':
+                require_once 'views/quanlythisinh/admin/quanlythisinh.php';
+                break;
+            case 'soandethi':
+                require_once 'views/soandethi/admin/soandethi.php';
+                break;
+            case 'soancautrucde':
+                require_once 'views/soancautrucde/admin/soancautrucde.php';
+                break;
+            case 'diemthi':
+                require_once 'views/diemthi/admin/diemthi.php';
+                break;
+            case 'chitietbaithi':
+                require_once 'views/diemthi/admin/chitietbaithi.php';
+                break;
+            case 'phanquyenthi':
+                require_once 'views/phanquyenthisinh/admin/phanquyenthisinh.php';
+                break;
+            case 'tinhtrangthi':
+                require_once 'views/tinhtrangthi/admin/tinhtrangthi.php';
+                break;
             default:
-
                 echo '404 not found';
                 break;
         }
