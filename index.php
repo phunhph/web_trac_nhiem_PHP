@@ -70,8 +70,18 @@ class router
             case 'getmonthi':
                 $this->quanlymonthiController->getmonthi();
                 break;
+
             case 'getnoidungthi':
                 $this->quanlymonthiController->getnoidungthi();
+                break;
+            case 'addnoidungthi':
+                $this->quanlymonthiController->addnoidungthi();
+                break;
+            case 'fixnoidungthi':
+                $this->quanlymonthiController->fixnoidungthi();
+                break;
+            case 'deletenoidungthi':
+                $this->quanlymonthiController->deletenoidungthi();
                 break;
             case 'quanlythisinh':
                 require_once 'views/quanlythisinh/admin/quanlythisinh.php';

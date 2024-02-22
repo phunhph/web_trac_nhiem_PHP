@@ -22,6 +22,25 @@ class QuanLyMonThiController
         echo json_encode($monthi, JSON_UNESCAPED_UNICODE);
         exit();
     }
+    public function addmonthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->createMonThi($data->id, $data->name, $data->tgbd, $data->tgkt, $data->id_kt); //;
+
+        exit();
+    }
+    public function fixmonthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->fixmonthi($data->id, $data->name, $data->tgbd, $data->tgkt); //;
+        exit();
+    }
+    public function deletemonthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->deleteMonThi($data->id); //;
+        exit();
+    }
     // nội dung thi
     public function getnoidungthi()
     {
@@ -29,6 +48,25 @@ class QuanLyMonThiController
 
         $noidungthi = $this->quanlymonDao->getNoiDungThi($id->id); //;
         echo json_encode($noidungthi, JSON_UNESCAPED_UNICODE);
+        exit();
+    }
+    public function addnoidungthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->createNoiDungThi($data->id, $data->name, $data->mamon); //;
+
+        exit();
+    }
+    public function fixnoidungthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->fixNoiDungThi($data->id, $data->name, $data->mamon); //;
+        exit();
+    }
+    public function deletenoidungthi()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->deleteNoiDungThi($data->id); //;
         exit();
     }
 }

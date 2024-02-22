@@ -10,8 +10,16 @@ class QuanLyMonThiDAO
         $this->db = $dbConnection->getConnection();
     }
     // môn thi
-    public function createMonThi($mamodun, $tenmondun, $start, $end, $makythi)
+    public function createMonThi($mamodun, $tenmodun, $batdau, $ketthuc, $makythi)
     {
+        $query = "INSERT INTO `modun`(`mamodun`, `tenmodun`, `batdau`, `ketthuc`, `makythi`) VALUES (:mamodun, :tenmodun, :batdau, :ketthuc, :makythi)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->bindParam(':tenmodun', $tenmodun, PDO::PARAM_STR);
+        $stmt->bindParam(':batdau', $batdau, PDO::PARAM_STR);
+        $stmt->bindParam(':ketthuc', $ketthuc, PDO::PARAM_STR);
+        $stmt->bindParam(':makythi', $makythi, PDO::PARAM_STR);
+        $stmt->execute();
     }
     public function getMonThi($makythi)
     {
@@ -32,17 +40,35 @@ class QuanLyMonThiDAO
         return $moduns;
     }
 
-
-    public function fixMonThi($mamodun, $start, $end)
+    public function fixmonthi($mamodun, $tenmodun, $batdau, $ketthuc)
     {
+        $query = "UPDATE `modun` SET `tenmodun`=:tenmodun, `batdau`=:batdau, `ketthuc`=:ketthuc WHERE `mamodun`=:mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->bindParam(':tenmodun', $tenmodun, PDO::PARAM_STR);
+        $stmt->bindParam(':batdau', $batdau, PDO::PARAM_STR);
+        $stmt->bindParam(':ketthuc', $ketthuc, PDO::PARAM_STR);
+        $stmt->execute();
     }
+
     public function deleteMonThi($mamodun)
     {
+        $query = "DELETE FROM `modun`  WHERE `mamodun`=:mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
     }
     // nội dung thi
-    public function createNoiDungThi($mamodun, $tenmondun, $start, $end, $makythi)
+    public function createNoiDungThi($mabode, $tenbode, $mamodun)
     {
+        $query = "INSERT INTO `bode`(`mabode`, `tenbode`, `mamodun`) VALUES (:mabode, :tenbode, :mamodun)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->bindParam(':tenbode', $tenbode, PDO::PARAM_STR);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
     }
+
     public function getNoiDungThi($mamodun)
     {
         $query = "SELECT bode.mabode, bode.tenbode, modun.tenmodun, kythi.tenkythi 
@@ -61,10 +87,23 @@ class QuanLyMonThiDAO
         return $noiDungThi;
     }
 
-    public function fixNoiDungThi($mamodun, $start, $end)
+    public function fixNoiDungThi($mabode, $tenbode, $mamodun)
     {
+        $mabode = trim($mabode);
+        $query = "UPDATE `bode` SET `tenbode` = :tenbode, `mamodun` = :mamodun WHERE `mabode` = :mabode";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->bindParam(':tenbode', $tenbode, PDO::PARAM_STR);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
     }
-    public function deleteNoiDungThi($mamodun)
+
+    public function deleteNoiDungThi($mabode)
     {
+        $mabode = trim($mabode);
+        $query = "DELETE FROM `bode` WHERE `mabode` = :mabode";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->execute();
     }
 }
