@@ -10,12 +10,13 @@ class HocVien
     public $noisinh;
     public $makythi;
     public $madonvi;
+    public $tendonvi;
     public $tenphongthi;
     public $matkhau;
     public $profile;
 
     // Hàm khởi tạo
-    public function __construct($sbd, $hodem, $ten, $ngaysinh, $noisinh, $makythi, $madonvi, $tenphongthi, $matkhau, $profile)
+    public function __construct($sbd, $hodem, $ten, $ngaysinh, $noisinh, $makythi, $madonvi, $tendonvi, $tenphongthi, $matkhau, $profile)
     {
         $this->sbd = $sbd;
         $this->hodem = $hodem;
@@ -24,6 +25,7 @@ class HocVien
         $this->noisinh = $noisinh;
         $this->makythi = $makythi;
         $this->madonvi = $madonvi;
+        $this->tendonvi = $tendonvi;
         $this->tenphongthi = $tenphongthi;
         $this->matkhau = $matkhau;
         $this->profile = $profile;

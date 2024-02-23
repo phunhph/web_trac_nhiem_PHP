@@ -5,3 +5,4 @@ include './controllers/ExamController.php';
 include './controllers/HomeController.php';
 include './controllers/LoginController.php';
 include './controllers/QuanLyMonThiController.php';
+include './controllers/QuanLyThiSinhController.php';
