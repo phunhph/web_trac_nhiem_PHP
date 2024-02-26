@@ -274,6 +274,7 @@ function addAllEvents() {
         xhr.onreadystatechange = function () {
           if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
+              console.log(xhr.responseText);
               getmonthi(data.id_kt);
             } else {
               console.error("Lỗi:", xhr.status);

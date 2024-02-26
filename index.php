@@ -72,6 +72,9 @@ class router
             case 'getmonthi':
                 $this->quanlymonthiController->getmonthi();
                 break;
+            case 'deletemonthi':
+                $this->quanlymonthiController->deletemonthi();
+                break;
             case 'getnoidungthi':
                 $this->quanlymonthiController->getnoidungthi();
                 break;
