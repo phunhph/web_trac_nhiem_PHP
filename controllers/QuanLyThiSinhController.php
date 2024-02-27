@@ -75,6 +75,15 @@ class QuanLyThiSinhController
     }
     public function deletethisinh()
     {
+        $data = json_decode(file_get_contents("php://input"));
+        str_replace("'", "&#39;", $data->sbd);
+        str_replace("'", "&#39;", $data->kythi);
+        $this->quanlythisinhDAO->deleteRemote($data->sbd);
+        $this->quanlythisinhDAO->deleteAllowexam($data->sbd);
+        $this->quanlythisinhDAO->deleteDiem($data->sbd);
+        $this->quanlythisinhDAO->deleteMatKhau($data->sbd);
+        $this->quanlythisinhDAO->deleteDeThiSinh($data->sbd);
+        $this->quanlythisinhDAO->deleteThiSinh($data->sbd);
     }
     public function updatethisinh()
     {

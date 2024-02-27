@@ -144,5 +144,49 @@ class QuanlyThiSinhDAO
     }
     public function deleteThiSinh($sbd)
     {
+        $sql = "DELETE FROM hocvien WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
+    }
+
+    public function deleteMatKhau($sbd)
+    {
+        $sql = "DELETE FROM matkhau WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
+    }
+
+    public function deleteDeThiSinh($sbd)
+    {
+        $sql = "DELETE FROM dethisinh WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
+    }
+
+    public function deleteDiem($sbd)
+    {
+        $sql = "DELETE FROM diem WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
+    }
+
+    public function deleteAllowexam($sbd)
+    {
+        $sql = "DELETE FROM allowexam WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
+    }
+
+    public function deleteRemote($sbd)
+    {
+        $sql = "DELETE FROM remote WHERE sbd = :sbd";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->execute();
     }
 }

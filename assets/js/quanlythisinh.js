@@ -1,11 +1,8 @@
 document.getElementById("kythi").onchange = function () {
   var id = document.getElementById("kythi").value;
-  getlop(id);
-  document.getElementById(
-    "thisinh"
-  ).innerHTML = `<td valign="top" style="text-align: center;" colspan="8" class="dataTables_empty">No data available in table</td>`;
+  getlop(id, null);
 };
-function getlop(id) {
+function getlop(id, ast) {
   var data = {
     id: id,
   };
@@ -18,7 +15,7 @@ function getlop(id) {
       if (xhr.status === 200) {
         var response = xhr.responseText;
         var data = JSON.parse(response);
-        renderPhong(data);
+        renderPhong(data, ast);
       } else {
         console.error("Lỗi:", xhr.status);
       }
@@ -27,14 +24,30 @@ function getlop(id) {
 
   xhr.send(JSON.stringify(data));
 }
-function renderPhong(date) {
-  var html = `<option value="...">...</option>`;
-  if (date.length > 0) {
-    date.forEach((element) => {
-      html += `<option value='${element}'>${element}</option>`;
-    });
+function renderPhong(date, ast) {
+  if (ast == null) {
+    var html = `<option value="...">...</option>`;
+    if (date.length > 0) {
+      date.forEach((element) => {
+        html += `<option value='${element}'>${element}</option>`;
+      });
+    }
+  } else {
+    var html = `<option value="...">...</option>`;
+    if (date.length > 0) {
+      date.forEach((element) => {
+        if (element == ast) {
+          html += `<option value='${element}' selected>${element}</option>`;
+        } else {
+          html += `<option value='${element}'>${element}</option>`;
+        }
+      });
+    }
   }
   document.getElementById("phong").innerHTML = html;
+  document.getElementById(
+    "thisinh"
+  ).innerHTML = `<td valign="top" style="text-align: center;" colspan="8" class="dataTables_empty">No data available in table</td>`;
 }
 // lấy dữ liệu và hiển thị dữ lieeuj sinh vien
 document.getElementById("phong").onchange = function () {
@@ -204,7 +217,8 @@ function crud() {
               );
             } else {
               alert("Thêm học viên thành công");
-              getlop(data.kythi);
+              getlop(data.kythi, data.phongthi);
+              getSinhVien(data.kythi, data.phongthi);
               reload();
             }
           } else {
@@ -275,20 +289,30 @@ function crud() {
   });
 
   $("#delete").click(function (e) {
-    var id = $("input[id='sbd']").val();
-    if (id !== null) {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "post",
-        url: "xoathisinh.php",
-        data: data,
-        success: function (data) {
-          if (data === "true") {
-            alert("Xóa thí sinh thành công!");
-            $(".loadchinh").load("qtht.php");
-          } else alert("Thí sinh không tồn tại!");
-        },
-      });
+    if (confirm("Xác nhận xoá học viên")) {
+      var data = {
+        sbd: $("input[id='sbd']").val(),
+        kythi: document.getElementById("kythi").value,
+        phongthi: $("input[id='phongthi']").val(),
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=deletethisinh", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            alert("Xoá học viên thành công");
+            reload();
+            getlop(data.kythi, data.phongthi);
+            getSinhVien(data.kythi, data.phongthi);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
 }
