@@ -6,3 +6,4 @@ include './controllers/HomeController.php';
 include './controllers/LoginController.php';
 include './controllers/QuanLyMonThiController.php';
 include './controllers/QuanLyThiSinhController.php';
+include './controllers/SoanDeThiController.php';

@@ -8,7 +8,7 @@ class router
     private $examController;
     private $quanlymonthiController;
     private $quanlythisinhController;
-
+    private $soandethiController;
     public function __construct()
     {
         $this->loginController = new LoginController();
@@ -16,6 +16,7 @@ class router
         $this->examController = new ExamController();
         $this->quanlymonthiController = new QuanlyMonthiController();
         $this->quanlythisinhController = new QuanLyThiSinhController();
+        $this->soandethiController = new SoandethiController();
     }
     public function route()
     {
@@ -106,7 +107,10 @@ class router
                 $this->quanlythisinhController->updatethisinh();
                 break;
             case 'soandethi':
-                require_once 'views/soandethi/admin/soandethi.php';
+                $this->soandethiController->index();
+                break;
+            case 'getcauhoibybode':
+                $this->soandethiController->getcauhoibybode();
                 break;
             case 'soancautrucde':
                 require_once 'views/soancautrucde/admin/soancautrucde.php';

@@ -13,8 +13,10 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style/taodethi.css">
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
 </head>
@@ -25,7 +27,8 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -148,12 +151,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -184,7 +189,151 @@
                         <h1 class="h3 mb-0 text-gray-800">Soạn đề thi</h1>
                     </div>
 
-                    <div class="row"></div>
+                    <div>
+                        <div class="tttk">
+                            <div class="pp1">
+                                <p style="margin-left:3em;margin-top:0.5em;font-size:17px;color:blue;font-weight:bold;">
+                                    Thông tin tìm kiếm</p>
+                            </div>
+                            <div class="pp2">
+
+
+                                <span style="margin-left:2em;">Danh mục kỳ thi</span>
+                                <select name="kythi" id="kythi"
+                                    style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                                    <option>--Chọn kỳ thi--</option>
+                                    <?php foreach ($kythi as $key => $value) : ?>
+                                    <option value="<?= $value->getMaKyThi() ?>">
+                                        <?= $value->getTenKyThi() ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <div class="loada">
+                                    <span style="margin-left:2em;">Danh mục môn thi</span>
+                                    <select id="monthi" name="monthi"
+                                        style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
+                                        <option value="all">--Chọn môn thi--</option>
+                                    </select>
+                                </div>
+                                <div class="loada">
+                                    <span style="margin-left:2em;">Bộ đề</span>
+                                    <select id="pthi" name="pthi"
+                                        style="margin-top:1em;margin-left:6.6em;width:30%;height:2em;">
+                                        <option value="all">--Chọn phần thi--</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="kqtk">
+                            <div class="pp1" style="padding:0;">
+
+                                <p style="margin-left:3em;margin-top:0.5em;font-size:17px;color:blue;font-weight:bold;">
+                                    Kết quả tìm kiếm</p>
+                            </div>
+                            <div class="pp2" id="loadndch">
+                                <form method="post" action="" name='f'>
+                                    <table class="tabley" id="cauhoilist">
+                                        <tr style="color:rgba(255,153,0,1); margin-bottom:2em;">
+                                            <th style='width:7%;'>Mã câu hỏi</th>
+                                            <th style='width:20%;'>Tên câu hỏi</th>
+                                            <th style='width:15%;'>Phương án đúng</th>
+                                            <th style='width:15%;'>Phương án sai 1</th>
+                                            <th style='width:15%;'>Phương án sai 2</th>
+                                            <th style='width:15%;'>Phương án sai 3</th>
+                                            <th style='width:5%;'>Mức độ</th>
+                                        </tr>
+
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="chititet">
+                            <div class="pp1" style="padding:0;">
+
+                                <p style="margin-left:3em;margin-top:0.5em;font-size:17px;color:blue;font-weight:bold;">
+                                    Xử lý câu hỏi</p>
+                            </div>
+                            <div class="sua" style="padding-bottom:2em;width:100%; float:left;">
+                                <form name="update" id="update" method="POST" enctype="multipart/form-data">
+                                    <div class="csbd">
+                                        <span>Mã câu hỏi</span>
+                                        <br>
+                                        <input type="text" name="macauhoi" id="macauhoi" value="" autofocus>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Tên câu hỏi</span>
+                                        <br>
+                                        <input type="text" name="tencauhoi" id="tencauhoi" value="">
+                                        <input type="file" name="file1" id="file1"
+                                            title="Chọn file ảnh, audio, hoặc video">
+                                        <p
+                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                            Thêm hình ảnh, âm thanh hoặc video</p>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Phương án đúng</span>
+                                        <br>
+                                        <input type="text" name="padung" id="padung" value="">
+                                        <input type="file" name="file2" id="file2"
+                                            title="Chọn file ảnh, audio, hoặc video">
+                                        <p
+                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                            Thêm hình ảnh, âm thanh hoặc video</p>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Phương án sai 1</span>
+                                        <br>
+                                        <input type="text" name="pasai1" id="pasai1" value="">
+                                        <input type="file" name="file3" id="file3"
+                                            title="Chọn file ảnh, audio, hoặc video">
+                                        <p
+                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                            Thêm hình ảnh, âm thanh hoặc video</p>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Phương án sai 2</span>
+                                        <br>
+                                        <input type="text" name="pasai2" id="pasai2" value="">
+                                        <input type="file" name="file4" id="file4"
+                                            title="Chọn file ảnh, audio, hoặc video">
+                                        <p
+                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                            Thêm hình ảnh, âm thanh hoặc video</p>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Phương án sai 3</span>
+                                        <br>
+                                        <input type="text" name="pasai3" id="pasai3" value="">
+                                        <input type="file" name="file5" id="file5"
+                                            title="Chọn file ảnh, audio, hoặc video">
+                                        <p
+                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                            Thêm hình ảnh, âm thanh hoặc video</p>
+                                    </div>
+                                    <div class="csbd">
+                                        <span>Mức độ</span>
+                                        <br>
+                                        <input type="text" name="tl" id="tl" value="">
+                                    </div>
+                                </form>
+                                <div class="add">
+                                    <img id="add" src="assets/image/add.png" width="30" height="30"
+                                        title="Thêm câu hỏi mới"
+                                        style="margin-left:4em;margin-top:1em; cursor:pointer;">
+                                    <img id="edit" src="assets/image/edit.ico" width="30" height="30"
+                                        title="Sửa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                    <img id="delete" src="assets/image/delete.png" width="30" height="30"
+                                        title="Xóa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                    <img id="refresh" src="assets/image/refresh-icon.png" width="30" height="30"
+                                        title="Refresh" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <!-- /.container-fluid -->
@@ -211,7 +360,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -242,6 +392,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/taodethi.js"></script>
 </body>
 
 </html>
