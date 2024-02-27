@@ -31,6 +31,47 @@ class QuanLyThiSinhController
     }
     public function createthisinh()
     {
+        $matkhau = "N";
+        $i = 1;
+        while ($i <= 5) //Tạo mật khẩu gồm 8 kí tự chữ số
+        {
+            $matkhau .= rand(0, 9);
+            $i++;
+        }
+        $tempmk = $matkhau;
+        $matkhau = md5($matkhau);
+        $data = json_decode(file_get_contents("php://input"));
+
+        $result = $this->quanlythisinhDAO->getThiSinhById($data->sbd);
+        $donvi  = $this->quanlythisinhDAO->getMaDonVi($data->madonvi);
+        if ($donvi) {
+            if ($result) {
+            } else {
+                $this->quanlythisinhDAO->createThiSinh($data->sbd, $data->hodem, $data->ten, $data->ngaysinh, $data->noisinh, $data->kythi, $data->madonvi, $data->phongthi, $matkhau, null);
+                $this->quanlythisinhDAO->createMatKhau($data->sbd, $tempmk);
+                $mamodun = $this->quanlythisinhDAO->getMaMoDun($data->kythi);
+
+                foreach ($mamodun as $key => $value) {
+                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value);
+                }
+            }
+            echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            exit();
+        } else {
+            $this->quanlythisinhDAO->createMaDonVi($data->madonvi, $data->tendonvi);
+            if ($result) {
+            } else {
+                $this->quanlythisinhDAO->createThiSinh($data->sbd, $data->hodem, $data->ten, $data->ngaysinh, $data->noisinh, $data->kythi, $data->madonvi, $data->phongthi, $matkhau, null);
+                $this->quanlythisinhDAO->createMatKhau($data->sbd, $tempmk);
+                $mamodun = $this->quanlythisinhDAO->getMaMoDun($data->kythi);
+
+                foreach ($mamodun as $key => $value) {
+                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value);
+                }
+            }
+            echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            exit();
+        }
     }
     public function deletethisinh()
     {

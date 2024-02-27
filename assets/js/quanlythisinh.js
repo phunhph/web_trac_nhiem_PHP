@@ -1,6 +1,9 @@
 document.getElementById("kythi").onchange = function () {
   var id = document.getElementById("kythi").value;
   getlop(id);
+  document.getElementById(
+    "thisinh"
+  ).innerHTML = `<td valign="top" style="text-align: center;" colspan="8" class="dataTables_empty">No data available in table</td>`;
 };
 function getlop(id) {
   var data = {
@@ -106,6 +109,56 @@ function addEvent() {
     $("input[id='tendonvi']").val("");
     $("input[id='phongthi']").val("");
   });
+  var key = false;
+  $("*")
+    .keydown(function (e) {
+      if (e.keyCode == 67) key = true;
+    })
+    .keyup(function (e) {
+      if (e.keyCode == 67) key = false;
+    })
+    .keydown(function (e) {
+      if (key) {
+        if (e.keyCode == 65) {
+          $("body").css("overflow", "hidden");
+          $(".over").css("display", "block");
+        }
+      }
+    });
+
+  $("#sexit").click(function (e) {
+    $("body").css("overflow", "visible");
+    $(".over").css("display", "none");
+    $("#search").val("");
+  });
+
+  $("#Sb").click(function (e) {
+    var data = $("#search").val();
+    $.ajax({
+      type: "post",
+      url: "sbdtemp.php",
+      data: {
+        id: data,
+      },
+      success: function (data) {
+        if (data == "true") alert("Thí sinh có trong danh sách thi");
+        else alert("Thí sinh này không tồn tại");
+      },
+    });
+  });
+}
+crud();
+function reload() {
+  $("input[id='sbd']").val("");
+  $("input[id='hodem']").val("");
+  $("input[id='ten']").val("");
+  $("input[id='ns']").val("");
+  $("input[id='noisinh']").val("");
+  $("input[id='madonvi']").val("");
+  $("input[id='tendonvi']").val("");
+  $("input[id='phongthi']").val("");
+}
+function crud() {
   $("#add").click(function (e) {
     var a, b, c, d, e, f;
     a = $("input[id='sbd']").val();
@@ -126,41 +179,41 @@ function addEvent() {
     )
       alert("Bạn cần nhập đủ thông tin!");
     else {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "POST",
-        url: "tsxthisinh.php",
-        data: data,
-        success: function (data) {
-          //alert(data);
-          if (data == "false")
-            alert(
-              "Học viên đã tồn tại, lưu ý mã học viên không được trùng nhau"
-            );
-          else {
-            var ajax = new XMLHttpRequest();
-            var dat = new FormData();
+      var data = {
+        sbd: a,
+        hodem: b,
+        ten: c,
+        noisinh: document.getElementById("noisinh").value,
+        ngaysinh: d,
+        madonvi: e,
+        tendonvi: f,
+        phongthi: g,
+        kythi: document.getElementById("kythi").value,
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=createthisinh", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            function g() {
-              dat.append(
-                "profile",
-                document.querySelector("#pictureprofile").files[0]
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // console.log(xhr.responseText);
+            if (xhr.responseText === "true") {
+              alert(
+                "Học viên đã tồn tại, lưu ý mã học viên không được trùng nhau"
               );
-
-              ajax.onreadystatechange = function (e) {
-                if (ajax.status == 200 && ajax.readyState == 4) {
-                  //alert(ajax.responseText);
-                }
-              };
-              ajax.open("POST", "qthtaddprofile.php");
-              ajax.send(dat);
+            } else {
+              alert("Thêm học viên thành công");
+              getlop(data.kythi);
+              reload();
             }
-            g();
-            alert("Thêm học viên thành công");
-            $(".loadchinh").load("qtht.php");
+          } else {
+            console.error("Lỗi:", xhr.status);
           }
-        },
-      });
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
 
@@ -237,43 +290,5 @@ function addEvent() {
         },
       });
     }
-  });
-
-  var key = false;
-  $("*")
-    .keydown(function (e) {
-      if (e.keyCode == 67) key = true;
-    })
-    .keyup(function (e) {
-      if (e.keyCode == 67) key = false;
-    })
-    .keydown(function (e) {
-      if (key) {
-        if (e.keyCode == 65) {
-          $("body").css("overflow", "hidden");
-          $(".over").css("display", "block");
-        }
-      }
-    });
-
-  $("#sexit").click(function (e) {
-    $("body").css("overflow", "visible");
-    $(".over").css("display", "none");
-    $("#search").val("");
-  });
-
-  $("#Sb").click(function (e) {
-    var data = $("#search").val();
-    $.ajax({
-      type: "post",
-      url: "sbdtemp.php",
-      data: {
-        id: data,
-      },
-      success: function (data) {
-        if (data == "true") alert("Thí sinh có trong danh sách thi");
-        else alert("Thí sinh này không tồn tại");
-      },
-    });
   });
 }
