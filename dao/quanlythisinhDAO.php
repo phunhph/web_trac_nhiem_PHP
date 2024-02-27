@@ -141,7 +141,29 @@ class QuanlyThiSinhDAO
 
     public function updateThiSinh($sbd, $hodem, $ten, $ngaysinh, $noisinh, $makythi, $madonvi, $tenphongthi, $matkhau, $profile)
     {
+        $sql = "UPDATE HOCVIEN SET hodem='$hodem', ten='$ten', ngaysinh='$ngaysinh', noisinh='$noisinh', makythi='$makythi', madonvi='$madonvi', tenphongthi='$tenphongthi', matkhau='$matkhau' WHERE sbd='$sbd'";
+        $stmt = $this->db->prepare($sql);
+        $success = $stmt->execute();
+        return $success ? true : false;
     }
+
+    public function updateDonVi($madonvi, $tendonvi)
+    {
+        $sql = "UPDATE DONVI SET tendonvi='$tendonvi' WHERE madonvi='$madonvi'";
+        $stmt = $this->db->prepare($sql);
+        $success = $stmt->execute();
+        return $success ? true : false;
+    }
+
+    public function updateMatKhau($sbd, $matkhau)
+    {
+        $sql = "UPDATE MATKHAU SET matkhau='$matkhau' WHERE sbd='$sbd'";
+        $stmt = $this->db->prepare($sql);
+        $success = $stmt->execute();
+        return $success ? true : false;
+    }
+
+
     public function deleteThiSinh($sbd)
     {
         $sql = "DELETE FROM hocvien WHERE sbd = :sbd";

@@ -33,7 +33,7 @@ class QuanLyThiSinhController
     {
         $matkhau = "N";
         $i = 1;
-        while ($i <= 5) //Tạo mật khẩu gồm 8 kí tự chữ số
+        while ($i <= 7) //Tạo mật khẩu gồm 8 kí tự chữ số
         {
             $matkhau .= rand(0, 9);
             $i++;
@@ -87,5 +87,28 @@ class QuanLyThiSinhController
     }
     public function updatethisinh()
     {
+        $matkhau = "N";
+        $i = 1;
+        while ($i <= 7) //Tạo mật khẩu gồm 8 kí tự chữ số
+        {
+            $matkhau .= rand(0, 9);
+            $i++;
+        }
+        $tempmk = $matkhau;
+        $matkhau = md5($matkhau);
+        $data = json_decode(file_get_contents("php://input"));
+        $donvi  = $this->quanlythisinhDAO->getMaDonVi($data->madonvi);
+        $result = $this->quanlythisinhDAO->getThiSinhById($data->sbd);
+        if ($result) {
+            if ($donvi) {
+                $this->quanlythisinhDAO->updateThiSinh($data->sbd, $data->hodem, $data->ten, $data->ngaysinh, $data->noisinh, $data->kythi, $data->madonvi, $data->phongthi, $matkhau, null);
+                $this->quanlythisinhDAO->updateMatKhau($data->sbd, $tempmk);
+            } else {
+                $this->quanlythisinhDAO->createMaDonVi($data->madonvi, $data->tendonvi);
+                $this->quanlythisinhDAO->updateThiSinh($data->sbd, $data->hodem, $data->ten, $data->ngaysinh, $data->noisinh, $data->kythi, $data->madonvi, $data->phongthi, $matkhau, null);
+                $this->quanlythisinhDAO->updateMatKhau($data->sbd, $tempmk);
+            }
+        }
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 }

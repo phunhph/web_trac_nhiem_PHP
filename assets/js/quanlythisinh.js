@@ -1,6 +1,7 @@
 document.getElementById("kythi").onchange = function () {
   var id = document.getElementById("kythi").value;
   getlop(id, null);
+  reload();
 };
 function getlop(id, ast) {
   var data = {
@@ -54,6 +55,7 @@ document.getElementById("phong").onchange = function () {
   var phong = document.getElementById("phong").value;
   var ky = document.getElementById("kythi").value;
   getSinhVien(ky, phong);
+  reload();
 };
 function getSinhVien(ky, phong) {
   var data = {
@@ -216,7 +218,8 @@ function crud() {
                 "Học viên đã tồn tại, lưu ý mã học viên không được trùng nhau"
               );
             } else {
-              alert("Thêm học viên thành công");
+              var mes = "Thêm học viên thành công";
+              showSuccessMessage(mes);
               getlop(data.kythi, data.phongthi);
               getSinhVien(data.kythi, data.phongthi);
               reload();
@@ -251,40 +254,40 @@ function crud() {
     )
       alert("Bạn cần nhập đủ thông tin!");
     else {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "POST",
-        url: "editthisinh.php",
-        data: data,
-        success: function (data) {
-          //alert(data);
-          if (data == "true") {
-            var ajax = new XMLHttpRequest();
-            var dat = new FormData();
+      var data = {
+        sbd: a,
+        hodem: b,
+        ten: c,
+        noisinh: document.getElementById("noisinh").value,
+        ngaysinh: d,
+        madonvi: e,
+        tendonvi: f,
+        phongthi: g,
+        kythi: document.getElementById("kythi").value,
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=updatethisinh", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            function g() {
-              dat.append(
-                "profile",
-                document.querySelector("#pictureprofile").files[0]
-              );
-
-              ajax.onreadystatechange = function (e) {
-                if (ajax.status == 200 && ajax.readyState == 4) {
-                  //alert(ajax.responseText);
-                }
-              };
-              ajax.open("POST", "qthtaddprofile.php");
-              ajax.send(dat);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            if (xhr.responseText === "true") {
+              var mes = "Cập nhật thông tin thành công";
+              showSuccessMessage(mes);
+              getlop(data.kythi, data.phongthi);
+              getSinhVien(data.kythi, data.phongthi);
+              reload();
+            } else {
+              alert("Không được thay đổi 'Số Báo Danh'");
             }
-            g();
-            alert("Cập nhật thành công");
-            $(".loadchinh").load("qtht.php");
-          } else
-            alert(
-              "Không thể cập nhật, lưu ý: bạn không được thay đổi số báo danh và mã đơn vị của thí"
-            );
-        },
-      });
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
 
@@ -302,7 +305,8 @@ function crud() {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
-            alert("Xoá học viên thành công");
+            var mes = "Xoá học viên thành công";
+            showSuccessMessage(mes);
             reload();
             getlop(data.kythi, data.phongthi);
             getSinhVien(data.kythi, data.phongthi);
@@ -315,4 +319,15 @@ function crud() {
       xhr.send(JSON.stringify(data));
     }
   });
+}
+function showSuccessMessage(mes) {
+  var successMessage = document.createElement("div");
+  successMessage.textContent = mes;
+  successMessage.classList.add("success-message");
+  document.body.appendChild(successMessage);
+
+  // Ẩn thông báo sau 3 giây
+  setTimeout(function () {
+    document.body.removeChild(successMessage);
+  }, 3000);
 }
