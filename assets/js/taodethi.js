@@ -1,5 +1,6 @@
 $("#kythi").change(function (e) {
   (id = document.getElementById("kythi").value), getmothi(id);
+  getbode(id);
   reload();
 });
 
@@ -250,6 +251,10 @@ function addevent() {
     $("input[id='pasai2']").val($(this).children("td:eq(4)").text());
     $("input[id='pasai3']").val($(this).children("td:eq(5)").text());
     $("input[id='tl']").val($(this).children("td:eq(6)").text());
+    var element = document.getElementById("update");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   });
 }
 function reload() {
@@ -264,6 +269,7 @@ function reload() {
 curd();
 function curd() {
   $("#add").click(function (e) {
+    var id = document.getElementById("pthi").value;
     var a, b, c, d, e, f;
     a = $("input[id='macauhoi']").val();
     b = $("input[id='tencauhoi']").val();
@@ -275,43 +281,42 @@ function curd() {
     if (a === "" || b === "" || c === "" || d === "" || e === "" || f === "")
       alert("Bạn cần nhập đủ thông tin!");
     else {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "POST",
-        url: "themcauhoi.php",
-        data: data,
-        success: function (data) {
-          //alert(data);
-          if (data == "false")
-            alert("Câu hỏi đã tồn tại, lưu ý mã câu hỏi không trùng nhau");
-          else {
-            alert("Thêm câu hỏi thành công");
-            var ajax = new XMLHttpRequest();
-            var dat = new FormData();
-            function g() {
-              dat.append("f1", document.querySelector("#file1").files[0]);
-              dat.append("f2", document.querySelector("#file2").files[0]);
-              dat.append("f3", document.querySelector("#file3").files[0]);
-              dat.append("f4", document.querySelector("#file4").files[0]);
-              dat.append("f5", document.querySelector("#file5").files[0]);
+      var data = {
+        macauhoi: a,
+        tencauhoi: b,
+        padung: c,
+        pasai1: d,
+        pasai2: e,
+        pasai3: f,
+        tl: g,
+        mabode: document.getElementById("pthi").value,
+      };
 
-              ajax.onreadystatechange = function (e) {
-                if (ajax.status == 200 && ajax.readyState == 4) {
-                  //alert(ajax.responseText);
-                }
-              };
-              ajax.open("POST", "taodethiaddiva.php");
-              ajax.send(dat);
-            }
-            g();
-            $(".loadchinh").load("taodethi.php");
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=createcauhoi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = xhr.responseText;
+            console.log(response);
+            var mes = "Thêm mới câu hỏi thành công";
+            showSuccessMessage(mes);
+            reload();
+            getcauhoi(id);
+          } else {
+            console.error("Lỗi:", xhr.status);
           }
-        },
-      });
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
 
   $("#edit").click(function (e) {
+    var id = document.getElementById("pthi").value;
     var a, b, c, d, e, f;
     a = $("input[id='macauhoi']").val();
     b = $("input[id='tencauhoi']").val();
@@ -323,57 +328,67 @@ function curd() {
     if (a === "" || b === "" || c === "" || d === "" || e === "" || f === "")
       alert("Bạn cần nhập đủ thông tin!");
     else {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "POST",
-        url: "editcauhoi.php",
-        data: data,
-        success: function (data) {
-          //alert(data);
-          if (data == "true") {
-            alert("Đã sửa");
-            var ajax = new XMLHttpRequest();
-            var dat = new FormData();
-            function g() {
-              dat.append("f1", document.querySelector("#file1").files[0]);
-              dat.append("f2", document.querySelector("#file2").files[0]);
-              dat.append("f3", document.querySelector("#file3").files[0]);
-              dat.append("f4", document.querySelector("#file4").files[0]);
-              dat.append("f5", document.querySelector("#file5").files[0]);
+      var data = {
+        macauhoi: a,
+        tencauhoi: b,
+        padung: c,
+        pasai1: d,
+        pasai2: e,
+        pasai3: f,
+        tl: g,
+        mabode: document.getElementById("pthi").value,
+      };
 
-              ajax.onreadystatechange = function (e) {
-                if (ajax.status == 200 && ajax.readyState == 4) {
-                  //alert(ajax.responseText);
-                }
-              };
-              ajax.open("POST", "taodethiaddiva.php");
-              ajax.send(dat);
-            }
-            g();
-            $(".loadchinh").load("taodethi.php");
-          } else alert("Lỗi");
-        },
-      });
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=updatecauhoi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = xhr.responseText;
+            console.log(response);
+            var mes = "Cập nhật câu hỏi thành công";
+            showSuccessMessage(mes);
+            reload();
+            getcauhoi(id);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
 
   $("#delete").click(function (e) {
-    var a = $("input[id='macauhoi']").val();
-    if (a !== "") {
-      var data = $("#update").serialize();
-      $.ajax({
-        type: "POST",
-        url: "xoacauhoi.php",
-        data: data,
-        success: function (data) {
-          if (data == "true") {
-            alert("Đã xóa câu hỏi");
-            $(".loadchinh").load("taodethi.php");
-          } else alert("Câu hỏi không tồn tại");
-        },
-      });
-    } else {
-      alert("vui long nhap id");
+    if (confirm("Are you sure you want to delete")) {
+      var id = document.getElementById("pthi").value;
+      var data = {
+        macauhoi: $("input[id='macauhoi']").val(),
+      };
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=deletecauhoi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var response = xhr.responseText;
+            console.log(response);
+            var mes = "Xoá câu hỏi thành công";
+            showSuccessMessage(mes);
+            reload();
+            getcauhoi(id);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
     }
   });
   $("#refresh").click(function (e) {
@@ -385,4 +400,15 @@ function curd() {
     $("input[id='pasai3']").val("");
     $("input[id='tl']").val("");
   });
+}
+function showSuccessMessage(mes) {
+  var successMessage = document.createElement("div");
+  successMessage.textContent = mes;
+  successMessage.classList.add("success-message");
+  document.body.appendChild(successMessage);
+
+  // Ẩn thông báo sau 3 giây
+  setTimeout(function () {
+    document.body.removeChild(successMessage);
+  }, 3000);
 }

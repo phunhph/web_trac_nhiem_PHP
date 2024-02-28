@@ -112,6 +112,15 @@ class router
             case 'getcauhoibybode':
                 $this->soandethiController->getcauhoibybode();
                 break;
+            case 'createcauhoi':
+                $this->soandethiController->createcauhoi();
+                break;
+            case 'updatecauhoi':
+                $this->soandethiController->updatecauhoi();
+                break;
+            case 'deletecauhoi':
+                $this->soandethiController->deletecauhoi();
+                break;
             case 'soancautrucde':
                 require_once 'views/soancautrucde/admin/soancautrucde.php';
                 break;
