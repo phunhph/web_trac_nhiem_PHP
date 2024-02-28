@@ -1,0 +1,142 @@
+$("#kythi").change(function (e) {
+  (id = document.getElementById("kythi").value), getmothi(id);
+});
+
+function getmothi(data) {
+  var id = {
+    id: data,
+  };
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "index.php?controller=getmonthi", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = xhr.responseText;
+        var data = JSON.parse(response);
+        rendermonthi(data);
+      } else {
+        console.error("Lỗi:", xhr.status);
+      }
+    }
+  };
+
+  xhr.send(JSON.stringify(id));
+}
+function rendermonthi(data) {
+  var html = `<option value="all">--Chọn môn thi--</option>`;
+  if (data.length >= 1) {
+    data.forEach((element) => {
+      html += `<option value="${element.mamodun}">${element.tenmodun}</option>`;
+    });
+  }
+  document.getElementById("monthi").innerHTML = html;
+}
+
+$("#monthi").change(function (e) {
+  getthisinh();
+});
+function getthisinh() {
+  var data = {
+    id: document.getElementById("monthi").value,
+    hienthi: document.getElementById("hienthi").value,
+  };
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "index.php?controller=getthisinhbymonthis", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = xhr.responseText;
+
+        var data = JSON.parse(response);
+        renderthisinh(data);
+      } else {
+        console.error("Lỗi:", xhr.status);
+      }
+    }
+  };
+
+  xhr.send(JSON.stringify(data));
+}
+
+$("#hienthi").change(function (e) {
+  getthisinh();
+});
+function selectAll() {
+  alert("Select All");
+}
+
+function renderthisinh(data) {
+  html = `<tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
+  <th style='width:7%;'>Số báo danh</th>
+  <th style='width:15%;'>Họ, đệm</th>
+  <th style='width:8%;'>Tên</th>
+  <th style='width:11%;'>Ngày sinh</th>
+  <th style='width:30%;'>Tên đơn vị</th>
+  <th style='width:8%;'>Được thi<br><input type="checkbox" onChange="selectAll();"
+          name="slAll" checked>
+  </th>
+</tr>`;
+  if (data.length > 0) {
+    data.forEach((element) => {
+      html += `<tr>
+          <td style='text-align:left;'>${element.sbd}</td>
+          <td style='text-align:left;'>${element.hodem}</td>
+          <td style='text-align:left;'>${element.ten}</td>
+          <td style='text-align:left;'>${element.ns}</td>
+          <td style='text-align:left;'>${element.donvi}</td>
+          `;
+      if (element.chothi == "C") {
+        html += `<td><input type='checkbox' checked name='ct[]' value="${
+          element.sbd
+        },${document.getElementById("monthi").value}"></td>
+            </tr>`;
+      } else {
+        html += `<td><input type='checkbox' name='ct[]' value="${element.sbd},${
+          document.getElementById("monthi").value
+        }"></td>
+              </tr>`;
+      }
+    });
+  }
+  // Thêm html vào một phần tử trên trang
+  document.getElementById("sll").innerHTML = data.length;
+  document.getElementById("listtsshow").innerHTML = html;
+}
+$("#sb").click(function (e) {
+  if (window.confirm("Cập nhật lại quyền thi?")) {
+    var id = [],
+      ud = [],
+      i = (j = 0);
+    $(":checkbox").each(function () {
+      if ($(this).is(":checked")) {
+        id[i] = $(this).val();
+        i++;
+      }
+    });
+    $(":checkbox").each(function () {
+      if ($(this).is(":not(:checked)")) {
+        ud[j] = $(this).val();
+        j++;
+      }
+    });
+    if (id.length !== 0 || ud.length !== 0) {
+      $.ajax({
+        url: "xulycheckbox.php",
+        method: "post",
+        data: {
+          id: id,
+          ud: ud,
+        },
+        success: function (data) {
+          alert("Đã cập nhật");
+          //lo();
+        },
+      });
+    }
+  } else return false;
+});

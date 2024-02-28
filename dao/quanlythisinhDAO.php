@@ -211,4 +211,28 @@ class QuanlyThiSinhDAO
         $stmt->bindParam(':sbd', $sbd);
         $stmt->execute();
     }
+
+    public function getthisinhbymonthis($monthi, $hienthi)
+    {
+        $sql = "";
+        if ($hienthi === "all") {
+            // Load tất cả thí sinh
+            $sql = "SELECT hocvien.sbd AS 'sbd', hodem, ten, hocvien.ngaysinh AS ns, donvi.tendonvi AS 'donvi', allowexam.allow AS 'chothi' FROM hocvien, donvi, allowexam WHERE (hocvien.madonvi=donvi.madonvi) AND (hocvien.sbd=allowexam.sbd) AND (allowexam.mamodun=:mamodun) ORDER BY hocvien.sbd";
+        } else if ($hienthi === 'T') {
+            // Load các thí sinh được thi môn đã chọn
+            $sql = "SELECT hocvien.sbd AS 'sbd', hodem, ten, hocvien.ngaysinh AS ns, donvi.tendonvi AS 'donvi', allowexam.allow AS 'chothi' FROM hocvien, donvi, allowexam WHERE (hocvien.madonvi=donvi.madonvi) AND (hocvien.sbd=allowexam.sbd) AND (allowexam.mamodun=:mamodun) AND (allowexam.allow='C') ORDER BY hocvien.sbd";
+        } else {
+            // Load các thí sinh không được thi môn đã chọn
+            $sql = "SELECT hocvien.sbd AS 'sbd', hodem, ten, hocvien.ngaysinh AS ns, donvi.tendonvi AS 'donvi', allowexam.allow AS 'chothi' FROM hocvien, donvi, allowexam WHERE (hocvien.madonvi=donvi.madonvi) AND (hocvien.sbd=allowexam.sbd) AND (allowexam.mamodun=:mamodun) AND (allowexam.allow='K') ORDER BY hocvien.sbd";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':mamodun', $monthi);
+        $stmt->execute();
+        $thisinhs = array();
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $thisinhs[] = $row;
+        }
+        return $thisinhs;
+    }
 }

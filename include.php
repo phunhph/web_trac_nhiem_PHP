@@ -7,3 +7,4 @@ include './controllers/LoginController.php';
 include './controllers/QuanLyMonThiController.php';
 include './controllers/QuanLyThiSinhController.php';
 include './controllers/SoanDeThiController.php';
+include './controllers/PhanQuyenThiController.php';

@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style/phanquyenthisinh.css">
 </head>
 
 <body id="page-top">
@@ -189,67 +190,120 @@
                         <h1 class="h3 mb-0 text-gray-800">Phân quyền thí sinh</h1>
                     </div>
 
-                    <div class="row">
+                    <div>
+                        <div class="main">
+                            <div class="phanquyen">
+                                <span style="margin-left:2em;">Chọn kỳ thi</span>
+                                <select name="kythi" id="kythi"
+                                    style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                                    <option>--Chọn kỳ thi--</option>
+                                    <?php foreach ($kythi as $key => $value) : ?>
+                                    <option value="<?= $value->getMaKyThi() ?>">
+                                        <?= $value->getTenKyThi() ?>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
 
+                                <div class="loada">
+                                    <span style="margin-left:2em;">Chọn
+                                        môn thi</span>
+                                    <select id="monthi" name="monthi"
+                                        style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
+                                        <option value="all">--Chọn môn thi--</option>
+                                    </select>
+                                </div>
+                                <div class="loada">
+                                    <span style="margin-left:2em;">Hiển thị</span>
+                                    <select id="hienthi" name="hienthids"
+                                        style="margin-top:1em;margin-left:3.5em;width:30%;height:2em;">
+                                        <option value="all">- - - Tất cả - - -</option>
+                                        <option value="T">Được quyền thi</option>
+                                        <option value="F">Không có quyền thi</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="dshv">
+                                <p style="margin:0;font-weight:bold;">DANH SÁCH HỌC VIÊN</p>
+                                <table class="cltble" id="listtsshow">
+                                    <tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
+                                        <th style='width:7%;'>Số báo danh</th>
+                                        <th style='width:15%;'>Họ, đệm</th>
+                                        <th style='width:8%;'>Tên</th>
+                                        <th style='width:11%;'>Ngày sinh</th>
+                                        <th style='width:30%;'>Tên đơn vị</th>
+                                        <th style='width:8%;'>Được thi<br><input type="checkbox" onChange="selectAll();"
+                                                name="slAll" checked>
+                                        </th>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td style='color:red; width:80%; padding:1em; font-size:18px;' id="sll">0</td>
+                                    </tr>
+                                </table>
+                                <button type="button" id='sb' name="sb">Cập nhật</button>
+                            </div>
+
+                        </div>
+
+                        <!-- /.container-fluid -->
+                    </div>
+                    <!-- End of Main Content -->
+
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span> Hệ thống trắc nhiệm &copy; trực tuyến </span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+                </div>
+                <!-- End of Content Wrapper -->
+            </div>
+            <!-- End of Page Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- /.container-fluid -->
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span> Hệ thống trắc nhiệm &copy; trực tuyến </span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-        </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
+            <!-- Bootstrap core JavaScript-->
+            <script src="assets/vendor/jquery/jquery.min.js"></script>
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+            <!-- Core plugin JavaScript-->
+            <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Select "Logout" below if you are ready to end your current session.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                        Cancel
-                    </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="assets/js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="assets/js/sb-admin-2.min.js"></script>
+            <script src="assets/js/phanquyenthisinh.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,72 @@
+.phanquyen {
+  background: white;
+  border: 1px rgb(136, 136, 136);
+  border-collapse: collapse;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: black;
+  font-size: 18px;
+}
+
+.dshv {
+  width: 100%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.cltble,
+.cltble td,
+.cltble th {
+  border: 1px solid rgba(187, 187, 187, 1);
+}
+
+.cltble {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+.cltble td {
+  border-left: none;
+  border-right: none;
+  padding: 0.2em 0.3em;
+}
+
+.cltble tr:hover {
+  cursor: default;
+  background: rgba(0, 102, 153, 0.1);
+}
+
+.cltble th {
+  height: 22px;
+  background: #4267b2;
+  color: white;
+}
+
+.cltble tr:nth-child(even) {
+  background-color: white;
+}
+
+.cltble tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+#sb {
+  width: 15em;
+  height: 2em;
+  background: rgba(255, 153, 51, 1);
+  margin-top: 1.5em;
+  cursor: pointer;
+  color: white;
+  border: none;
+  margin-bottom: 1.5em;
+}
+
+#li5 {
+  color: rgba(255, 204, 0, 1);
+  font-weight: bolder;
+}

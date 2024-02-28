@@ -9,6 +9,7 @@ class router
     private $quanlymonthiController;
     private $quanlythisinhController;
     private $soandethiController;
+    private $phanquyenthiController;
     public function __construct()
     {
         $this->loginController = new LoginController();
@@ -17,6 +18,7 @@ class router
         $this->quanlymonthiController = new QuanlyMonthiController();
         $this->quanlythisinhController = new QuanLyThiSinhController();
         $this->soandethiController = new SoandethiController();
+        $this->phanquyenthiController = new PhanQuyenThiController();
     }
     public function route()
     {
@@ -131,7 +133,10 @@ class router
                 require_once 'views/diemthi/admin/chitietbaithi.php';
                 break;
             case 'phanquyenthi':
-                require_once 'views/phanquyenthisinh/admin/phanquyenthisinh.php';
+                $this->phanquyenthiController->index();
+                break;
+            case 'getthisinhbymonthis':
+                $this->phanquyenthiController->getthisinhbymonthis();
                 break;
             case 'tinhtrangthi':
                 require_once 'views/tinhtrangthi/admin/tinhtrangthi.php';
