@@ -67,9 +67,15 @@ $("#hienthi").change(function (e) {
   getthisinh();
 });
 function selectAll() {
-  alert("Select All");
+  var totalelement = document.f.elements.length;
+  var elementName;
+  for (var i = 0; i < totalelement; i++) {
+    elementName = document.f.elements[i].name;
+    if (elementName != undefined && elementName.indexOf("ct") != -1) {
+      document.f.elements[i].checked = document.f.slAll.checked;
+    }
+  }
 }
-
 function renderthisinh(data) {
   html = `<tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
   <th style='width:7%;'>Số báo danh</th>

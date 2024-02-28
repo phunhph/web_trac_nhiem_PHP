@@ -225,24 +225,27 @@
 
                             <div class="dshv">
                                 <p style="margin:0;font-weight:bold;">DANH SÁCH HỌC VIÊN</p>
-                                <table class="cltble" id="listtsshow">
-                                    <tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
-                                        <th style='width:7%;'>Số báo danh</th>
-                                        <th style='width:15%;'>Họ, đệm</th>
-                                        <th style='width:8%;'>Tên</th>
-                                        <th style='width:11%;'>Ngày sinh</th>
-                                        <th style='width:30%;'>Tên đơn vị</th>
-                                        <th style='width:8%;'>Được thi<br><input type="checkbox" onChange="selectAll();"
-                                                name="slAll" checked>
-                                        </th>
-                                    </tr>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td style='color:red; width:80%; padding:1em; font-size:18px;' id="sll">0</td>
-                                    </tr>
-                                </table>
-                                <button type="button" id='sb' name="sb">Cập nhật</button>
+                                <form method="post" name='f'>
+                                    <table class="cltble" id="listtsshow">
+                                        <tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
+                                            <th style='width:7%;'>Số báo danh</th>
+                                            <th style='width:15%;'>Họ, đệm</th>
+                                            <th style='width:8%;'>Tên</th>
+                                            <th style='width:11%;'>Ngày sinh</th>
+                                            <th style='width:30%;'>Tên đơn vị</th>
+                                            <th style='width:8%;'>Được thi<br><input type="checkbox"
+                                                    onChange="selectAll();" name="slAll" checked>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td style='color:red; width:80%; padding:1em; font-size:18px;' id="sll">0
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <button type="button" id='sb' name="sb">Cập nhật</button>
+                                </form>
                             </div>
 
                         </div>
