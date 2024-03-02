@@ -108,6 +108,9 @@ class router
             case 'updatethisinh':
                 $this->quanlythisinhController->updatethisinh();
                 break;
+            case 'dlpassword':
+                $this->quanlythisinhController->renderfieexl();
+                break;
             case 'soandethi':
                 $this->soandethiController->index();
                 break;
@@ -142,6 +145,7 @@ class router
                 require_once 'views/tinhtrangthi/admin/tinhtrangthi.php';
                 break;
             default:
+
                 echo '404 not found';
                 break;
         }

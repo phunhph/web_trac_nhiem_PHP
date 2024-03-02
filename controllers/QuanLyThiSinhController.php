@@ -1,5 +1,9 @@
 <?php
 require_once 'dao/quanlythisinhDAO.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class QuanLyThiSinhController
 {
     private $adminDAO;
@@ -110,5 +114,88 @@ class QuanLyThiSinhController
             }
         }
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function renderfieexl()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $mk = $this->quanlythisinhDAO->getmkbyphong($data->kythi, $data->phong);
+
+        // Tạo một đối tượng Spreadsheet mới
+        $spreadsheet = new Spreadsheet();
+
+        // Căn giữa nội dung trong cột A
+        $spreadsheet->getActiveSheet()->getStyle('A')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+
+        // Tạo một style cho tiêu đề
+        $headerStyle = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'rgb' => 'DDDDDD',
+                ],
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
+        ];
+
+        // Điền dữ liệu vào các ô trong Spreadsheet và áp dụng style cho tiêu đề
+        $spreadsheet->getActiveSheet()->setCellValue('A1', 'STT')->getStyle('A1')->applyFromArray($headerStyle);
+        $spreadsheet->getActiveSheet()->setCellValue('B1', 'SBD')->getStyle('B1')->applyFromArray($headerStyle);
+        $spreadsheet->getActiveSheet()->setCellValue('C1', 'Họ đệm')->getStyle('C1')->applyFromArray($headerStyle);
+        $spreadsheet->getActiveSheet()->setCellValue('D1', 'Tên')->getStyle('D1')->applyFromArray($headerStyle);
+        $spreadsheet->getActiveSheet()->setCellValue('E1', 'Mật khẩu')->getStyle('E1')->applyFromArray($headerStyle);
+
+        // Thiết lập độ rộng của các cột
+        $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+        $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+        $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+        $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+        $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+
+        $row = 2;
+        foreach ($mk as $key => $value) {
+            // Điền dữ liệu từ mảng $mk vào các ô tương ứng trong Spreadsheet
+            $spreadsheet->getActiveSheet()->setCellValue('A' . $row, $key + 1);
+            $spreadsheet->getActiveSheet()->setCellValue('B' . $row, $value->sbd);
+            $spreadsheet->getActiveSheet()->setCellValue('C' . $row, $value->hodem);
+            $spreadsheet->getActiveSheet()->setCellValue('D' . $row, $value->ten);
+            $spreadsheet->getActiveSheet()->setCellValue('E' . $row, $value->matkhau);
+
+            // Áp dụng đường viền cho các ô trong hàng
+            $spreadsheet->getActiveSheet()->getStyle('A' . $row . ':E' . $row)->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    ],
+                ],
+            ]);
+
+            // Tăng số hàng để chuyển sang hàng tiếp theo
+            $row++;
+        }
+
+        // Tạo một đối tượng writer cho file Excel
+        $writer = new Xlsx($spreadsheet);
+
+        // Thiết lập các header để tạo file Excel để tải xuống
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="hello_world.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        // Gửi dữ liệu file Excel về client
+        $writer->save('php://output');
+
+        // Kết thúc chương trình
+        exit;
     }
 }

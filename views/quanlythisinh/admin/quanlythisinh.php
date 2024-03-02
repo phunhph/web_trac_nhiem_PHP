@@ -296,8 +296,9 @@
                             <div class="htdanhsach mt-2">
                                 <div class="dshv">
                                     <p class="h5 ml-5 text-gray-500">DANH SÁCH THÍ SINH</p>
-                                    <a href="listps.php" style="margin-left:3em;">Tải mật khẩu các thí sinh trong
-                                        phòng</a>
+                                    <samp style="margin-left:3em;"><button id="dlpassword">
+                                            Tải mật khẩu các thí sinh trong phòng
+                                        </button></samp>
                                     <div class="loaddshv">
                                         <div class="card shadow mb-0">
                                             <div class="card-body">

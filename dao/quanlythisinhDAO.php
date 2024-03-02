@@ -235,4 +235,25 @@ class QuanlyThiSinhDAO
         }
         return $thisinhs;
     }
+
+    public function getmkbyphong($kythi, $phongthi)
+    {
+        $query = "SELECT matkhau.*, hocvien.hodem, hocvien.ten 
+              FROM `matkhau` 
+              JOIN hocvien ON hocvien.sbd = matkhau.sbd 
+              WHERE hocvien.makythi = :kythi AND hocvien.tenphongthi = :phongthi";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':kythi', $kythi);
+        $stmt->bindParam(':phongthi', $phongthi);
+        $stmt->execute();
+
+        $moduns = array();
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $moduns[] = $row;
+        }
+
+        return $moduns;
+    }
 }
