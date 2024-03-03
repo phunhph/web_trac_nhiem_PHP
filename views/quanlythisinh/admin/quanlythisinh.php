@@ -374,6 +374,50 @@
                                         <input type="submit" name="clickup" id="Submit" value="Tải lên" title="Nhấn để tải lên" style="margin-top:2em; border:none; background:blue;cursor:pointer; color:white; width:80%; height:1.5em;">
                                     </form>
 
+                                    <script>
+                                        document.getElementById('upload').addEventListener('submit', function(e) {
+                                            e.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+                                            var fileInput = document.getElementById('uploads');
+                                            var file = fileInput.files[0];
+
+                                            if (file) {
+                                                var formData = new FormData();
+                                                formData.append('upf', file);
+
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('POST', 'index.php?controller=createthisinhByexcel', true);
+
+                                                xhr.onload = function() {
+                                                    if (xhr.status >= 200 && xhr.status < 300) {
+                                                        var responseData = xhr.responseText;
+                                                        var data = JSON.parse(responseData);
+                                                        // Kiểm tra xem có lỗi không
+                                                        if (data.error) {
+                                                            alert('Lỗi từ máy chủ: ' + data.error);
+                                                        } else {
+                                                            // Xử lý dữ liệu thành công
+                                                            console.log('Thành công:', data.success);
+                                                            // Thực hiện các hành động khác dựa trên dữ liệu nhận được
+                                                        }
+                                                    } else {
+                                                        console.error('Có lỗi xảy ra khi gửi yêu cầu.');
+                                                    }
+                                                };
+
+                                                xhr.onerror = function() {
+                                                    console.error('Đã xảy ra lỗi trong quá trình gửi yêu cầu.');
+                                                };
+
+                                                xhr.send(formData);
+                                            } else {
+                                                alert('Không có file được chọn');
+                                            }
+                                        });
+                                    </script>
+
+
+
                                 </div>
                             </div>
                         </div>

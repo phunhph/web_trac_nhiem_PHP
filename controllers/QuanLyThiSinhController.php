@@ -3,6 +3,8 @@ require_once 'dao/quanlythisinhDAO.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use TCPDF as TCPDF;
 
 class QuanLyThiSinhController
 {
@@ -76,6 +78,98 @@ class QuanLyThiSinhController
             echo json_encode($result, JSON_UNESCAPED_UNICODE);
             exit();
         }
+    }
+    public function createthisinhByexcel()
+    {
+        $response = array(); // Khởi tạo mảng phản hồi
+
+        // Kiểm tra xem có dữ liệu file tải lên không
+        if (isset($_FILES['upf']) && $_FILES['upf']['error'] === UPLOAD_ERR_OK) {
+            $tmpName = $_FILES['upf']['tmp_name'];
+
+            // Đọc dữ liệu từ tệp Excel
+            $spreadsheet = IOFactory::load($tmpName);
+            $worksheet = $spreadsheet->getActiveSheet();
+
+            // Duyệt qua các hàng theo cặp từ cột A và cột B
+            $highestRow = $worksheet->getHighestRow();
+            if ($worksheet->getCell('A1')->getValue() !== "SBD" || $worksheet->getCell('B1')->getValue() !== "Họ đệm" || $worksheet->getCell('C1')->getValue() !== "Tên" || $worksheet->getCell('D1')->getValue() !== "Ngày sinh" || $worksheet->getCell('E1')->getValue() !== "Nơi sinh") {
+                // Lỗi nếu file không đúng định dạng
+                $response['error'] = "file sai định dạng";
+            } else {
+                $data = [];
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $dataA = $worksheet->getCell('A' . $row)->getValue();
+                    $dataB = $worksheet->getCell('B' . $row)->getValue();
+                    $dataC = $worksheet->getCell('C' . $row)->getValue();
+                    $dataD = $worksheet->getCell('D' . $row)->getValue();
+                    $dataE = $worksheet->getCell('E' . $row)->getValue();
+                    if ($this->checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE) === false) {
+                        $response['error'] = "dữ liệu file sai định dạng";
+                        break;
+                    } else {
+                        $data[] = [
+                            'sbd' => $dataA,
+                            'hodem' => $dataB,
+                            'ten' => $dataC,
+                            'ngaysinh' => $dataD,
+                            'noisinh' => $dataE,
+                        ];
+                    }
+                }
+                if (isset($data) && count($data) > 0) {
+                    // Kiểm tra số báo danh có trùng lặp không
+                    if ($this->checkDataSbd($data) === false) {
+                        $response['error'] = "Số báo danh bị trùng lặp";
+                    } else {
+                        $response['success'] = $data;
+                    }
+                    unset($data);
+                } else {
+                    // Lỗi nếu file không có dữ liệu
+                    $response['error'] = "file không có dữ liệu";
+                }
+            }
+        } else {
+            // Lỗi nếu không có file tải lên
+            $response['error'] = "Vui lòng chọn một tệp Excel để tải lên.";
+        }
+
+        // Phản hồi với dữ liệu JSON
+        header('Content-Type: application/json');
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
+    }
+
+
+
+
+    public function checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE)
+    {
+        // biểu thức chính quy
+        $sbd = '/^\d{2}X\d{4}$/';
+        $ngaysinh = "/^\d{2}\/\d{2}\/\d{4}$/";
+        // kiểm tra
+        if (!preg_match($sbd, $dataA)) {
+            echo $dataA;
+            return false;
+        }
+        if (!preg_match($ngaysinh, $dataD)) {
+            echo $dataD;
+            return false;
+        }
+        return true;
+    }
+    public function checkDataSbd($data)
+    {
+        $sbdArray = [];
+        foreach ($data as $value) {
+            if (in_array($value['sbd'], $sbdArray)) {
+                return false;
+            } else {
+                $sbdArray[] = $value['sbd'];
+            }
+        }
+        return true;
     }
     public function deletethisinh()
     {

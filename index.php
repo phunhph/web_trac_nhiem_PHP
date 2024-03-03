@@ -100,7 +100,11 @@ class router
                 $this->quanlythisinhController->getthisinh();
                 break;
             case 'createthisinh':
+
                 $this->quanlythisinhController->createthisinh();
+                break;
+            case 'createthisinhByexcel':
+                $this->quanlythisinhController->createthisinhByexcel();
                 break;
             case 'deletethisinh':
                 $this->quanlythisinhController->deletethisinh();

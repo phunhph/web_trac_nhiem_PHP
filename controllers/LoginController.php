@@ -43,6 +43,7 @@ class LoginController
             header('location: index.php?controller=login&action=' . $acstion);
             exit();
         } else {
+            session_unset();
             require_once './views/login/login.php';
         }
     }
