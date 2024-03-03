@@ -138,6 +138,8 @@ class router
             case 'phanquyenthi':
                 $this->phanquyenthiController->index();
                 break;
+            case 'updatequyenthi':
+                break;
             case 'getthisinhbymonthis':
                 $this->phanquyenthiController->getthisinhbymonthis();
                 break;

@@ -51,7 +51,7 @@ class ExamController
                     }
                     $i++;
                 }
-                $_SESSION['tongcauhoi'] = $i; //if tổng câu hỏi < $r['tongcauhoi'] sinh thêm...?
+                $_SESSION['tongcauhoi'] = $i - 1; //if tổng câu hỏi < $r['tongcauhoi'] sinh thêm...?
                 $_SESSION['mangdapan'] = $dapan; //
                 $_SESSION['mangdethi'] = $al; //
             } else if (count($t1) > 0 && $time <= 0) //Thi xong
@@ -133,8 +133,10 @@ class ExamController
             $cauhois = array();
             $cauhois = $_SESSION['mangdethi'];
 
+
             while ($i < $_SESSION['tongcauhoi']) {
                 $macauhoi = $cauhois[$i];
+
                 // lấy đáp án đã chọn
                 $temp = $this->examDAO->getTenp($sbd, $macauhoi);
                 // lấy câu hỏi

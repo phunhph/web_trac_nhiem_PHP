@@ -97,14 +97,10 @@ function renderthisinh(data) {
           <td style='text-align:left;'>${element.donvi}</td>
           `;
       if (element.chothi == "C") {
-        html += `<td><input type='checkbox' checked name='ct[]' value="${
-          element.sbd
-        },${document.getElementById("monthi").value}"></td>
+        html += `<td><input type='checkbox' checked name='ct[]' value="${element.sbd}"></td>
             </tr>`;
       } else {
-        html += `<td><input type='checkbox' name='ct[]' value="${element.sbd},${
-          document.getElementById("monthi").value
-        }"></td>
+        html += `<td><input type='checkbox' name='ct[]' value="${element.sbd}"></td>
               </tr>`;
       }
     });
@@ -115,34 +111,31 @@ function renderthisinh(data) {
 }
 $("#sb").click(function (e) {
   if (window.confirm("Cập nhật lại quyền thi?")) {
-    var id = [],
-      ud = [],
-      i = (j = 0);
+    var data = {
+      id: {
+        sbd: [],
+        kythi: [],
+      },
+      ud: {
+        sbd: [],
+        kythi: [],
+      },
+    };
+    var i = 0;
+    var j = 0;
+
     $(":checkbox").each(function () {
       if ($(this).is(":checked")) {
-        id[i] = $(this).val();
+        data.id.sbd[i] = $(this).val();
+        data.id.kythi[i] = $("#monthi").val();
         i++;
-      }
-    });
-    $(":checkbox").each(function () {
-      if ($(this).is(":not(:checked)")) {
-        ud[j] = $(this).val();
+      } else {
+        data.ud.sbd[j] = $(this).val();
+        data.ud.kythi[j] = $("#monthi").val();
         j++;
       }
     });
-    if (id.length !== 0 || ud.length !== 0) {
-      $.ajax({
-        url: "xulycheckbox.php",
-        method: "post",
-        data: {
-          id: id,
-          ud: ud,
-        },
-        success: function (data) {
-          alert("Đã cập nhật");
-          //lo();
-        },
-      });
-    }
+
+    console.log(data);
   } else return false;
 });
