@@ -81,80 +81,155 @@ class QuanLyThiSinhController
     }
     public function createthisinhByexcel()
     {
-        $response = array(); // Khởi tạo mảng phản hồi
+        if (isset($_FILES['upf'])) {
+            $response = array(); // Khởi tạo mảng phản hồi
 
-        // Kiểm tra xem có dữ liệu file tải lên không
-        if (isset($_FILES['upf']) && $_FILES['upf']['error'] === UPLOAD_ERR_OK) {
-            $tmpName = $_FILES['upf']['tmp_name'];
+            // Kiểm tra xem có dữ liệu file tải lên không
+            if (isset($_FILES['upf']) && $_FILES['upf']['error'] === UPLOAD_ERR_OK) {
+                $tmpName = $_FILES['upf']['tmp_name'];
 
-            // Đọc dữ liệu từ tệp Excel
-            $spreadsheet = IOFactory::load($tmpName);
-            $worksheet = $spreadsheet->getActiveSheet();
+                // Đọc dữ liệu từ tệp Excel
+                $spreadsheet = IOFactory::load($tmpName);
+                $worksheet = $spreadsheet->getActiveSheet();
 
-            // Duyệt qua các hàng theo cặp từ cột A và cột B
-            $highestRow = $worksheet->getHighestRow();
-            if ($worksheet->getCell('A1')->getValue() !== "SBD" || $worksheet->getCell('B1')->getValue() !== "Họ đệm" || $worksheet->getCell('C1')->getValue() !== "Tên" || $worksheet->getCell('D1')->getValue() !== "Ngày sinh" || $worksheet->getCell('E1')->getValue() !== "Nơi sinh") {
-                // Lỗi nếu file không đúng định dạng
-                $response['error'] = "file sai định dạng";
-            } else {
-                $data = [];
-                for ($row = 2; $row <= $highestRow; $row++) {
-                    $dataA = $worksheet->getCell('A' . $row)->getValue();
-                    $dataB = $worksheet->getCell('B' . $row)->getValue();
-                    $dataC = $worksheet->getCell('C' . $row)->getValue();
-                    $dataD = $worksheet->getCell('D' . $row)->getValue();
-                    $dataE = $worksheet->getCell('E' . $row)->getValue();
-                    if ($this->checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE) === false) {
-                        $response['error'] = "dữ liệu file sai định dạng";
-                        break;
+                // Duyệt qua các hàng theo cặp từ cột A và cột B
+                $highestRow = $worksheet->getHighestRow();
+                if ($worksheet->getCell('A1')->getValue() !== "SBD" || $worksheet->getCell('B1')->getValue() !== "Họ đệm" || $worksheet->getCell('C1')->getValue() !== "Tên" || $worksheet->getCell('D1')->getValue() !== "Ngày sinh" || $worksheet->getCell('E1')->getValue() !== "Nơi sinh") {
+                    // Lỗi nếu file không đúng định dạng
+                    $response['error'] = "file sai định dạng";
+                } else {
+                    $data = [];
+                    for ($row = 2; $row <= $highestRow; $row++) {
+                        $dataA = $worksheet->getCell('A' . $row)->getValue();
+                        $dataB = $worksheet->getCell('B' . $row)->getValue();
+                        $dataC = $worksheet->getCell('C' . $row)->getValue();
+                        $dataD = $worksheet->getCell('D' . $row)->getValue();
+                        $dataE = $worksheet->getCell('E' . $row)->getValue();
+                        $dataF = $worksheet->getCell('F' . $row)->getValue();
+                        $dataG = $worksheet->getCell('G' . $row)->getValue();
+                        if ($this->checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE, $dataF, $dataG) === false) {
+                            $response['error'] = isset($response['error']) ? $response['error'] : "dữ liệu file sai định dạng";
+                            break;
+                        } else {
+                            $data[] = [
+                                'sbd' => $dataA,
+                                'hodem' => $dataB,
+                                'ten' => $dataC,
+                                'ngaysinh' => $dataD,
+                                'noisinh' => $dataE,
+                                'madonvi' => $dataF,
+                                'tendonvi' => $dataG,
+                            ];
+                        }
+                    }
+                    if (isset($data) && count($data) > 0) {
+                        // Kiểm tra số báo danh có trùng lặp không
+                        if ($this->checkDataSbd($data) === false) {
+                            $$response['error'] = isset($response['error']) ? $response['error'] : "Số báo danh bị trùng lặp";
+                        } else {
+                            $solong_phong = $this->quanlythisinhDAO->getCountphongthi($_POST['makythi']);
+                            $response['success'] = $data;
+                            $response['phong'] = $solong_phong;
+                        }
+                        unset($data);
                     } else {
-                        $data[] = [
-                            'sbd' => $dataA,
-                            'hodem' => $dataB,
-                            'ten' => $dataC,
-                            'ngaysinh' => $dataD,
-                            'noisinh' => $dataE,
-                        ];
+                        // Lỗi nếu file không có dữ liệu
+                        $response['error'] = isset($response['error']) ? $response['error'] : "file không có dữ liệu";
                     }
                 }
-                if (isset($data) && count($data) > 0) {
-                    // Kiểm tra số báo danh có trùng lặp không
-                    if ($this->checkDataSbd($data) === false) {
-                        $response['error'] = "Số báo danh bị trùng lặp";
-                    } else {
-                        $response['success'] = $data;
-                    }
-                    unset($data);
+            } else {
+                // Lỗi nếu không có file tải lên
+                $response['error'] = "Vui lòng chọn một tệp Excel để tải lên.";
+            }
+
+            // Phản hồi với dữ liệu JSON
+            header('Content-Type: application/json');
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);
+        } else {
+            if (isset($_POST['datacreate'])) {
+                $response['success'] = $_POST['datacreate'];
+                // Phản hồi với dữ liệu JSON
+                header('Content-Type: application/json');
+                echo json_encode($response, JSON_UNESCAPED_UNICODE);
+            } else {
+                $response['error'] = "Vui lòng chọn một tệp Excel để tải lên.";
+            }
+        }
+    }
+
+    public function createthisinhByExcelAddDatabase()
+    {
+
+        $data = json_decode(file_get_contents("php://input"));
+
+
+        foreach ($data->datacreate as $key => $value) {
+            $matkhau = "N";
+            $i = 1;
+            while ($i <= 7) //Tạo mật khẩu gồm 8 kí tự chữ số
+            {
+                $matkhau .= rand(0, 9);
+                $i++;
+            }
+            $tempmk = $matkhau;
+            $matkhau = md5($matkhau);
+            $result = $this->quanlythisinhDAO->getThiSinhById($value->sbd);
+            $donvi  = $this->quanlythisinhDAO->getMaDonVi($value->madonvi);
+            if ($donvi) {
+                if ($result) {
                 } else {
-                    // Lỗi nếu file không có dữ liệu
-                    $response['error'] = "file không có dữ liệu";
+                    $this->quanlythisinhDAO->createThiSinh($value->sbd, $value->hodem, $value->ten, $value->ngaysinh, $value->noisinh, $value->makythi, $value->madonvi, $value->tenphong, $matkhau, null);
+                    $this->quanlythisinhDAO->createMatKhau($value->sbd, $tempmk);
+                    $mamodun = $this->quanlythisinhDAO->getMaMoDun($value->makythi);
+
+                    foreach ($mamodun as $key => $val) {
+                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val);
+                    }
+                }
+            } else {
+                $this->quanlythisinhDAO->createMaDonVi($value->madonvi, $value->tendonvi);
+                if ($result) {
+                } else {
+                    $this->quanlythisinhDAO->createThiSinh($value->sbd, $value->hodem, $value->ten, $value->ngaysinh, $value->noisinh, $value->makythi, $value->madonvi, $value->tenphong, $matkhau, null);
+                    $this->quanlythisinhDAO->createMatKhau($value->sbd, $tempmk);
+                    $mamodun = $this->quanlythisinhDAO->getMaMoDun($value->makythi);
+
+                    foreach ($mamodun as $key => $val) {
+                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val);
+                    }
                 }
             }
-        } else {
-            // Lỗi nếu không có file tải lên
-            $response['error'] = "Vui lòng chọn một tệp Excel để tải lên.";
         }
-
-        // Phản hồi với dữ liệu JSON
-        header('Content-Type: application/json');
-        echo json_encode($response, JSON_UNESCAPED_UNICODE);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
 
-
-
-    public function checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE)
+    public function checkDataEx($dataA, $dataB, $dataC, $dataD, $dataE, $dataF, $dataG)
     {
         // biểu thức chính quy
         $sbd = '/^\d{2}X\d{4}$/';
         $ngaysinh = "/^\d{2}\/\d{2}\/\d{4}$/";
+        $string = '/^[\p{L}\s]*$/u';
+
         // kiểm tra
+        if (!preg_match($string, $dataE)) {
+
+            return false;
+        }
+        if (!preg_match($string, $dataB)) {
+
+            return false;
+        }
+        if (!preg_match($string, $dataC)) {
+
+            return false;
+        }
         if (!preg_match($sbd, $dataA)) {
-            echo $dataA;
+
             return false;
         }
         if (!preg_match($ngaysinh, $dataD)) {
-            echo $dataD;
+
             return false;
         }
         return true;

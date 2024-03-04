@@ -103,8 +103,6 @@ class QuanlyThiSinhDAO
         $stmt->bindParam(':matkhau', $matkhau);
 
         $stmt->execute();
-
-        return $stmt->debugDumpParams();;
     }
 
     public function createMatKhau($sbd, $matkhau)
@@ -255,5 +253,22 @@ class QuanlyThiSinhDAO
         }
 
         return $moduns;
+    }
+    public function getCountphongthi($makythi)
+    {
+        $query = "SELECT hocvien.tenphongthi, COUNT(*) as solong 
+              FROM `hocvien` 
+              WHERE hocvien.makythi = :makythi 
+              GROUP BY hocvien.tenphongthi
+              ORDER BY hocvien.tenphongthi DESC
+              LIMIT 1";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':makythi', $makythi);
+        $stmt->execute();
+
+        $latestPhongThi = $stmt->fetch(\PDO::FETCH_OBJ);
+
+        return $latestPhongThi;
     }
 }

@@ -372,3 +372,150 @@ document.getElementById("dlpassword").onclick = function () {
       });
   }
 };
+
+document.getElementById("upload").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  var fileInput = document.getElementById("uploads");
+  var file = fileInput.files[0];
+
+  var makythi = document.getElementById("kythi").value;
+
+  if (file && makythi !== "...") {
+    var formData = new FormData();
+    formData.append("upf", file);
+    formData.append("makythi", makythi);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "index.php?controller=createthisinhByexcel", true);
+
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        var responseData = xhr.responseText;
+        var data = JSON.parse(responseData);
+        // Kiểm tra xem có lỗi không
+        if (data.error) {
+          alert("Lỗi từ máy chủ: " + data.error);
+        } else {
+          // Thực hiện các hành động khác dựa trên dữ liệu nhận được
+          renderExcel(data.success, data.phong);
+        }
+      } else {
+        console.error("Có lỗi xảy ra khi gửi yêu cầu.");
+      }
+    };
+
+    xhr.onerror = function () {
+      console.error("Đã xảy ra lỗi trong quá trình gửi yêu cầu.");
+    };
+
+    xhr.send(formData);
+  } else {
+    if (file) {
+      alert("Vui lòng nhập mã kỳ thi.");
+    } else if (makythi !== "...") {
+      alert("Vui lòng chọn file.");
+    } else {
+      alert("Vui lòng chọn file và nhập mã kỳ thi.");
+    }
+  }
+});
+
+function renderExcel($data, $phong) {
+  var datalist = [];
+  if ($phong) {
+    var tenphong = $phong.tenphongthi;
+    var soluong = 28 - $phong.solong;
+  } else {
+    var tenphong = "Phòng 1";
+    var soluong = 28;
+  }
+  var checkaddexcel = true;
+  var countadd = 0;
+  $data.forEach((element) => {
+    countadd++;
+    if (soluong != 0) {
+      datalist.push({
+        sbd: element.sbd,
+        hodem: element.hodem,
+        ten: element.ten,
+        ngaysinh: element.ngaysinh,
+        noisinh: element.noisinh,
+        madonvi: element.madonvi,
+        tendonvi: element.tendonvi,
+        tenphong: tenphong,
+        makythi: document.getElementById("kythi").value,
+      });
+      soluong--;
+    } else {
+      soluong = 27;
+      var soPhong = parseInt(tenphong.split(" ")[1]) + 1;
+      tenphong = "Phòng " + soPhong;
+      datalist.push({
+        sbd: element.sbd,
+        hodem: element.hodem,
+        ten: element.ten,
+        ngaysinh: element.ngaysinh,
+        noisinh: element.noisinh,
+        madonvi: element.madonvi,
+        tendonvi: element.tendonvi,
+        tenphong: tenphong,
+        makythi: document.getElementById("kythi").value,
+      });
+    }
+  });
+  // if (countadd == $data.length) {
+  //   console.log(countadd);
+  //   console.log(checkaddexcel);
+  //   if (checkaddexcel) {
+  //     var mes = "Thêm học viên thành công";
+  //     showSuccessMessage(mes);
+  //     getlop(datalist.makythi, datalist.tenphong);
+  //     getSinhVien(datalist.makythi, datalist.tenphong);
+  //     reload();
+  //   } else {
+  //     var mes =
+  //       "Kiểm tra lại số báo danh, số báo danh không được trùng với số báo danh đã có";
+  //     showSuccessMessage(mes);
+  //   }
+  // }
+  createByExcel(datalist);
+}
+
+function createByExcel(data) {
+  var datacreate = {
+    datacreate: data,
+  };
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "POST",
+    "index.php?controller=createthisinhByExcelAddDatabase",
+    true
+  );
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        if (xhr.responseText == "true") {
+          alert("Học viên đã tồn tại, lưu ý mã học viên không được trùng nhau");
+        } else {
+          var mes = "Thêm học viên thành công";
+          showSuccessMessage(mes);
+          getlop(data[0].makythi, data[0].tenphong);
+          getSinhVien(data[0].makythi, data[0].tenphong);
+          reload();
+          console.log(xhr.responseText);
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        console.error("Lỗi:", xhr.status);
+      }
+    }
+  };
+
+  xhr.send(JSON.stringify(datacreate));
+}

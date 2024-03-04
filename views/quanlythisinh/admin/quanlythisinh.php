@@ -215,6 +215,7 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
@@ -373,50 +374,37 @@
                                             Chọn tệp excel (*.xlsx)</p>
                                         <input type="submit" name="clickup" id="Submit" value="Tải lên" title="Nhấn để tải lên" style="margin-top:2em; border:none; background:blue;cursor:pointer; color:white; width:80%; height:1.5em;">
                                     </form>
-
-                                    <script>
-                                        document.getElementById('upload').addEventListener('submit', function(e) {
-                                            e.preventDefault(); // Ngăn chặn hành động mặc định của form
-
-                                            var fileInput = document.getElementById('uploads');
-                                            var file = fileInput.files[0];
-
-                                            if (file) {
-                                                var formData = new FormData();
-                                                formData.append('upf', file);
-
-                                                var xhr = new XMLHttpRequest();
-                                                xhr.open('POST', 'index.php?controller=createthisinhByexcel', true);
-
-                                                xhr.onload = function() {
-                                                    if (xhr.status >= 200 && xhr.status < 300) {
-                                                        var responseData = xhr.responseText;
-                                                        var data = JSON.parse(responseData);
-                                                        // Kiểm tra xem có lỗi không
-                                                        if (data.error) {
-                                                            alert('Lỗi từ máy chủ: ' + data.error);
-                                                        } else {
-                                                            // Xử lý dữ liệu thành công
-                                                            console.log('Thành công:', data.success);
-                                                            // Thực hiện các hành động khác dựa trên dữ liệu nhận được
-                                                        }
-                                                    } else {
-                                                        console.error('Có lỗi xảy ra khi gửi yêu cầu.');
-                                                    }
-                                                };
-
-                                                xhr.onerror = function() {
-                                                    console.error('Đã xảy ra lỗi trong quá trình gửi yêu cầu.');
-                                                };
-
-                                                xhr.send(formData);
-                                            } else {
-                                                alert('Không có file được chọn');
-                                            }
-                                        });
-                                    </script>
-
-
+                                    <div class="card-body" id="tableExcel" style="display: none">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style='width:7%;'>SBD</th>
+                                                        <th style='width:13%;'>Họ đệm</th>
+                                                        <th style='width:7%;'>Tên</th>
+                                                        <th style='width:11%;'>Ngày sinh</th>
+                                                        <th style='width:15%;'>Nơi sinh</th>
+                                                        <th style='width:10%;'>Mã đơn vị</th>
+                                                        <th style='width:27%;'>Tên đơn vị</th>
+                                                        <th style='width:13%;'>Tên PT</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th style='width:7%;'>SBD</th>
+                                                        <th style='width:13%;'>Họ đệm</th>
+                                                        <th style='width:7%;'>Tên</th>
+                                                        <th style='width:11%;'>Ngày sinh</th>
+                                                        <th style='width:15%;'>Nơi sinh</th>
+                                                        <th style='width:10%;'>Mã đơn vị</th>
+                                                        <th style='width:27%;'>Tên đơn vị</th>
+                                                        <th style='width:13%;'>Tên PT</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody id="renderExcel"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
