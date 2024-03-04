@@ -464,21 +464,6 @@ function renderExcel($data, $phong) {
       });
     }
   });
-  // if (countadd == $data.length) {
-  //   console.log(countadd);
-  //   console.log(checkaddexcel);
-  //   if (checkaddexcel) {
-  //     var mes = "Thêm học viên thành công";
-  //     showSuccessMessage(mes);
-  //     getlop(datalist.makythi, datalist.tenphong);
-  //     getSinhVien(datalist.makythi, datalist.tenphong);
-  //     reload();
-  //   } else {
-  //     var mes =
-  //       "Kiểm tra lại số báo danh, số báo danh không được trùng với số báo danh đã có";
-  //     showSuccessMessage(mes);
-  //   }
-  // }
   createByExcel(datalist);
 }
 

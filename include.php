@@ -7,5 +7,7 @@ include './controllers/LoginController.php';
 include './controllers/QuanLyMonThiController.php';
 include './controllers/QuanLyThiSinhController.php';
 include './controllers/SoanDeThiController.php';
+include './controllers/SoanCauTrucDeController.php';
 include './controllers/PhanQuyenThiController.php';
+include './controllers/DiemThiController.php';
 require 'vendor/autoload.php';

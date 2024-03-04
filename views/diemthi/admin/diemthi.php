@@ -18,6 +18,63 @@
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
 </head>
+<style>
+    .tabt1,
+    .tabt1 td,
+    .tabt1 th {
+        border: 1px solid rgba(187, 187, 187, 1);
+    }
+
+    .tabt1 {
+        border-collapse: collapse;
+        width: 98%;
+        font-size: 14px;
+        display: block;
+        margin: auto;
+    }
+
+    .tabt1 tr:hover {
+        cursor: default;
+        background: rgba(0, 102, 153, 0.1);
+    }
+
+    .tabt1 th {
+        height: 22px;
+        background: #4267b2;
+        color: white;
+    }
+
+    .tabt1 tr:nth-child(even) {
+        background-color: white;
+    }
+
+    .tabt1 tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    .tabt1 td,
+    .tabt1 th {
+        padding: 0.2em 0.3em;
+    }
+
+    .download {
+        background: rgba(204, 204, 204, 0.5);
+        font-size: 18px;
+        text-decoration: none;
+        text-align: center;
+        width: 10%;
+        margin-left: 0.56em;
+    }
+
+    .download a {
+        text-decoration: none;
+        color: rgba(204, 51, 51, 1);
+    }
+
+    .download:hover {
+        cursor: pointer;
+    }
+</style>
 
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -184,7 +241,55 @@
                         <h1 class="h3 mb-0 text-gray-800">Điểm thi</h1>
                     </div>
 
-                    <div class="row"></div>
+                    <div>
+                        <div class="ml-5">
+                            <p class="h5 ml-0 text-gray-500">CHỌN KỲ THI</p>
+                            <select class="ml-5" style=" width:48%; height:1.6em;" name="kythi" id="kythi">
+                                <option value="...">...</option>
+                                <?php foreach ($kythi as $key => $value) : ?>
+                                    <option value="<?= $value->getMaKyThi() ?>">
+                                        <?= $value->getTenKyThi() ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="phanquyen ml-5 mt-2">
+                            <div class="loadphong">
+                                <p class="h5 ml-0 text-gray-500">Chọn phòng</p>
+                                <form method='post' class="ml-5" id='loaddshvphong' style='margin-top:1em;'>
+                                    <select style='width:50%; height:1.6em;' id='phong' name='phong'>
+                                        <option value='....'>...</option>";
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="margin-left:2.2em; font-size:16px;"><b>Danh sách điểm thi phòng:&nbsp;</b><span style="color:rgba(255,51,0,0.7); font-size:19px;" id="spanPhong"></span></p>
+
+                            <table id="danhsachdiem" class="tabt1" border="1">
+                                <tr style="color:white; margin-bottom:2em; background:rgba(0,204,0,1);">
+                                    <th style='width:3%;'>STT</th>
+                                    <th style='width:5%;'>SBD</th>
+                                    <th style='width:13%;'>Tên đệm</th>
+                                    <th style='width:7%;'>Tên</th>
+                                    <th style='width:11%;'>Nơi sinh</th>
+                                    <th style='width:9%;'>Ngày sinh</th>
+                                    <th style='width:10%;'>Môn thi</th>
+                                    <th style='width:5%;'>Số câu đúng</th>
+                                    <th style='width:5%;'>Điểm</th>
+                                    <th style='width:15%;'>Bắt đầu</th>
+                                    <th style='width:15%;'>Kết thúc</th>
+                                </tr>
+                                <tbody id="renderkqthi">
+
+                                </tbody>
+
+                            </table>
+                            <div class="download">
+                                <a href="exportPDF.php">Tải danh sách</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- /.container-fluid -->
@@ -242,6 +347,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/diemthi.js"></script>
 </body>
 
 </html>

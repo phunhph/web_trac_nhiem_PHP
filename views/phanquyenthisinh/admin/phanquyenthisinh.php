@@ -196,7 +196,7 @@
                                 <span style="margin-left:2em;">Chọn kỳ thi</span>
                                 <select name="kythi" id="kythi"
                                     style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
-                                    <option>--Chọn kỳ thi--</option>
+                                    <option value="all">--Chọn kỳ thi--</option>
                                     <?php foreach ($kythi as $key => $value) : ?>
                                     <option value="<?= $value->getMaKyThi() ?>">
                                         <?= $value->getTenKyThi() ?>
@@ -225,7 +225,7 @@
 
                             <div class="dshv">
                                 <p style="margin:0;font-weight:bold;">DANH SÁCH HỌC VIÊN</p>
-                                <form method="post" name='f'>
+                                <form method="post" name='f' id="onno" style="display: none;">
                                     <table class="cltble" id="listtsshow">
                                         <tr style="color:rgba(255,153,51,1); margin-bottom:2em;">
                                             <th style='width:7%;'>Số báo danh</th>
@@ -252,61 +252,65 @@
 
                         <!-- /.container-fluid -->
                     </div>
-                    <!-- End of Main Content -->
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span> Hệ thống trắc nhiệm &copy; trực tuyến </span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
                 </div>
-                <!-- End of Content Wrapper -->
+
+                <!-- /.container-fluid -->
             </div>
-            <!-- End of Page Wrapper -->
+            <!-- End of Main Content -->
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                Cancel
-                            </button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
-                        </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span> Hệ thống trắc nhiệm &copy; trực tuyến </span>
                     </div>
                 </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="assets/vendor/jquery/jquery.min.js"></script>
-            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="assets/js/sb-admin-2.min.js"></script>
-            <script src="assets/js/phanquyenthisinh.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/phanquyenthisinh.js"></script>
 </body>
 
 </html>

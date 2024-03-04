@@ -13,9 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
     <link rel="stylesheet" href="assets/style/taodethi.css">
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
@@ -27,8 +25,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -151,14 +148,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -199,27 +194,24 @@
 
 
                                 <span style="margin-left:2em;">Danh mục kỳ thi</span>
-                                <select name="kythi" id="kythi"
-                                    style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                                <select name="kythi" id="kythi" style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
                                     <option>--Chọn kỳ thi--</option>
                                     <?php foreach ($kythi as $key => $value) : ?>
-                                    <option value="<?= $value->getMaKyThi() ?>">
-                                        <?= $value->getTenKyThi() ?>
-                                    </option>
+                                        <option value="<?= $value->getMaKyThi() ?>">
+                                            <?= $value->getTenKyThi() ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
 
                                 <div class="loada">
                                     <span style="margin-left:2em;">Danh mục môn thi</span>
-                                    <select id="monthi" name="monthi"
-                                        style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
+                                    <select id="monthi" name="monthi" style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
                                         <option value="all">--Chọn môn thi--</option>
                                     </select>
                                 </div>
                                 <div class="loada">
                                     <span style="margin-left:2em;">Bộ đề</span>
-                                    <select id="pthi" name="pthi"
-                                        style="margin-top:1em;margin-left:6.6em;width:30%;height:2em;">
+                                    <select id="pthi" name="pthi" style="margin-top:1em;margin-left:6.6em;width:30%;height:2em;">
                                         <option value="all">--Chọn phần thi--</option>
                                     </select>
                                 </div>
@@ -266,50 +258,40 @@
                                         <span>Tên câu hỏi</span>
                                         <br>
                                         <input type="text" name="tencauhoi" id="tencauhoi" value="">
-                                        <input type="file" name="file1" id="file1"
-                                            title="Chọn file ảnh, audio, hoặc video">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                        <input type="file" name="file1" id="file1" title="Chọn file ảnh, audio, hoặc video">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
                                             Thêm hình ảnh, âm thanh hoặc video</p>
                                     </div>
                                     <div class="csbd">
                                         <span>Phương án đúng</span>
                                         <br>
                                         <input type="text" name="padung" id="padung" value="">
-                                        <input type="file" name="file2" id="file2"
-                                            title="Chọn file ảnh, audio, hoặc video">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                        <input type="file" name="file2" id="file2" title="Chọn file ảnh, audio, hoặc video">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
                                             Thêm hình ảnh, âm thanh hoặc video</p>
                                     </div>
                                     <div class="csbd">
                                         <span>Phương án sai 1</span>
                                         <br>
                                         <input type="text" name="pasai1" id="pasai1" value="">
-                                        <input type="file" name="file3" id="file3"
-                                            title="Chọn file ảnh, audio, hoặc video">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                        <input type="file" name="file3" id="file3" title="Chọn file ảnh, audio, hoặc video">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
                                             Thêm hình ảnh, âm thanh hoặc video</p>
                                     </div>
                                     <div class="csbd">
                                         <span>Phương án sai 2</span>
                                         <br>
                                         <input type="text" name="pasai2" id="pasai2" value="">
-                                        <input type="file" name="file4" id="file4"
-                                            title="Chọn file ảnh, audio, hoặc video">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                        <input type="file" name="file4" id="file4" title="Chọn file ảnh, audio, hoặc video">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
                                             Thêm hình ảnh, âm thanh hoặc video</p>
                                     </div>
                                     <div class="csbd">
                                         <span>Phương án sai 3</span>
                                         <br>
                                         <input type="text" name="pasai3" id="pasai3" value="">
-                                        <input type="file" name="file5" id="file5"
-                                            title="Chọn file ảnh, audio, hoặc video">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
+                                        <input type="file" name="file5" id="file5" title="Chọn file ảnh, audio, hoặc video">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;margin-top:-2.4em; z-index:1;">
                                             Thêm hình ảnh, âm thanh hoặc video</p>
                                     </div>
                                     <div class="csbd">
@@ -319,23 +301,74 @@
                                     </div>
                                 </form>
                                 <div class="add">
-                                    <img id="add" src="assets/image/add.png" width="30" height="30"
-                                        title="Thêm câu hỏi mới"
-                                        style="margin-left:4em;margin-top:1em; cursor:pointer;">
-                                    <img id="edit" src="assets/image/edit.ico" width="30" height="30"
-                                        title="Sửa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                    <img id="delete" src="assets/image/delete.png" width="30" height="30"
-                                        title="Xóa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                    <img id="refresh" src="assets/image/refresh-icon.png" width="30" height="30"
-                                        title="Refresh" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                    <img id="add" src="assets/image/add.png" width="30" height="30" title="Thêm câu hỏi mới" style="margin-left:4em;margin-top:1em; cursor:pointer;">
+                                    <img id="edit" src="assets/image/edit.ico" width="30" height="30" title="Sửa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                    <img id="delete" src="assets/image/delete.png" width="30" height="30" title="Xóa câu hỏi" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                    <img id="refresh" src="assets/image/refresh-icon.png" width="30" height="30" title="Refresh" style="margin-left:1em;margin-top:1em; cursor:pointer;">
                                 </div>
-
                             </div>
+                            <div class="load6" style="width: 100%;">
+                                <div class="addByExcel" style="width: 100%;">
+                                    <p style="background:rgba(100%,40%,20%,1); cursor:pointer; border-radius:4px; width:100%; height:2.2em; color:white; display:block; margin:auto; margin-top:1em; padding-top:0.5em; z-index:1;">
+                                        Thêm câu hỏi bằng file excel</p>
+                                    <form id="upcauhoi" method="post" enctype="multipart/form-data" style="margin-top:-2.6em;">
+                                        <input type="file" id="uploacauhoi" name="upch" title="Click chọn file excel" style="cursor:pointer;opacity:0; background:red; width:100%; height:3.2em; margin-top:-6.2em; z-index:1000;">
+                                        <input type="submit" name="clickup" id="Submit" value="Tải lên" title="Click tải lên" style="margin-top:2em; border:none; background:blue;cursor:pointer; color:white; width:80%; height:1.5em;">
+                                    </form>
+                                    <script>
+                                        document.getElementById("upcauhoi").addEventListener("submit", function(e) {
+                                            e.preventDefault();
 
+                                            var fileInput = document.getElementById("uploacauhoi");
+                                            var file = fileInput.files[0];
+
+                                            var modun = document.getElementById("pthi").value;
+
+                                            if (file && modun !== "all") {
+                                                var formData = new FormData();
+                                                formData.append("upf", file);
+                                                formData.append("modun", modun);
+
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open("POST", "index.php?controller=createthisinhByexcel", true);
+
+                                                xhr.onload = function() {
+                                                    if (xhr.status >= 200 && xhr.status < 300) {
+                                                        var responseData = xhr.responseText;
+                                                        var data = JSON.parse(responseData);
+                                                        // Kiểm tra xem có lỗi không
+                                                        if (data.error) {
+                                                            alert("Lỗi từ máy chủ: " + data.error);
+                                                        } else {
+                                                            // Thực hiện các hành động khác dựa trên dữ liệu nhận được
+                                                            renderExcel(data.success, data.phong);
+                                                        }
+                                                    } else {
+                                                        console.error("Có lỗi xảy ra khi gửi yêu cầu.");
+                                                    }
+                                                };
+
+                                                xhr.onerror = function() {
+                                                    console.error("Đã xảy ra lỗi trong quá trình gửi yêu cầu.");
+                                                };
+
+                                                xhr.send(formData);
+                                            } else {
+                                                if (file) {
+                                                    alert("Vui lòng nhập bộ đề.");
+                                                } else if (modun !== "all") {
+                                                    alert("Vui lòng chọn file.");
+                                                } else {
+                                                    alert("Vui lòng chọn file và nhập bộ đề.");
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
@@ -360,8 +393,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -271,4 +271,21 @@ class QuanlyThiSinhDAO
 
         return $latestPhongThi;
     }
+    public function updatethi($sbd, $mamon)
+    {
+        $query = "UPDATE allowexam SET allow='C' WHERE sbd=:sbd AND mamodun=:mamon";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->bindParam(':mamon', $mamon);
+        $stmt->execute();
+    }
+
+    public function updatehuy($sbd, $mamon)
+    {
+        $query = "UPDATE allowexam SET allow='K' WHERE sbd=:sbd AND mamodun=:mamon";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->bindParam(':mamon', $mamon);
+        $stmt->execute();
+    }
 }

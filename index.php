@@ -10,6 +10,8 @@ class router
     private $quanlythisinhController;
     private $soandethiController;
     private $phanquyenthiController;
+    private $soancautrucdeController;
+    private $diemthiController;
     public function __construct()
     {
         $this->loginController = new LoginController();
@@ -19,6 +21,8 @@ class router
         $this->quanlythisinhController = new QuanLyThiSinhController();
         $this->soandethiController = new SoandethiController();
         $this->phanquyenthiController = new PhanQuyenThiController();
+        $this->soancautrucdeController = new SoancautrucdeController();
+        $this->diemthiController = new DiemthiController();
     }
     public function route()
     {
@@ -134,10 +138,16 @@ class router
                 $this->soandethiController->deletecauhoi();
                 break;
             case 'soancautrucde':
-                require_once 'views/soancautrucde/admin/soancautrucde.php';
+                $this->soancautrucdeController->index();
+                break;
+            case 'gettimeandnumber':
+                $this->soancautrucdeController->gettimeandnumber();
                 break;
             case 'diemthi':
-                require_once 'views/diemthi/admin/diemthi.php';
+                $this->diemthiController->index();
+                break;
+            case 'getdiem':
+                $this->diemthiController->getdiem();
                 break;
             case 'chitietbaithi':
                 require_once 'views/diemthi/admin/chitietbaithi.php';
@@ -146,6 +156,7 @@ class router
                 $this->phanquyenthiController->index();
                 break;
             case 'updatequyenthi':
+                $this->phanquyenthiController->updatequyenthi();
                 break;
             case 'getthisinhbymonthis':
                 $this->phanquyenthiController->getthisinhbymonthis();

@@ -1,5 +1,8 @@
 $("#kythi").change(function (e) {
   (id = document.getElementById("kythi").value), getmothi(id);
+  if (document.getElementById("kythi").value == "all") {
+    document.getElementById("onno").style.display = "none";
+  }
 });
 
 function getmothi(data) {
@@ -87,6 +90,11 @@ function renderthisinh(data) {
           name="slAll" checked>
   </th>
 </tr>`;
+  if (document.getElementById("monthi").value == "all") {
+    document.getElementById("onno").style.display = "none";
+  } else {
+    document.getElementById("onno").style.display = "block";
+  }
   if (data.length > 0) {
     data.forEach((element) => {
       html += `<tr>
@@ -112,30 +120,62 @@ function renderthisinh(data) {
 $("#sb").click(function (e) {
   if (window.confirm("Cập nhật lại quyền thi?")) {
     var data = {
-      id: {
-        sbd: [],
-        kythi: [],
-      },
-      ud: {
-        sbd: [],
-        kythi: [],
-      },
+      id: [],
+      ud: [],
     };
     var i = 0;
     var j = 0;
 
     $(":checkbox").each(function () {
       if ($(this).is(":checked")) {
-        data.id.sbd[i] = $(this).val();
-        data.id.kythi[i] = $("#monthi").val();
-        i++;
+        if ($(this).val() == "on") {
+        } else {
+          data.id.push({
+            sbd: $(this).val(),
+            kythi: $("#monthi").val(),
+          });
+          i++;
+        }
       } else {
-        data.ud.sbd[j] = $(this).val();
-        data.ud.kythi[j] = $("#monthi").val();
-        j++;
+        if ($(this).val() == "on") {
+        } else {
+          data.ud.push({
+            sbd: $(this).val(),
+            kythi: $("#monthi").val(),
+          });
+          j++;
+        }
       }
     });
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "index.php?controller=updatequyenthi", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    console.log(data);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+
+          var mes = "Đã cập Nhật";
+          showSuccessMessage(mes);
+          getthisinh();
+        } else {
+          console.error("Lỗi:", xhr.status);
+        }
+      }
+    };
+
+    xhr.send(JSON.stringify(data));
   } else return false;
 });
+function showSuccessMessage(mes) {
+  var successMessage = document.createElement("div");
+  successMessage.textContent = mes;
+  successMessage.classList.add("success-message");
+  document.body.appendChild(successMessage);
+
+  // Ẩn thông báo sau 3 giây
+  setTimeout(function () {
+    document.body.removeChild(successMessage);
+  }, 3000);
+}

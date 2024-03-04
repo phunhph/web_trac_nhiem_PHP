@@ -13,11 +13,35 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
 </head>
+<style>
+.cls1 {
+    display: block;
+    margin: auto;
+    width: 99%;
+    font-size: 13px;
+}
+
+.cls2 {
+    padding: 0.5em 0.3em;
+    background: #4267b2;
+    margin-top: 1em;
+    color: white;
+}
+
+.cls7,
+.cls4,
+.cls5,
+.cls6 {
+    padding: 0.6em 0;
+}
+</style>
 
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -25,7 +49,8 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -148,12 +173,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -184,7 +211,53 @@
                         <h1 class="h3 mb-0 text-gray-800">Soạn cấu trúc đề</h1>
                     </div>
 
-                    <div class="row"></div>
+                    <div class="M02">
+                        <div class="phanquyen">
+                            <span style="margin-left:2em;">Chọn kỳ thi</span>
+                            <select name="kythi" id="kythi"
+                                style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                                <option value="all">--Chọn kỳ thi--</option>
+                                <?php foreach ($kythi as $key => $value) : ?>
+                                <option value="<?= $value->getMaKyThi() ?>">
+                                    <?= $value->getTenKyThi() ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <div class="loada">
+                                <span style="margin-left:2em;">Chọn
+                                    môn thi</span>
+                                <select id="monthi" name="monthi"
+                                    style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
+                                    <option value="all">--Chọn môn thi--</option>
+                                </select>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="load">
+                            <label style='margin-left:1em;font-size:18px;'>Tổng số câu hỏi: &nbsp;</label>
+                            <!-- <input type='text' value=' $tongt[tongcauhoi] ' name='stong' id='stong' size='5' /> -->
+                            <input type='text' value='0' name='stong' id='stong' size='5' />
+                            <label style='margin-left:1em;font-size:18px;'>Thời gian làm bài: &nbsp;</label>
+                            <!-- <input type='text' value=' $tongt[tgthi]' name='time' id='time' size='8' /> -->
+                            <input type='text' value='0' name='time' id='time' size='8' />
+                            <span>&nbsp;&nbsp;(phút)</span>
+                            <hr>
+                            <h4 style='margin-top:1.4em;margin-left:1em;'>Danh sách Module</h4>
+                            <form method='post' id='capnhatdt'>
+
+                            </form>
+                            <input
+                                style='display:block; margin:auto; margin-top:1em; margin-bottom:1em; color:white; cursor:pointer; padding:0.8em 3em; background:blue; border:none;'
+                                type='submit' name='sb' id='sb' value='Cập nhật'>
+                        </div>
+
+                        <hr style=" margin-top:1em;">
+
+                        <div class="load13">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- /.container-fluid -->
@@ -211,7 +284,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -242,6 +316,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/soancautrucde.js"></script>
 </body>
 
 </html>
