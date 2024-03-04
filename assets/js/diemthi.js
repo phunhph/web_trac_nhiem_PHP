@@ -65,7 +65,6 @@ document.getElementById("phong").onchange = function () {
         var response = xhr.responseText;
         var data = JSON.parse(response);
         renderdiem(data);
-        console.log(response);
       } else {
         console.error("Lỗi:", xhr.status);
       }
@@ -97,3 +96,45 @@ function renderdiem(data) {
   }
   document.getElementById("renderkqthi").innerHTML = html;
 }
+document.getElementById("dldiem").onclick = function () {
+  var phong = document.getElementById("phong").value;
+  var ky = document.getElementById("kythi").value;
+  var data = {
+    phong: phong,
+    kythi: ky,
+  };
+  if (data.kythi === "..." || data.phong === "...") {
+    alert("Vui lòng chọn kỳ thi và phòng");
+  } else {
+    fetch("index.php?controller=exportdiem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        // Tạo một đường dẫn đến file Excel
+        const url = window.URL.createObjectURL(blob);
+
+        // Tạo một phần tử a để tải xuống file Excel
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "example.xlsx";
+
+        // Thêm phần tử a vào body và click tự động để tải xuống file Excel
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error("Lỗi:", error.message);
+      });
+  }
+};

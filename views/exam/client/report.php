@@ -17,7 +17,8 @@
     <div class="examcontent_p1">
         <div class="dscauhoi">
             <div class='hellomem' style='width:100%; height:2em;'>
-                <div style='padding-top:0.5em;padding-left:0.5em;font-size:17px;color:orangered;font-weight:bold; text-align:center;'>
+                <div
+                    style='padding-top:0.5em;padding-left:0.5em;font-size:17px;color:orangered;font-weight:bold; text-align:center;'>
                     Danh sách câu hỏi</div>
             </div>
             <div class="maincauhoi" style="width:100%;height:10em;overflow:auto; margin-top:1em;">
@@ -67,155 +68,167 @@
         foreach ($bode as $key => $value) :;
         ?>
 
-            <div class='areaexam'>
-                <div class='cauhoi' id='ch<?php echo $key + 1; ?>'>
-                    Câu hỏi <b><?php echo $key + 1; ?></b>:
-                </div>
-                <div class='tencauhoi'>
-                    <?php echo $value->getCauHoi(); ?>
-                    <?php if (!empty($dtencauhoir['imgviauTencauhoi'])) reg($dtencauhoir['imgviauTencauhoi'], "imgcauhoi"); ?>
-                </div>
-                <div class='dapan'>
-                    <table border='1' class='tabledapan'>
-                        <tr>
-                            <th style='color:blue'>Câu trả lời của bạn</th>
-                            <th style='color:blue'>Câu trả lời đúng</th>
-                        </tr>
-                        <tr>
-                            <td style='color:blue;background:white;'>
-
-                                <?php if ($value->getTemp() == $value->getpadung()) : ?>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "green");
-                                        });
-                                    </script>
-                                    <?php if ($value->getTemp() == 'A') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp(); ?>. <?php echo $value->getPaA() ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label>
-                                        <img src='assets/image/approve.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'B') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaB() ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label>
-                                        <img src='assets/image/approve.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'C') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaC(); ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label>
-                                        <img src='assets/image/approve.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'D') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaD(); ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label>
-                                        <img src='assets/image/approve.png' style='padding-left:25px;'>
-                                    <?php endif; ?>
-                                <?php elseif ($value->getTemp() == 'null') : ?>
-                                    <label>
-                                        Bạn không trả lời câu hỏi này
-                                        <script>
-                                            $(document).ready(function() {
-                                                $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "#faac32");
-                                            });
-                                        </script>
-                                    </label>
-                                <?php else : ?>
-                                    <script>
-                                        $(document).ready(function() {
-                                            $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "red");
-                                        });
-                                    </script>
-                                    <?php if ($value->getTemp() == 'A') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp(); ?>. <?php echo $value->getPaA() ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label><img src='assets/image/false.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'B') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaB() ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label><img src='assets/image/false.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'C') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaC(); ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label><img src='assets/image/false.png' style='padding-left:25px;'>
-                                    <?php elseif ($value->getTemp() == 'D') : ?>
-                                        <label>
-                                            <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>' checked>
-                                            <?php echo $value->getTemp() ?>. <?php echo $value->getPaD(); ?>
-                                            <div>
-                                                <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                            </div>
-                                        </label><img src='assets/image/false.png' style='padding-left:25px;'>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                            </td>
-                            <td style='background:white;'>
-                                <?php if ($value->getpadung() == 'A') : ?>
-                                    <label>
-                                        <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>' checked>
-                                        <?php echo $value->getpadung(); ?>. <?php echo $value->getPaA(); ?>
-                                        <div>
-                                            <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                        </div>
-                                    </label>
-                                <?php elseif ($value->getpadung() == 'B') : ?>
-                                    <label>
-                                        <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>' checked>
-                                        <?php echo $value->getpadung(); ?>. <?php echo $value->getPaB(); ?>
-                                        <div>
-                                            <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                        </div>
-                                    </label>
-                                <?php elseif ($value->getpadung() == 'C') : ?>
-                                    <label>
-                                        <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>' checked>
-                                        <?php echo $value->getpadung(); ?>. <?php echo $value->getPaC(); ?>
-                                        <div>
-                                            <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                        </div>
-                                    </label>
-                                <?php elseif ($value->getpadung() == 'D') : ?>
-                                    <label>
-                                        <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>' checked>
-                                        <?php echo $value->getpadung(); ?>. <?php echo $value->getPaD(); ?>
-                                        <div>
-                                            <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
-                                        </div>
-                                    </label>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+        <div class='areaexam'>
+            <div class='cauhoi' id='ch<?php echo $key + 1; ?>'>
+                Câu hỏi <b><?php echo $key + 1; ?></b>:
             </div>
+            <div class='tencauhoi'>
+                <?php echo $value->getCauHoi(); ?>
+                <?php if (!empty($dtencauhoir['imgviauTencauhoi'])) reg($dtencauhoir['imgviauTencauhoi'], "imgcauhoi"); ?>
+            </div>
+            <div class='dapan'>
+                <table border='1' class='tabledapan'>
+                    <tr>
+                        <th style='color:blue'>Câu trả lời của bạn</th>
+                        <th style='color:blue'>Câu trả lời đúng</th>
+                    </tr>
+                    <tr>
+                        <td style='color:blue;background:white;'>
+
+                            <?php if ($value->getTemp() == $value->getpadung()) : ?>
+                            <script>
+                            $(document).ready(function() {
+                                $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "green");
+                            });
+                            </script>
+                            <?php if ($value->getTemp() == 'A') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp(); ?>. <?php echo $value->getPaA() ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <img src='assets/image/approve.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'B') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaB() ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <img src='assets/image/approve.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'C') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaC(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <img src='assets/image/approve.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'D') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaD(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <img src='assets/image/approve.png' style='padding-left:25px;'>
+                            <?php endif; ?>
+                            <?php elseif ($value->getTemp() == 'null') : ?>
+                            <label>
+                                Bạn không trả lời câu hỏi này
+                                <script>
+                                $(document).ready(function() {
+                                    $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "#faac32");
+                                });
+                                </script>
+                            </label>
+                            <?php else : ?>
+                            <script>
+                            $(document).ready(function() {
+                                $("div[id='s<?php echo $key + 1; ?>']").css("background-color", "red");
+                            });
+                            </script>
+                            <?php if ($value->getTemp() == 'A') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp(); ?>. <?php echo $value->getPaA() ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label><img src='assets/image/false.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'B') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaB() ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label><img src='assets/image/false.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'C') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaC(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label><img src='assets/image/false.png' style='padding-left:25px;'>
+                            <?php elseif ($value->getTemp() == 'D') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caus<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getTemp() ?>. <?php echo $value->getPaD(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label><img src='assets/image/false.png' style='padding-left:25px;'>
+                            <?php endif; ?>
+                            <?php endif; ?>
+                        </td>
+                        <td style='background:white;'>
+                            <?php if ($value->getpadung() == 'A') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getpadung(); ?>. <?php echo $value->getPaA(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <?php elseif ($value->getpadung() == 'B') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getpadung(); ?>. <?php echo $value->getPaB(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <?php elseif ($value->getpadung() == 'C') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getpadung(); ?>. <?php echo $value->getPaC(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <?php elseif ($value->getpadung() == 'D') : ?>
+                            <label>
+                                <input type='radio' id='tcau<?php echo $key + 1; ?>' name='caud<?php echo $key + 1; ?>'
+                                    checked>
+                                <?php echo $value->getpadung(); ?>. <?php echo $value->getPaD(); ?>
+                                <div>
+                                    <?php if (!empty($dtencauhoir['imgviauPadung'])) reg($dtencauhoir['imgviauPadung'], "imgdapan"); ?>
+                                </div>
+                            </label>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <?php endforeach; ?>
     </div>
     <!--End phần câu hỏi-->

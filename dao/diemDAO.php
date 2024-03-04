@@ -8,6 +8,63 @@ class DiemDAO
         $dbConnection = new DatabaseConnection();
         $this->db = $dbConnection->getConnection();
     }
+    public function getsbd($id)
+    {
+        $query = "SELECT hocvien.sbd FROM hocvien INNER JOIN kythi ON kythi.makythi = hocvien.makythi WHERE hocvien.makythi = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        $sbdList = array();
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $sbdList[] = $row->sbd;
+        }
+
+        return $sbdList;
+    }
+    public function getketqua($id, $mamodun)
+    {
+        $query = "SELECT hocvien.hodem, hocvien.ten, diem.diem, diem.socaudung, diem.thoigianthi, diem.thoigianketthuc 
+        FROM hocvien 
+        JOIN diem ON diem.sbd = hocvien.sbd 
+        WHERE hocvien.sbd = :id AND diem.mamodun=:mamodun";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':mamodun', $mamodun);
+        $stmt->execute();
+
+        $resultList = array();
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $resultList[] = $row;
+        }
+        return $resultList;
+    }
+    public function getdethisinhBySBD($sbd, $mamt)
+    {
+        $query = "SELECT macauhoi, socau, padung, pachon, temp FROM dethisinh WHERE sbd = :sbd AND mamodun = :mamt ORDER BY socau";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':sbd', $sbd);
+        $stmt->bindParam(':mamt', $mamt);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $result;
+    }
+
+    public function getcauhoibymchindethi($macauhoi)
+    {
+        $query = "SELECT tencauhoi, padung, pasai1, pasai2, pasai3, imgviauTencauhoi, imgviauPadung, imgviauPasai1, imgviauPasai2, imgviauPasai3, mucdo, mabode FROM cauhoi WHERE macauhoi = :macauhoi";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':macauhoi', $macauhoi);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+        return $result;
+    }
+
     public function getall($tenphong, $kythi)
     {
         $query = "SELECT hocvien.sbd AS sbd, 

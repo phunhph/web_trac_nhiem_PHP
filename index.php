@@ -149,8 +149,20 @@ class router
             case 'getdiem':
                 $this->diemthiController->getdiem();
                 break;
+            case 'exportdiem':
+                $this->diemthiController->exportdiem();
+                break;
             case 'chitietbaithi':
-                require_once 'views/diemthi/admin/chitietbaithi.php';
+                $this->diemthiController->chitietbaithi();
+                break;
+            case 'getsbd':
+                $this->diemthiController->getsbd();
+                break;
+            case 'getketqua':
+                $this->diemthiController->getketqua();
+                break;
+            case 'getthongthibaithi':
+                $this->diemthiController->getthongthibaithi();
                 break;
             case 'phanquyenthi':
                 $this->phanquyenthiController->index();

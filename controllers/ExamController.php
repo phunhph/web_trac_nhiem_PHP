@@ -595,7 +595,6 @@ class ExamController
                         );
                         break;
                 }
-
                 $bode[] = $cauhoi;
             } elseif ($ran == 2) {
                 $dapan = 'B';
