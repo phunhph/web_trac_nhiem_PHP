@@ -140,6 +140,12 @@ class router
             case 'soancautrucde':
                 $this->soancautrucdeController->index();
                 break;
+            case 'updatecautrucde':
+                $this->soancautrucdeController->updatecautrucde();
+                break;
+            case 'getmodule':
+                $this->soancautrucdeController->getmodule();
+                break;
             case 'gettimeandnumber':
                 $this->soancautrucdeController->gettimeandnumber();
                 break;

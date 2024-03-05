@@ -86,6 +86,68 @@ class QuanLyMonThiDAO
         }
         return $noiDungThi;
     }
+    public function getmobodevaten($mamodun)
+    {
+        $query = "select mabode, tenbode from bode where mamodun=:mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+        $noiDungThi = array();
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $noiDungThi[] = $row;
+        }
+        return $noiDungThi;
+    }
+    public function getdethiprofile($mabode)
+    {
+        $query = "SELECT soluong, dethiprofile.pmucdo FROM dethiprofile WHERE cauhoi = :mabode";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $results = array();
+        while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
+            $results[] = $row;
+        }
+        return $results;
+    }
+    public function deletedethiprofile($mamodun)
+    {
+        $query = "DELETE FROM dethiprofile WHERE mamodun=:mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    public function craetedethiprofile($id, $cauhoi, $pmucdo, $soluong, $mamodun)
+    {
+        $query = "INSERT INTO dethiprofile (id, cauhoi, pmucdo, soluong, mamodun) VALUES (:id, :cauhoi, :pmucdo, :soluong, :mamodun)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        $stmt->bindParam(':cauhoi', $cauhoi, PDO::PARAM_STR);
+        $stmt->bindParam(':pmucdo', $pmucdo, PDO::PARAM_STR);
+        $stmt->bindParam(':soluong', $soluong, PDO::PARAM_INT);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function demcauhoi($mabode)
+    {
+        $query = "SELECT COUNT(*) as sde, mucdo 
+    FROM `cauhoi`
+    WHERE mabode = :mabode
+    GROUP BY mucdo";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+        return $result;
+    }
 
     public function fixNoiDungThi($mabode, $tenbode, $mamodun)
     {
