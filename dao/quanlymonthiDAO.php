@@ -12,6 +12,8 @@ class QuanLyMonThiDAO
     // môn thi
     public function createMonThi($mamodun, $tenmodun, $batdau, $ketthuc, $makythi)
     {
+        $mamodun = trim($mamodun);
+        $tenmodun = trim($tenmodun);
         $query = "INSERT INTO `modun`(`mamodun`, `tenmodun`, `batdau`, `ketthuc`, `makythi`) VALUES (:mamodun, :tenmodun, :batdau, :ketthuc, :makythi)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
@@ -42,6 +44,8 @@ class QuanLyMonThiDAO
 
     public function fixmonthi($mamodun, $tenmodun, $batdau, $ketthuc)
     {
+        $mamodun = trim($mamodun);
+        $tenmodun = trim($tenmodun);
         $query = "UPDATE `modun` SET `tenmodun`=:tenmodun, `batdau`=:batdau, `ketthuc`=:ketthuc WHERE `mamodun`=:mamodun";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
@@ -53,6 +57,7 @@ class QuanLyMonThiDAO
 
     public function deleteMonThi($mamodun)
     {
+        $mamodun = trim($mamodun);
         $query = "DELETE FROM `modun` WHERE `mamodun`=:mamodun";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
@@ -127,6 +132,9 @@ class QuanLyMonThiDAO
     // nội dung thi
     public function createNoiDungThi($mabode, $tenbode, $mamodun)
     {
+        $mabode = trim($mabode);
+        $tenbode = trim($tenbode);
+        $mamodun = trim($mamodun);
         $query = "INSERT INTO `bode`(`mabode`, `tenbode`, `mamodun`) VALUES (:mabode, :tenbode, :mamodun)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
@@ -217,6 +225,9 @@ class QuanLyMonThiDAO
 
     public function fixNoiDungThi($mabode, $tenbode, $mamodun)
     {
+        $mabode = trim($mabode);
+        $tenbode = trim($tenbode);
+        $mamodun = trim($mamodun);
         $mabode = trim($mabode);
         $query = "UPDATE `bode` SET `tenbode` = :tenbode, `mamodun` = :mamodun WHERE `mabode` = :mabode";
         $stmt = $this->db->prepare($query);

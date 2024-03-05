@@ -120,7 +120,11 @@ class QuanlyThiSinhDAO
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':makythi', $makythi);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $mamodun = array();
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $mamodun[] = $row;
+        }
+        return $mamodun;
     }
 
 

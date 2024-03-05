@@ -58,10 +58,9 @@ class QuanLyThiSinhController
                 $mamodun = $this->quanlythisinhDAO->getMaMoDun($data->kythi);
 
                 foreach ($mamodun as $key => $value) {
-                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value);
+                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value->mamodun);
                 }
             }
-            echo json_encode($result, JSON_UNESCAPED_UNICODE);
             exit();
         } else {
             $this->quanlythisinhDAO->createMaDonVi($data->madonvi, $data->tendonvi);
@@ -72,7 +71,7 @@ class QuanLyThiSinhController
                 $mamodun = $this->quanlythisinhDAO->getMaMoDun($data->kythi);
 
                 foreach ($mamodun as $key => $value) {
-                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value);
+                    $this->quanlythisinhDAO->createAlowexam($data->sbd, $value->mamodun);
                 }
             }
             echo json_encode($result, JSON_UNESCAPED_UNICODE);
@@ -183,7 +182,7 @@ class QuanLyThiSinhController
                     $mamodun = $this->quanlythisinhDAO->getMaMoDun($value->makythi);
 
                     foreach ($mamodun as $key => $val) {
-                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val);
+                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val->mamodun);
                     }
                 }
             } else {
@@ -195,7 +194,7 @@ class QuanLyThiSinhController
                     $mamodun = $this->quanlythisinhDAO->getMaMoDun($value->makythi);
 
                     foreach ($mamodun as $key => $val) {
-                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val);
+                        $this->quanlythisinhDAO->createAlowexam($value->sbd, $val->mamodun);
                     }
                 }
             }

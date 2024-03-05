@@ -25,8 +25,7 @@ class QuanLyMonThiController
     public function addmonthi()
     {
         $data = json_decode(file_get_contents("php://input"));
-        $this->quanlymonDao->createMonThi($data->id, $data->name, $data->tgbd, $data->tgkt, $data->id_kt); //;
-
+        $this->quanlymonDao->createMonThi($data->id, $data->name, $data->tgbd, $data->tgkt, $data->id_kt);
         exit();
     }
     public function fixmonthi()
@@ -54,7 +53,6 @@ class QuanLyMonThiController
     public function getnoidungthi()
     {
         $id = json_decode(file_get_contents("php://input"));
-
         $noidungthi = $this->quanlymonDao->getNoiDungThi($id->id); //;
         echo json_encode($noidungthi, JSON_UNESCAPED_UNICODE);
         exit();
@@ -63,7 +61,6 @@ class QuanLyMonThiController
     {
         $data = json_decode(file_get_contents("php://input"));
         $this->quanlymonDao->createNoiDungThi($data->id, $data->name, $data->mamon); //;
-
         exit();
     }
     public function fixnoidungthi()

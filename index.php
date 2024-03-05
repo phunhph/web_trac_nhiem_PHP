@@ -1,5 +1,5 @@
 <?php
-include './include.php';
+require_once './include.php';
 
 class router
 {
@@ -76,8 +76,15 @@ class router
             case 'quanlymonthi':
                 $this->quanlymonthiController->index();
                 break;
+
             case 'getmonthi':
                 $this->quanlymonthiController->getmonthi();
+                break;
+            case 'addmonthi':
+                $this->quanlymonthiController->addmonthi();
+                break;
+            case 'fixmonthi':
+                $this->quanlymonthiController->fixmonthi();
                 break;
             case 'deletemonthi':
                 $this->quanlymonthiController->deletemonthi();

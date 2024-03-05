@@ -19,6 +19,7 @@ function getmonthi(id) {
         var date = JSON.parse(response);
         rendermonthi(date);
         addAllEvents();
+        envenmon();
       } else {
         console.error("Lỗi:", xhr.status);
       }
@@ -161,6 +162,102 @@ function rendernoidungthi(date) {
   document.getElementById("noidungthi").innerHTML = html;
 }
 addAllEvents();
+function envenmon() {
+  //kỳ thi
+  $("#add1").click(function (e) {
+    var a, b, c, d;
+    a = $("input[id='mmt']").val();
+    b = $("input[id='tenmt']").val();
+    c = $("input[id='tkt']").val();
+    d = $("input[id='tkt2']").val();
+    if (a === "" || b === "" || c === "" || d === "")
+      alert("Không được để trống dữ liệu!");
+    else if (confirm("Bạn chắc chắn thêm môn thi này?")) {
+      var data = {
+        id: $("#mmt").val(),
+        name: $("#tenmt").val(),
+        tgbd: $("#tkt").val(),
+        tgkt: $("#tkt2").val(),
+        id_kt: $("#kythi").val(),
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=addmonthi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            getmonthi(data.id_kt);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
+    }
+  });
+  $("#edit1").click(function (e) {
+    var a, b, c, d;
+    a = $("input[id='mmt']").val();
+    b = $("input[id='tenmt']").val();
+    c = $("input[id='tkt']").val();
+    d = $("input[id='tkt2']").val();
+    if (a === "" || b === "" || c === "" || d === "")
+      alert("Không được để trống dữ liệu!");
+    else if (confirm("Bạn có chắc chắn sửa đổi?")) {
+      var data = {
+        id: $("#mmt").val(),
+        name: $("#tenmt").val(),
+        tgbd: $("#tkt").val(),
+        tgkt: $("#tkt2").val(),
+        id_kt: $("#kythi").val(),
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=fixmonthi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            getmonthi(data.id_kt);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
+    }
+  });
+  $("#delete1").click(function (e) {
+    var a;
+    a = $("input[id='mmt']").val();
+    if (a === "") alert("Không được để trống mã môn thi!");
+    else if (confirm("Bạn có chắc chắn xóa môn thi này?")) {
+      var data = {
+        id: $("#mmt").val(),
+        id_kt: $("#kythi").val(),
+      };
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "index.php?controller=deletemonthi", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            getmonthi(data.id_kt);
+          } else {
+            console.error("Lỗi:", xhr.status);
+          }
+        }
+      };
+
+      xhr.send(JSON.stringify(data));
+    }
+  });
+}
 function addAllEvents() {
   // JavaScript Document
   $(document).ready(function (e) {
@@ -182,109 +279,7 @@ function addAllEvents() {
       $("input[id='tkt1']").val($(this).children("td:eq(2)").text());
       $("input[id='tkt11']").val($(this).children("td:eq(3)").text());
     });
-    //kỳ thi
-    $("#add1").click(function (e) {
-      var a, b, c, d;
-      a = $("input[id='mmt']").val();
-      b = $("input[id='tenmt']").val();
-      c = $("input[id='tkt']").val();
-      d = $("input[id='tkt2']").val();
-      if (a === "" || b === "" || c === "" || d === "")
-        alert("Không được để trống dữ liệu!");
-      else if (confirm("Bạn chắc chắn thêm môn thi này?")) {
-        var data = {
-          id: $("#mmt").val(),
-          name: $("#tenmt").val(),
-          tgbd: $("#tkt").val(),
-          tgkt: $("#tkt2").val(),
-          id_kt: $("#kythi").val(),
-        };
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "index.php?controller=addmonthi", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
 
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              getmonthi(data.id_kt);
-            } else {
-              console.error("Lỗi:", xhr.status);
-            }
-          }
-        };
-
-        xhr.send(JSON.stringify(data));
-      }
-    });
-    $("#edit1").click(function (e) {
-      var a, b, c, d;
-      a = $("input[id='mmt']").val();
-      b = $("input[id='tenmt']").val();
-      c = $("input[id='tkt']").val();
-      d = $("input[id='tkt2']").val();
-      if (a === "" || b === "" || c === "" || d === "")
-        alert("Không được để trống dữ liệu!");
-      else if (confirm("Bạn có chắc chắn sửa đổi?")) {
-        var data = {
-          id: $("#mmt").val(),
-          name: $("#tenmt").val(),
-          tgbd: $("#tkt").val(),
-          tgkt: $("#tkt2").val(),
-          id_kt: $("#kythi").val(),
-        };
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "index.php?controller=fixmonthi", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              getmonthi(data.id_kt);
-            } else {
-              console.error("Lỗi:", xhr.status);
-            }
-          }
-        };
-
-        xhr.send(JSON.stringify(data));
-      }
-    });
-    $("#delete1").click(function (e) {
-      var a;
-      a = $("input[id='mmt']").val();
-      if (a === "") alert("Không được để trống mã môn thi!");
-      else if (confirm("Bạn có chắc chắn xóa môn thi này?")) {
-        var data = {
-          id: $("#mmt").val(),
-          id_kt: $("#kythi").val(),
-        };
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "index.php?controller=deletemonthi", true);
-        xhr.setRequestHeader(
-          "Content-Type",
-          "application/x-www-form-urlencoded"
-        );
-
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-              console.log(xhr.responseText);
-              getmonthi(data.id_kt);
-            } else {
-              console.error("Lỗi:", xhr.status);
-            }
-          }
-        };
-
-        xhr.send(JSON.stringify(data));
-      }
-    });
     //Môn thi
     $("#add2").click(function (e) {
       //Tiếp tục từ đây
