@@ -38,6 +38,15 @@ class QuanLyMonThiController
     public function deletemonthi()
     {
         $data = json_decode(file_get_contents("php://input"));
+
+        $this->quanlymonDao->deletediem($data->id);
+        $this->quanlymonDao->deleteallowexam($data->id);
+        $this->quanlymonDao->deleteremote($data->id);
+        $this->quanlymonDao->deletedethisinh($data->id);
+        $this->quanlymonDao->deletecauhoi($data->id);
+        $this->quanlymonDao->deletebode($data->id);
+        $this->quanlymonDao->deletedethiprofilebymodun($data->id);
+        $this->quanlymonDao->deletethoigianthi($data->id);
         $this->quanlymonDao->deleteMonThi($data->id); //;
         exit();
     }
@@ -66,6 +75,8 @@ class QuanLyMonThiController
     public function deletenoidungthi()
     {
         $data = json_decode(file_get_contents("php://input"));
+        $this->quanlymonDao->deletedethisinhbymabode($data->id);
+        $this->quanlymonDao->deletecauhoibymabode($data->id);
         $this->quanlymonDao->deleteNoiDungThi($data->id); //;
         exit();
     }

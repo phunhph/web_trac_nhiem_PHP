@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/style/remote.css" type="text/css">
 </head>
 
 
@@ -188,8 +189,37 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Tình trạng thi</h1>
                     </div>
+                    <div>
+                        <div class="phanquyen mb-2">
+                            <span style="margin-left:2em;">Chọn kỳ thi</span>
+                            <select name="kythi" id="kythi"
+                                style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                                <option value="all">--Chọn kỳ thi--</option>
+                                <?php foreach ($kythi as $key => $value) : ?>
+                                <option value="<?= $value->getMaKyThi() ?>">
+                                    <?= $value->getTenKyThi() ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="p33">
 
-                    <div class="row"></div>
+                            <table class='tb1' border=0>
+                                <tr style='font-size:14px; background:#4267b2;color:white;'>
+                                    <td>STT</td>
+                                    <td>SBD</td>
+                                    <td>Địa chỉ máy</td>
+                                    <td>Họ và tên</td>
+                                    <td>Môn thi</td>
+                                    <td>Bắt đầu thi</td>
+                                    <td>Kết thúc</td>
+                                    <td>Tình trạng</td>
+                                </tr>
+                                <tbody id="renderfull"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- /.container-fluid -->
@@ -248,6 +278,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="assets/js/tinhtrangthi.js"></script>
 </body>
 
 </html>

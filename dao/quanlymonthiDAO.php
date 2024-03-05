@@ -53,11 +53,77 @@ class QuanLyMonThiDAO
 
     public function deleteMonThi($mamodun)
     {
-        $query = "DELETE FROM `modun`  WHERE `mamodun`=:mamodun";
+        $query = "DELETE FROM `modun` WHERE `mamodun`=:mamodun";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public function deleteremote($mamodun)
+    {
+        $query = "DELETE remote FROM remote INNER JOIN modun ON modun.mamodun = remote.mamodun WHERE remote.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletethoigianthi($mamodun)
+    {
+        $query = "DELETE thoigianthi FROM thoigianthi INNER JOIN modun ON modun.mamodun = thoigianthi.mamodun WHERE thoigianthi.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletediem($mamodun)
+    {
+        $query = "DELETE diem FROM diem INNER JOIN modun ON modun.mamodun = diem.mamodun WHERE diem.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletedethisinh($mamodun)
+    {
+        $query = "DELETE dethisinh FROM dethisinh INNER JOIN modun ON modun.mamodun = dethisinh.mamodun WHERE dethisinh.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletedethiprofilebymodun($mamodun)
+    {
+        $query = "DELETE dethiprofile FROM dethiprofile INNER JOIN modun ON modun.mamodun = dethiprofile.mamodun WHERE dethiprofile.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletebode($mamodun)
+    {
+        $query = "DELETE bode FROM bode INNER JOIN modun ON modun.mamodun = bode.mamodun WHERE bode.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletecauhoi($mamodun)
+    {
+        $query = "DELETE cauhoi FROM cauhoi INNER JOIN bode ON bode.mabode = cauhoi.mabode INNER JOIN modun ON modun.mamodun = bode.mamodun WHERE modun.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deleteallowexam($mamodun)
+    {
+        $query = "DELETE allowexam FROM allowexam INNER JOIN modun ON modun.mamodun = allowexam.mamodun WHERE allowexam.mamodun = :mamodun";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mamodun', $mamodun, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+
     // nội dung thi
     public function createNoiDungThi($mabode, $tenbode, $mamodun)
     {
@@ -164,6 +230,27 @@ class QuanLyMonThiDAO
     {
         $mabode = trim($mabode);
         $query = "DELETE FROM `bode` WHERE `mabode` = :mabode";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    public function deletedethisinhbymabode($mabode)
+    {
+        $mabode = trim($mabode);
+        $query = "DELETE dethisinh
+        FROM dethisinh
+        JOIN cauhoi ON dethisinh.macauhoi = cauhoi.macauhoi
+        JOIN bode ON bode.mabode = cauhoi.mabode
+        WHERE cauhoi.mabode = :mabode";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    public function deletecauhoibymabode($mabode)
+    {
+        $mabode = trim($mabode);
+        $query = "DELETE cauhoi FROM cauhoi INNER JOIN bode ON bode.mabode = cauhoi.mabode WHERE bode.mabode = :mabode";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':mabode', $mabode, PDO::PARAM_STR);
         $stmt->execute();

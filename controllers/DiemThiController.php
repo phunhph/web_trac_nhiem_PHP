@@ -43,6 +43,7 @@ class DiemThiController
         $baithi = $this->dienthiDAO->getketqua($data->id, $data->mamodun);
         echo json_encode($baithi, JSON_UNESCAPED_UNICODE);
     }
+
     public function getthongthibaithi()
     {
         $data = json_decode(file_get_contents("php://input"));
@@ -528,5 +529,19 @@ class DiemThiController
 
         // Kết thúc chương trình
         exit;
+    }
+
+    public function tinhtrangthi()
+    {
+
+        $kythi = $this->adminDAO->getKythi();
+        require_once 'views/tinhtrangthi/admin/tinhtrangthi.php';
+    }
+
+    public function getthongtinall()
+    {
+        $data = json_decode(file_get_contents("php://input"));
+        $fullthongtin = $this->dienthiDAO->tinhtrangthi($data->id);
+        echo json_encode($fullthongtin, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -180,7 +180,10 @@ class router
                 $this->phanquyenthiController->getthisinhbymonthis();
                 break;
             case 'tinhtrangthi':
-                require_once 'views/tinhtrangthi/admin/tinhtrangthi.php';
+                $this->diemthiController->tinhtrangthi();
+                break;
+            case 'getthongtinall':
+                $this->diemthiController->getthongtinall();
                 break;
             default:
 

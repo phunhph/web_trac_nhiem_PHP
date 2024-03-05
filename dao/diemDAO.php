@@ -98,4 +98,41 @@ class DiemDAO
 
         return $moduns;
     }
+
+    public function tinhtrangthi($kythi)
+    {
+        // Prepare the SQL query with placeholders
+        $sql = "SELECT remote.sbd AS sbd, 
+                       remote.ipaddress AS ip, 
+                       remote.estatus AS tinhtrang, 
+                       hocvien.hodem AS hodem, 
+                       hocvien.ten AS ten, 
+                       modun.tenmodun AS monthi, 
+                       diem.thoigianthi AS bd, 
+                       diem.thoigianketthuc AS kt 
+                FROM remote 
+                JOIN modun ON modun.mamodun = remote.mamodun 
+                JOIN diem ON diem.mamodun = remote.mamodun AND diem.sbd = remote.sbd 
+                JOIN hocvien ON diem.sbd = hocvien.sbd 
+                JOIN kythi ON kythi.makythi = modun.makythi 
+                WHERE kythi.makythi = :kythi";
+
+        // Prepare the statement
+        $stmt = $this->db->prepare($sql);
+
+        // Bind the parameter
+        $stmt->bindParam(':kythi', $kythi);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the results
+        $moduns = array();
+
+        while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
+            $moduns[] = $row;
+        }
+
+        return $moduns;
+    }
 }
