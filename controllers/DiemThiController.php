@@ -1,5 +1,5 @@
 <?php
-require_once './dao/diemDAO.php';
+require_once 'dao/diemDAO.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;

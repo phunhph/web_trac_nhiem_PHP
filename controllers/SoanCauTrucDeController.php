@@ -1,5 +1,5 @@
 <?php
-require_once './dao/thoigianthiDAO.php';
+require_once 'dao/thoigianthiDAO.php';
 class SoanCauTrucDeController
 {
     private $adminDAO;

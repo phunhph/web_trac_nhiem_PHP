@@ -1,5 +1,5 @@
 <?php
-include './dao/LoginDAO.php';
+require_once 'dao/LoginDAO.php';
 class LoginController
 {
     private $loginDAO;
@@ -47,7 +47,7 @@ class LoginController
             } else {
                 session_unset();
             }
-            require_once './views/login/login.php';
+            require_once 'views/login/login.php';
         }
     }
     public function login()

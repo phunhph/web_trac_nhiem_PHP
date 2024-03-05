@@ -1,6 +1,6 @@
 <?php
-include './dao/ExamDAO.php';
-require_once './dao/admin.php';
+require_once 'dao/ExamDAO.php';
+require_once 'dao/admin.php';
 class HomeController
 {
     private $examDAO;
