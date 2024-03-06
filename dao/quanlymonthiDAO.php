@@ -158,7 +158,7 @@ class QuanLyMonThiDAO
         while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
             $noiDungThi[] = $row; // Thêm dữ liệu vào mảng
         }
-
+        $stmt->debugDumpParams();
         return $noiDungThi;
     }
     public function getmobodevaten($mamodun)
@@ -172,7 +172,6 @@ class QuanLyMonThiDAO
         while ($row = $stmt->fetch(\PDO::FETCH_OBJ)) {
             $noiDungThi[] = $row;
         }
-
         return $noiDungThi;
     }
     public function getdethiprofile($mabode)
