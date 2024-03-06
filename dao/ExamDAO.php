@@ -3,7 +3,7 @@ require_once 'config.php';
 require_once 'models/ModunModel.php';
 require_once 'models/DeThiSinhModel.php';
 require_once 'models/DeThiProfileModel.php';
-require_once 'models/CauHoiModel.php';
+require_once 'models/CauhoiModel.php';
 require_once 'models/DeThiModel.php';
 require_once 'models/DiemModel.php';
 class ExamDAO
