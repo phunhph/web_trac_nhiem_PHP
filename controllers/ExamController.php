@@ -93,8 +93,10 @@ class ExamController
                 shuffle($al); // sort random. index -> 0;
                 $_SESSION['mangdethi'] = $al;
             }
+            require_once 'views/exam/client/xnthi.php';
+        } else {
+            header('location: index.php');
         }
-        require_once 'views/exam/client/xnthi.php';
     }
     public function exam()
     {
