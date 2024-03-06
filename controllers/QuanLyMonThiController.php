@@ -54,6 +54,7 @@ class QuanLyMonThiController
     {
         $id = json_decode(file_get_contents("php://input"));
         $noidungthi = $this->quanlymonDao->getNoiDungThi($id->id); //;
+        // echo json_encode($noidungthi, JSON_UNESCAPED_UNICODE);
         echo json_encode($id, JSON_UNESCAPED_UNICODE);
         exit();
     }
