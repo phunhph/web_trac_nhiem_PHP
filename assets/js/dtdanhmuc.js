@@ -107,6 +107,7 @@ function getnoidungthi(id) {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         var response = xhr.responseText;
+        console.log(response);
         var date = JSON.parse(response);
         rendernoidungthi(date);
         addAllEvents();
