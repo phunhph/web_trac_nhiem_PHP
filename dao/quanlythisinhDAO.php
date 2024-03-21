@@ -27,10 +27,10 @@ class QuanlyThiSinhDAO
 
     public function getThiSinh($makythi, $tenphong)
     {
-        $query = "SELECT HOCVIEN.sbd, HOCVIEN.hodem, HOCVIEN.ten, HOCVIEN.ngaysinh, HOCVIEN.noisinh, HOCVIEN.madonvi, DONVI.tendonvi, HOCVIEN.tenphongthi
-              FROM HOCVIEN
-              INNER JOIN DONVI ON HOCVIEN.madonvi = DONVI.madonvi
-              WHERE HOCVIEN.makythi = :makythi AND HOCVIEN.tenphongthi = :tenphong";
+        $query = "SELECT hocvien.sbd, hocvien.hodem, hocvien.ten, hocvien.ngaysinh, hocvien.noisinh, hocvien.madonvi, donvi.tendonvi, hocvien.tenphongthi
+        FROM hocvien
+        INNER JOIN donvi ON hocvien.madonvi = donvi.madonvi
+        WHERE hocvien.makythi = :makythi AND hocvien.tenphongthi = :tenphong";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':makythi', $makythi, PDO::PARAM_STR);
         $stmt->bindParam(':tenphong', $tenphong, PDO::PARAM_STR);
@@ -53,13 +53,12 @@ class QuanlyThiSinhDAO
             );
             $hocviens[] = $hocvien;
         }
-
         return $hocviens;
     }
     // get ma don vi
     public function getMaDonVi($madonvi)
     {
-        $sql = "SELECT madonvi, tendonvi FROM DONVI WHERE madonvi = :madonvi";
+        $sql = "SELECT madonvi, tendonvi FROM donvi WHERE madonvi = :madonvi";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':madonvi', $madonvi);
         $stmt->execute();
@@ -87,7 +86,7 @@ class QuanlyThiSinhDAO
 
     public function createThiSinh($sbd, $hodem, $ten, $ngaysinh, $noisinh, $makythi, $madonvi, $tenphongthi, $matkhau, $profile)
     {
-        $sql = "INSERT INTO HOCVIEN (sbd, hodem, ten, ngaysinh, noisinh, makythi, madonvi, tenphongthi, matkhau) 
+        $sql = "INSERT INTO hocvien (sbd, hodem, ten, ngaysinh, noisinh, makythi, madonvi, tenphongthi, matkhau) 
             VALUES (:sbd, :hodem, :ten, :ngaysinh, :noisinh, :makythi, :madonvi, :tenphongthi, :matkhau)";
 
         $stmt = $this->db->prepare($sql);
@@ -107,7 +106,7 @@ class QuanlyThiSinhDAO
 
     public function createMatKhau($sbd, $matkhau)
     {
-        $query = "INSERT INTO MATKHAU(sbd, matkhau) VALUES (:sbd, :matkhau)";
+        $query = "INSERT INTO matkhau(sbd, matkhau) VALUES (:sbd, :matkhau)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':sbd', $sbd);
         $stmt->bindParam(':matkhau', $matkhau);
@@ -143,7 +142,7 @@ class QuanlyThiSinhDAO
 
     public function updateThiSinh($sbd, $hodem, $ten, $ngaysinh, $noisinh, $makythi, $madonvi, $tenphongthi, $matkhau, $profile)
     {
-        $sql = "UPDATE HOCVIEN SET hodem='$hodem', ten='$ten', ngaysinh='$ngaysinh', noisinh='$noisinh', makythi='$makythi', madonvi='$madonvi', tenphongthi='$tenphongthi', matkhau='$matkhau' WHERE sbd='$sbd'";
+        $sql = "UPDATE hocvien SET hodem='$hodem', ten='$ten', ngaysinh='$ngaysinh', noisinh='$noisinh', makythi='$makythi', madonvi='$madonvi', tenphongthi='$tenphongthi', matkhau='$matkhau' WHERE sbd='$sbd'";
         $stmt = $this->db->prepare($sql);
         $success = $stmt->execute();
         return $success ? true : false;
@@ -151,7 +150,7 @@ class QuanlyThiSinhDAO
 
     public function updateDonVi($madonvi, $tendonvi)
     {
-        $sql = "UPDATE DONVI SET tendonvi='$tendonvi' WHERE madonvi='$madonvi'";
+        $sql = "UPDATE donvi SET tendonvi='$tendonvi' WHERE madonvi='$madonvi'";
         $stmt = $this->db->prepare($sql);
         $success = $stmt->execute();
         return $success ? true : false;
@@ -159,7 +158,7 @@ class QuanlyThiSinhDAO
 
     public function updateMatKhau($sbd, $matkhau)
     {
-        $sql = "UPDATE MATKHAU SET matkhau='$matkhau' WHERE sbd='$sbd'";
+        $sql = "UPDATE matkhau SET matkhau='$matkhau' WHERE sbd='$sbd'";
         $stmt = $this->db->prepare($sql);
         $success = $stmt->execute();
         return $success ? true : false;

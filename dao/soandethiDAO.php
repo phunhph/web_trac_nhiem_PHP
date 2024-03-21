@@ -42,7 +42,7 @@ class SoanDeThiDAO
     }
     public function createcauhoi($macauhoi, $tencauhoi, $padung, $pasai1, $pasai2, $pasai3, $mucdo, $mabode)
     {
-        $sql = "INSERT INTO CAUHOI (macauhoi, tencauhoi, padung, pasai1, pasai2, pasai3, mucdo, mabode)
+        $sql = "INSERT INTO cauhoi (macauhoi, tencauhoi, padung, pasai1, pasai2, pasai3, mucdo, mabode)
             VALUES (:macauhoi, :tencauhoi, :padung, :pasai1, :pasai2, :pasai3, :mucdo, :mabode)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':macauhoi', $macauhoi);

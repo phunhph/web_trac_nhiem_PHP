@@ -13,9 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -36,8 +34,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -160,14 +157,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -201,13 +196,12 @@
                         <div class="col-xl-12 col-md-6 mb-4">
                             <div class="chitiet">
                                 <p class="h5 mb-4 text-gray-600">CHỌN KỲ THI</p>
-                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="kythi"
-                                    id="kythi">
+                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="kythi" id="kythi">
                                     <option value="...">...</option>
                                     <?php foreach ($kythi as $key => $value) : ?>
-                                    <option value="<?= $value->getMaKyThi() ?>">
-                                        <?= $value->getTenKyThi() ?>
-                                    </option>
+                                        <option value="<?= $value->getMaKyThi() ?>">
+                                            <?= $value->getTenKyThi() ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
 
@@ -246,8 +240,7 @@
 
                                 <hr>
                                 <p class="h5 mb-4 mt  text-gray-600">CHỌN MÔN THI</p>
-                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="monthi_ops"
-                                    id="monthi_ops">
+                                <select style="margin-left:1.25em; margin-bottom:1em;width:30em;" name="monthi_ops" id="monthi_ops">
                                     <option value="...">...</option>
                                 </select>
 
@@ -315,8 +308,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

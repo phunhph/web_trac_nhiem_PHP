@@ -13,98 +13,96 @@
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="assets/js/jquery-3.1.1.js"></script><!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
 
 </head>
 <style>
-.thb {
-    border: 1px solid rgba(136, 136, 136, 0.8);
-    border-collapse: collapse;
-    width: 99%;
-    margin: auto;
-    margin-top: 1em;
-}
+    .thb {
+        border: 1px solid rgba(136, 136, 136, 0.8);
+        border-collapse: collapse;
+        width: 99%;
+        margin: auto;
+        margin-top: 1em;
+    }
 
-.thb td {
-    padding: 0.5em 0.5em;
-    text-align: left;
-}
+    .thb td {
+        padding: 0.5em 0.5em;
+        text-align: left;
+    }
 
-.thb tr:nth-child(even) {
-    background-color: white;
-}
+    .thb tr:nth-child(even) {
+        background-color: white;
+    }
 
-.thb tr:nth-child(odd) {
-    background-color: #f1f1f1;
-}
+    .thb tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
 
-.thb tr:hover {
-    cursor: default;
-    background: rgba(0, 102, 153, 0.1);
-}
+    .thb tr:hover {
+        cursor: default;
+        background: rgba(0, 102, 153, 0.1);
+    }
 
-.thb th {
-    height: 22px;
-    padding: 0.1em;
-    background: #4267b2;
-    color: white;
-    font-size: 14px;
-}
+    .thb th {
+        height: 22px;
+        padding: 0.1em;
+        background: #4267b2;
+        color: white;
+        font-size: 14px;
+    }
 
-#update {
-    width: 90%;
-    margin: auto;
-    display: block;
-    margin-top: 2em;
-    padding-bottom: 1em;
-}
+    #update {
+        width: 90%;
+        margin: auto;
+        display: block;
+        margin-top: 2em;
+        padding-bottom: 1em;
+    }
 
-.over {
-    position: fixed;
-    display: none;
-    background: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    height: 100%;
-}
+    .over {
+        position: fixed;
+        display: none;
+        background: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+    }
 
-.show {
-    width: 23%;
-    height: 7em;
-    position: fixed;
-    display: block;
-    margin: auto;
-    margin-top: 8em;
-    margin-left: 3em;
-    background: rgba(255, 255, 255, 0.7);
-}
+    .show {
+        width: 23%;
+        height: 7em;
+        position: fixed;
+        display: block;
+        margin: auto;
+        margin-top: 8em;
+        margin-left: 3em;
+        background: rgba(255, 255, 255, 0.7);
+    }
 
-.csbd {
-    margin-top: 0.5em;
-}
+    .csbd {
+        margin-top: 0.5em;
+    }
 
-input {
-    height: 1.5em;
-    width: 80%;
-    display: block;
-    margin: auto;
-    margin-bottom: 0;
-    margin-top: 0.5em;
-    padding: 0 0.5em;
-}
+    input {
+        height: 1.5em;
+        width: 80%;
+        display: block;
+        margin: auto;
+        margin-bottom: 0;
+        margin-top: 0.5em;
+        padding: 0 0.5em;
+    }
 
-#li1 {
-    color: rgba(255, 204, 0, 1);
-    font-weight: bolder;
-}
+    #li1 {
+        color: rgba(255, 204, 0, 1);
+        font-weight: bolder;
+    }
 
-span {
-    margin: 0;
-}
+    span {
+        margin: 0;
+    }
 </style>
 
 <body id="page-top">
@@ -113,8 +111,7 @@ span {
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -237,14 +234,12 @@ span {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -282,9 +277,9 @@ span {
                                 <select class="ml-5" style=" width:48%; height:1.6em;" name="kythi" id="kythi">
                                     <option value="...">...</option>
                                     <?php foreach ($kythi as $key => $value) : ?>
-                                    <option value="<?= $value->getMaKyThi() ?>">
-                                        <?= $value->getTenKyThi() ?>
-                                    </option>
+                                        <option value="<?= $value->getMaKyThi() ?>">
+                                            <?= $value->getTenKyThi() ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -308,8 +303,7 @@ span {
                                         <div class="card shadow mb-0">
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered" id="" width="100%"
-                                                        cellspacing="0">
+                                                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                                         <thead>
                                                             <tr>
                                                                 <th style='width:7%;'>SBD</th>
@@ -336,8 +330,7 @@ span {
                                                         </tfoot>
                                                         <tbody class="thb" id="thisinh">
 
-                                                            <td valign="top" style="text-align: center;" colspan="8"
-                                                                class="dataTables_empty">
+                                                            <td valign="top" style="text-align: center;" colspan="8" class="dataTables_empty">
                                                                 No data available in table</td>
                                                         </tbody>
                                                     </table>
@@ -348,44 +341,25 @@ span {
                                 </div>
                                 <div class="chitiet">
                                     <form name="update" id="update" method="post">
-                                        <div class="csbd"><span>Số báo danh</span><input type="text" name="sbd" id="sbd"
-                                                value="" autofocus></div>
-                                        <div class="csbd"><span>Họ, tên đệm</span><input type="text" name="hodem"
-                                                id="hodem" value=""></div>
-                                        <div class="csbd"><span>Tên học viên</span><input type="text" name="ten"
-                                                id="ten" value=""></div>
-                                        <div class="csbd"><span>Ngày sinh</span><input type="text" name="ns" id="ns"
-                                                value=""></div>
-                                        <div class="csbd"><span>Nơi sinh</span><input type="text" name="noisinh"
-                                                id="noisinh" value=""></div>
-                                        <div class="csbd"><span>Mã đơn vị</span><input type="text" name="madonvi"
-                                                id="madonvi" value=""></div>
-                                        <div class="csbd"><span>Tên đơn vị</span><input type="text" name="tendonvi"
-                                                id="tendonvi" value=""></div>
-                                        <div class="csbd"><span>Tên phòng thi</span><input type="text" name="phongthi"
-                                                id="phongthi" value=""></div>
+                                        <div class="csbd"><span>Số báo danh</span><input type="text" name="sbd" id="sbd" value="" autofocus></div>
+                                        <div class="csbd"><span>Họ, tên đệm</span><input type="text" name="hodem" id="hodem" value=""></div>
+                                        <div class="csbd"><span>Tên học viên</span><input type="text" name="ten" id="ten" value=""></div>
+                                        <div class="csbd"><span>Ngày sinh</span><input type="text" name="ns" id="ns" value=""></div>
+                                        <div class="csbd"><span>Nơi sinh</span><input type="text" name="noisinh" id="noisinh" value=""></div>
+                                        <div class="csbd"><span>Mã đơn vị</span><input type="text" name="madonvi" id="madonvi" value=""></div>
+                                        <div class="csbd"><span>Tên đơn vị</span><input type="text" name="tendonvi" id="tendonvi" value=""></div>
+                                        <div class="csbd"><span>Tên phòng thi</span><input type="text" name="phongthi" id="phongthi" value=""></div>
                                         <hr>
                                         <p style="color:blue;">Ảnh đại diện</p>
-                                        <input type="file" name="pictureprofile" id="pictureprofile" value=""
-                                            title="Thêm ảnh đại diện của thí sinh"
-                                            style="background:blue;cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;z-index:1000;opacity:0;">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:31.5%;height:1.8em;color:white;display:block;margin:auto;margin-top:-1.8em; text-align:center;">
+                                        <input type="file" name="pictureprofile" id="pictureprofile" value="" title="Thêm ảnh đại diện của thí sinh" style="background:blue;cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;z-index:1000;opacity:0;">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:31.5%;height:1.8em;color:white;display:block;margin:auto;margin-top:-1.8em; text-align:center;">
                                             Chọn ảnh đại diện từ máy tính (*.ipg,*.png)</p>
                                     </form>
                                     <div class="add">
-                                        <img id="add" src="assets/image/add.png" width="40" height="40"
-                                            title="Thêm học viên mới"
-                                            style="margin-left:4em;margin-top:1em; cursor:pointer;">
-                                        <img id="edit" src="assets/image/edit.ico" width="40" height="40"
-                                            title="Sửa thông tin học viên"
-                                            style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                        <img id="delete" src="assets/image/delete.png" width="43" height="40"
-                                            title="Xóa học viên"
-                                            style="margin-left:1em;margin-top:1em; cursor:pointer;">
-                                        <a href=""><img id="refresh" src="assets/image/refresh-icon.png" width="43"
-                                                height="40" title="Refresh"
-                                                style="margin-left:1em;margin-top:1em; cursor:pointer;"></a>
+                                        <img id="add" src="assets/image/add.png" width="40" height="40" title="Thêm học viên mới" style="margin-left:4em;margin-top:1em; cursor:pointer;">
+                                        <img id="edit" src="assets/image/edit.ico" width="40" height="40" title="Sửa thông tin học viên" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                        <img id="delete" src="assets/image/delete.png" width="43" height="40" title="Xóa học viên" style="margin-left:1em;margin-top:1em; cursor:pointer;">
+                                        <a href=""><img id="refresh" src="assets/image/refresh-icon.png" width="43" height="40" title="Refresh" style="margin-left:1em;margin-top:1em; cursor:pointer;"></a>
                                     </div>
 
                                 </div>
@@ -394,56 +368,52 @@ span {
                                     <p style="color:blue; margin-left:3.1em;">Thêm danh sách học viên bằng file excel
                                     </p>
                                     <form id="upload" method="post" enctype="multipart/form-data">
-                                        <input type="file" id="uploads" name="upf" title="Chọn file Excel"
-                                            style="background:blue;cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;z-index:1000;opacity:0;">
-                                        <p
-                                            style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:31.5%;height:1.8em;color:white;display:block;margin:auto;margin-top:-1.8em; text-align:center;">
+                                        <input type="file" id="uploads" name="upf" title="Chọn file Excel" style="background:blue;cursor:pointer;border-radius:1px;width:30%;height:1.8em;color:white;z-index:1000;opacity:0;">
+                                        <p style="background:rgba(100%,40%,20%,1);cursor:pointer;border-radius:1px;width:31.5%;height:1.8em;color:white;display:block;margin:auto;margin-top:-1.8em; text-align:center;">
                                             Chọn tệp excel (*.xlsx)</p>
-                                        <input type="submit" name="clickup" id="Submit" value="Tải lên"
-                                            title="Nhấn để tải lên"
-                                            style="margin-top:2em; border:none; background:blue;cursor:pointer; color:white; width:80%; height:1.5em;">
+                                        <input type="submit" name="clickup" id="Submit" value="Tải lên" title="Nhấn để tải lên" style="margin-top:2em; border:none; background:blue;cursor:pointer; color:white; width:80%; height:1.5em;">
                                     </form>
 
                                     <script>
-                                    document.getElementById('upload').addEventListener('submit', function(e) {
-                                        e.preventDefault(); // Ngăn chặn hành động mặc định của form
+                                        document.getElementById('upload').addEventListener('submit', function(e) {
+                                            e.preventDefault(); // Ngăn chặn hành động mặc định của form
 
-                                        var fileInput = document.getElementById('uploads');
-                                        var file = fileInput.files[0];
+                                            var fileInput = document.getElementById('uploads');
+                                            var file = fileInput.files[0];
 
-                                        if (file) {
-                                            var formData = new FormData();
-                                            formData.append('upf', file);
+                                            if (file) {
+                                                var formData = new FormData();
+                                                formData.append('upf', file);
 
-                                            var xhr = new XMLHttpRequest();
-                                            xhr.open('POST', 'index.php?controller=createthisinhByexcel', true);
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('POST', 'index.php?controller=createthisinhByexcel', true);
 
-                                            xhr.onload = function() {
-                                                if (xhr.status >= 200 && xhr.status < 300) {
-                                                    var responseData = xhr.responseText;
-                                                    var data = JSON.parse(responseData);
-                                                    // Kiểm tra xem có lỗi không
-                                                    if (data.error) {
-                                                        alert('Lỗi từ máy chủ: ' + data.error);
+                                                xhr.onload = function() {
+                                                    if (xhr.status >= 200 && xhr.status < 300) {
+                                                        var responseData = xhr.responseText;
+                                                        var data = JSON.parse(responseData);
+                                                        // Kiểm tra xem có lỗi không
+                                                        if (data.error) {
+                                                            alert('Lỗi từ máy chủ: ' + data.error);
+                                                        } else {
+                                                            // Xử lý dữ liệu thành công
+                                                            console.log('Thành công:', data.success);
+                                                            // Thực hiện các hành động khác dựa trên dữ liệu nhận được
+                                                        }
                                                     } else {
-                                                        // Xử lý dữ liệu thành công
-                                                        console.log('Thành công:', data.success);
-                                                        // Thực hiện các hành động khác dựa trên dữ liệu nhận được
+                                                        console.error('Có lỗi xảy ra khi gửi yêu cầu.');
                                                     }
-                                                } else {
-                                                    console.error('Có lỗi xảy ra khi gửi yêu cầu.');
-                                                }
-                                            };
+                                                };
 
-                                            xhr.onerror = function() {
-                                                console.error('Đã xảy ra lỗi trong quá trình gửi yêu cầu.');
-                                            };
+                                                xhr.onerror = function() {
+                                                    console.error('Đã xảy ra lỗi trong quá trình gửi yêu cầu.');
+                                                };
 
-                                            xhr.send(formData);
-                                        } else {
-                                            alert('Không có file được chọn');
-                                        }
-                                    });
+                                                xhr.send(formData);
+                                            } else {
+                                                alert('Không có file được chọn');
+                                            }
+                                        });
                                     </script>
 
 
@@ -478,8 +448,7 @@ span {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

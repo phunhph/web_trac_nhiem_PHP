@@ -54,7 +54,7 @@ class ExamDAO
     //môn thi theo tên
     public function getModunByname($name)
     {
-        $query = " select mamodun from MODUN where tenmodun= :tenmodun";
+        $query = "select mamodun from modun where tenmodun= :tenmodun";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':tenmodun', $name);
@@ -313,7 +313,7 @@ class ExamDAO
     // lấy câu hỏi
     public function getCauHoi($macauhoi)
     {
-        $query = "SELECT  tencauhoi, padung, pasai1, pasai2, pasai3, imgviauTencauhoi, imgviauPadung, imgviauPasai1, imgviauPasai2, imgviauPasai3 FROM CAUHOI WHERE macauhoi = :macauhoi";
+        $query = "SELECT  tencauhoi, padung, pasai1, pasai2, pasai3, imgviauTencauhoi, imgviauPadung, imgviauPasai1, imgviauPasai2, imgviauPasai3 FROM cauhoi WHERE macauhoi = :macauhoi";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':macauhoi', $macauhoi); // Bind the value to the placeholder
@@ -346,7 +346,7 @@ class ExamDAO
     // lưu đáp án
     public function CreatePaDung($sbd, $macauhoi, $ii, $mamonthi, $dapan)
     {
-        $query = "INSERT INTO DETHISINH (sbd, macauhoi, socau, padung, mamodun) VALUES (:sbd, :macauhoi, :socau, :dapan, :mamonthi)";
+        $query = "INSERT INTO dethisinh (sbd, macauhoi, socau, padung, mamodun) VALUES (:sbd, :macauhoi, :socau, :dapan, :mamonthi)";
         $cau = "cau " . $ii;
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':sbd', $sbd);

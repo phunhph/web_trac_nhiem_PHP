@@ -10,7 +10,6 @@ function getlop(id, ast) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "index.php?controller=getphongthi", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
@@ -22,7 +21,6 @@ function getlop(id, ast) {
       }
     }
   };
-
   xhr.send(JSON.stringify(data));
 }
 function renderPhong(date, ast) {
@@ -71,7 +69,6 @@ function getSinhVien(ky, phong) {
       if (xhr.status === 200) {
         var response = xhr.responseText;
         var data = JSON.parse(response);
-
         renderSinhVien(data);
       } else {
         console.error("Lỗi:", xhr.status);
