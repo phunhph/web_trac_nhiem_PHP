@@ -12,7 +12,7 @@ class HomeController
     }
     public function index()
     {
-       
+
         if (!isset($_SESSION['user_info'])) {
             if (!isset($_SESSION['admin'])) {
                 header('Location: index.php');

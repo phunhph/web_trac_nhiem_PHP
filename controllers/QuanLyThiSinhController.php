@@ -6,13 +6,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use TCPDF as TCPDF;
 
+
 class QuanLyThiSinhController
 {
     private $adminDAO;
     private $quanlythisinhDAO;
     public function __construct()
     {
-
         $this->adminDAO = new AdminDAO();
         $this->quanlythisinhDAO = new QuanlyThiSinhDAO();
     }
@@ -30,9 +30,11 @@ class QuanLyThiSinhController
     }
     public function getthisinh()
     {
+
         $data = json_decode(file_get_contents("php://input"));
         $hocviens = $this->quanlythisinhDAO->getThiSinh($data->makythi, $data->tenphong); //;
         echo json_encode($hocviens, JSON_UNESCAPED_UNICODE);
+
         exit();
     }
     public function createthisinh()
