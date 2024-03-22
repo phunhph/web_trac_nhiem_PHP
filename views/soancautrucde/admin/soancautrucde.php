@@ -9,36 +9,38 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title for="">Thi trắc nhiêm trực tuyến</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
 </head>
 <style>
-    .cls1 {
-        display: block;
-        margin: auto;
-        width: 99%;
-        font-size: 13px;
-    }
+.cls1 {
+    display: block;
+    margin: auto;
+    width: 99%;
+    font-size: 13px;
+}
 
-    .cls2 {
-        padding: 0.5em 0.3em;
-        background: #4267b2;
-        margin-top: 1em;
-        color: white;
-    }
+.cls2 {
+    padding: 0.5em 0.3em;
+    background: #4267b2;
+    margin-top: 1em;
+    color: white;
+}
 
-    .cls7,
-    .cls4,
-    .cls5,
-    .cls6 {
-        padding: 0.6em 0;
-    }
+.cls7,
+.cls4,
+.cls5,
+.cls6 {
+    padding: 0.6em 0;
+}
 </style>
 
 <body id="page-top">
@@ -47,7 +49,8 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -170,12 +173,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -208,19 +213,21 @@
                     <div class="M02">
                         <div class="phanquyen">
                             <span style="margin-left:2em;">Chọn kỳ thi</span>
-                            <select name="kythi" id="kythi" style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
+                            <select name="kythi" id="kythi"
+                                style="margin-top:0em; width:30%;height:2em; margin-left:2em;">
                                 <option value="all">--Chọn kỳ thi--</option>
                                 <?php foreach ($kythi as $key => $value) : ?>
-                                    <option value="<?= $value->getMaKyThi() ?>">
-                                        <?= $value->getTenKyThi() ?>
-                                    </option>
+                                <option value="<?= $value->getMaKyThi() ?>">
+                                    <?= $value->getTenKyThi() ?>
+                                </option>
                                 <?php endforeach; ?>
                             </select>
 
                             <div class="loada">
                                 <span style="margin-left:2em;">Chọn
                                     môn thi</span>
-                                <select id="monthi" name="monthi" style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
+                                <select id="monthi" name="monthi"
+                                    style="margin-top:1em;margin-left:1em;width:30%;height:2em;">
                                     <option value="all">--Chọn môn thi--</option>
                                 </select>
                             </div>
@@ -240,7 +247,9 @@
                             <form method='post' id='capnhatdt'>
 
                             </form>
-                            <input style='display:block; margin:auto; margin-top:1em; margin-bottom:1em; color:white; cursor:pointer; padding:0.8em 3em; background:blue; border:none;' type='submit' name='sb' id='sb' value='Cập nhật'>
+                            <input
+                                style='display:block; margin:auto; margin-top:1em; margin-bottom:1em; color:white; cursor:pointer; padding:0.8em 3em; background:blue; border:none;'
+                                type='submit' name='sb' id='sb' value='Cập nhật'>
                         </div>
 
                         <hr style=" margin-top:1em;">
@@ -275,7 +284,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

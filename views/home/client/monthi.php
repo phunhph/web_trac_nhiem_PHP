@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/image/icon.png" type="image/x-icon">
-  <title>Đăng nhập</title>
+  <title for="">Thi trắc nhiêm trực tuyến</title>
   <link rel="stylesheet" href="./assets/style/index.css" type="text/css">
   <link rel="stylesheet" href="./assets/style/monthi.css" type="text/css">
   <script src="./assets/js/jquery-3.1.1.js"></script>

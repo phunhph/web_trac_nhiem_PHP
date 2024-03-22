@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Làm bài thi</title>
+    <title for="">Thi trắc nhiêm trực tuyến</title>
     <link rel="shortcut icon" href="assets/image/icon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/style/exam.css" type="text/css" />
@@ -17,19 +17,17 @@
     <div class="divmain">
         <div class="examcontent_p1">
             <script>
-            var hour, minute, second, temp1, temp = <?= $time ?>;
+                var hour, minute, second, temp1, temp = <?= $time ?>;
             </script>
             <div id="timer">
                 <img src="assets/image/clock.png" height="38" width="38" style="margin-left:1em;float:left;" />
-                <div id="clock"
-                    style="color:mediumseagreen;margin-top:0.1em; margin-left:4.5em;font-size:25px;font-weight:bold;">
+                <div id="clock" style="color:mediumseagreen;margin-top:0.1em; margin-left:4.5em;font-size:25px;font-weight:bold;">
                 </div>
                 <!--Hiển thị thời gian còn lại-->
             </div>
             <div class="dscauhoi">
                 <div class='hellomem' style='width:100%; height:2em;'>
-                    <div
-                        style='padding-top:0.5em;padding-left:0.5em;font-size:14px;color:orangered;width:97.5%; height:1.8em;'>
+                    <div style='padding-top:0.5em;padding-left:0.5em;font-size:14px;color:orangered;width:97.5%; height:1.8em;'>
                         Danh sách câu hỏi</div>
                 </div>
                 <div class="maincauhoi" style="width:100%;height:8em;overflow:auto;">
@@ -69,9 +67,7 @@
                     </div>
                 </div>
             </div>
-            <input id="submit"
-                style="margin:auto;display:block;margin-top:0.8em;margin-bottom:0.6em;background:mediumseagreen;border:none;color:white;font-weight:bold;padding:10px 45px;cursor:pointer;"
-                type="submit" value="Nộp bài" onClick="chamdiem();">
+            <input id="submit" style="margin:auto;display:block;margin-top:0.8em;margin-bottom:0.6em;background:mediumseagreen;border:none;color:white;font-weight:bold;padding:10px 45px;cursor:pointer;" type="submit" value="Nộp bài" onClick="chamdiem();">
         </div>
         <!--End phần danh sách câu hỏi-->
 
@@ -80,40 +76,36 @@
             <form method='post' name='examtest' action="index.php?controller=reportExam">
                 <?php
                 foreach ($bode as $k => $v) : ?>
-                <?php if ($v->getTemp() == null) : ?>
-                <div class='areaexam'>
-                    <div class='cauhoi' id='ch<?= $k + 1 ?>'>
-                        Câu hỏi
-                        <b>
-                            <?= $k + 1 ?>
-                        </b>:
-                        <div class='tencauhoi'>
-                            <?= $v->getCauhoi() ?>
-                            <?php if (!empty($cdata['imgviauTencauhoi']))
+                    <?php if ($v->getTemp() == null) : ?>
+                        <div class='areaexam'>
+                            <div class='cauhoi' id='ch<?= $k + 1 ?>'>
+                                Câu hỏi
+                                <b>
+                                    <?= $k + 1 ?>
+                                </b>:
+                                <div class='tencauhoi'>
+                                    <?= $v->getCauhoi() ?>
+                                    <?php if (!empty($cdata['imgviauTencauhoi']))
                                         reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
-                        </div>
-                        <div class='dapan'>
-                            <div class="choose<?= $j ?>" onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style="margin-bottom:0.6em;">
-                                <label onclick="fillBackground('s<?= $k + 1 ?>')">
-                                    <input type="radio" id="tcau<?= $k + 1 ?>" name="cau<?= $k + 1 ?>"
-                                        value="A">&nbsp;A. <?= $v->getPaA() ?>
-                                </label><br>
-                            </div>
-                            <?php $j++ ?>
-                            <div class='choose<?= $j ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style='margin-bottom:0.6em;'>
-                                <label onclick="fillBackground('s<?= $k + 1 ?>')">
-                                    <input type='radio' id='tcau<?= $k + 1 ?>' name='cau<?= $k + 1 ?>' value='B'>&nbsp;B
-                                    <?= $v->getPaB() ?>
-                                </label><br>
-                                <?php if (!empty($cdata['imgviauPadung']))
+                                </div>
+                                <div class='dapan'>
+                                    <div class="choose<?= $j ?>" onclick=" writechoose('choose<?php echo $j; ?>')" style="margin-bottom:0.6em;">
+                                        <label onclick="fillBackground('s<?= $k + 1 ?>')">
+                                            <input type="radio" id="tcau<?= $k + 1 ?>" name="cau<?= $k + 1 ?>" value="A">&nbsp;A. <?= $v->getPaA() ?>
+                                        </label><br>
+                                    </div>
+                                    <?php $j++ ?>
+                                    <div class='choose<?= $j ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                        <label onclick="fillBackground('s<?= $k + 1 ?>')">
+                                            <input type='radio' id='tcau<?= $k + 1 ?>' name='cau<?= $k + 1 ?>' value='B'>&nbsp;B
+                                            <?= $v->getPaB() ?>
+                                        </label><br>
+                                        <?php if (!empty($cdata['imgviauPadung']))
                                             reg($cdata['imgviauPadung'], "imgdapan"); ?>
-                                <?php $j++ ?>
-                            </div>
-                            <div class='choose<?= $j ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style='margin-bottom:0.6em;'>
-                                <label onclick="fillBackground('s<?= $k + 1 ?>')"">
+                                        <?php $j++ ?>
+                                    </div>
+                                    <div class='choose<?= $j ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                        <label onclick="fillBackground('s<?= $k + 1 ?>')"">
                                         <input type='radio' id='tcau<?= $k + 1 ?>' name='cau<?= $k + 1 ?>' value='C'>&nbsp;C
                                         <?= $v->getPaC() ?>
                                     </label><br>
@@ -121,9 +113,8 @@
                                         reg($cdata['imgviauPadung'], "imgdapan"); ?>
                                     <?php $j++ ?>
                                 </div>
-                                <div class='choose<?= $j ?>'onclick=" writechoose('choose<?php echo $j; ?>')"
-                                    style='margin-bottom:0.6em;'>
-                                    <label onclick="fillBackground('s<?= $k + 1 ?>')"">
+                                <div class='choose<?= $j ?>'onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                            <label onclick="fillBackground('s<?= $k + 1 ?>')"">
                                     <input type='radio' id='tcau<?= $k + 1 ?>' name='cau<?= $k + 1 ?>' value='D'>&nbsp;D
                                     <?= $v->getPaD() ?>
                                 </label><br>
@@ -151,125 +142,48 @@
                                 </div>
                                 <script>fillBackground('s<?php echo ($k + 1); ?>');</script>
                                 <div class='dapan'>
-                                <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                        style='margin-bottom:0.6em;'>
-                                        <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                name='cau<?php echo ($k + 1); ?>' value='A' checked>
-                                            &nbsp;A. <?php echo $v->getPaA(); ?>
-                                        </label><br>
-                                        <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
-                            </div>
-                            <?php
-                                    $j++;
-                                    ?>
-                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style='margin-bottom:0.6em;'>
-                                <label onClick=" fillBackground('s<?php echo ($k + 1); ?>')">
-                                    <input class='choose<?php echo ($k + 1); ?>' type='radio'
-                                        id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>'
-                                        value='B'>&nbsp;B. <?php echo $v->getPaB(); ?> </label><br>
-                                <?php if (!empty($cdata['imgviauPasai1'])) reg($cdata['imgviauPasai1'], "imgdapan"); ?>
-                            </div>
-                            <?php
-                                    $j++;
-                                    ?>
-                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style='margin-bottom:0.6em;'>
-                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                        name='cau<?php echo ($k + 1); ?>' value='C'>
-                                    &nbsp;C. <?php echo $v->getPaC(); ?>
-                                </label><br>
-                                <?php if (!empty($cdata['imgviauPasai2'])) reg($cdata['imgviauPasai2'], "imgdapan"); ?>
-                            </div>
-                            <?php
-                                    $j++;
-                                    ?>
-                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')"
-                                style='margin-bottom:0.6em;'>
-                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                        name='cau<?php echo ($k + 1); ?>' value='D'>
-                                    &nbsp;D. <?php echo $v->getPaD(); ?>
-                                </label>
-                                <?php if (!empty($cdata['imgviauPasai3'])) reg($cdata['imgviauPasai3'], "imgdapan"); ?>
-                            </div>
-                        </div>
-                        <?php
-
-                                $j++;
-                                break;
-                            case 'B':
-                            ?>
-                        <div class='areaexam'>
-                            <div class='cauhoi' id='ch<?= $k + 1 ?>'>
-                                Câu hỏi
-                                <b>
-                                    <?= $k + 1 ?>
-                                </b>:
-                                <div class='tencauhoi'>
-                                    <?= $v->getCauhoi() ?>
-                                    <?php if (!empty($cdata['imgviauTencauhoi']))
-                                                reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
-                                </div>
-                                <script>
-                                fillBackground('s<?php echo ($k + 1); ?>');
-                                </script>
-                                <div class='dapan'>
-                                    <div class='choose<?php echo $j; ?>'
-                                        onclick="writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
-                                        <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                name='cau<?php echo ($k + 1); ?>' value='A'>
-                                            &nbsp;A. <?php echo $v->getPaA(); ?>
-                                        </label><br>
-                                        <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
+                                <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
+                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='A' checked>
+                                                    &nbsp;A. <?php echo $v->getPaA(); ?>
+                                                </label><br>
+                                                <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
                                     </div>
                                     <?php
-                                            $j++;
-                                            ?>
-                                    <div class='choose<?php echo $j; ?>'
-                                        onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
-                                        <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                            <input class='choose<?php echo ($k + 1); ?>' type='radio'
-                                                id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>'
-                                                value='B' checked>
-                                            &nbsp;B. <?php echo $v->getPaB(); ?>
-                                        </label><br>
+                                    $j++;
+                                    ?>
+                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                        <label onClick=" fillBackground('s<?php echo ($k + 1); ?>')">
+                                            <input class='choose<?php echo ($k + 1); ?>' type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='B'>&nbsp;B. <?php echo $v->getPaB(); ?> </label><br>
                                         <?php if (!empty($cdata['imgviauPasai1'])) reg($cdata['imgviauPasai1'], "imgdapan"); ?>
                                     </div>
                                     <?php
-                                            $j++;
-                                            ?>
-                                    <div class='choose<?php echo $j; ?>'
-                                        onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                    $j++;
+                                    ?>
+                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                name='cau<?php echo ($k + 1); ?>' value='C'>
+                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='C'>
                                             &nbsp;C. <?php echo $v->getPaC(); ?>
                                         </label><br>
                                         <?php if (!empty($cdata['imgviauPasai2'])) reg($cdata['imgviauPasai2'], "imgdapan"); ?>
                                     </div>
                                     <?php
-                                            $j++;
-                                            ?>
-                                    <div class='choose<?php echo $j; ?>'
-                                        onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                    $j++;
+                                    ?>
+                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                name='cau<?php echo ($k + 1); ?>' value='D'>
+                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='D'>
                                             &nbsp;D. <?php echo $v->getPaD(); ?>
                                         </label>
                                         <?php if (!empty($cdata['imgviauPasai3'])) reg($cdata['imgviauPasai3'], "imgdapan"); ?>
                                     </div>
                                 </div>
-                                <?php
+                            <?php
 
-                                    $j++;
-                                    break;
-                                case 'C':
-                                    ?>
+                                $j++;
+                                break;
+                            case 'B':
+                            ?>
                                 <div class='areaexam'>
                                     <div class='cauhoi' id='ch<?= $k + 1 ?>'>
                                         Câu hỏi
@@ -279,68 +193,56 @@
                                         <div class='tencauhoi'>
                                             <?= $v->getCauhoi() ?>
                                             <?php if (!empty($cdata['imgviauTencauhoi']))
-                                                        reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
+                                                reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
                                         </div>
                                         <script>
-                                        fillBackground('s<?php echo ($k + 1); ?>');
+                                            fillBackground('s<?php echo ($k + 1); ?>');
                                         </script>
                                         <div class='dapan'>
-                                            <div class='choose<?php echo $j; ?>'
-                                                onclick="writechoose('choose<?php echo $j; ?>')"
-                                                style='margin-bottom:0.6em;'>
+                                            <div class='choose<?php echo $j; ?>' onclick="writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                 <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                        name='cau<?php echo ($k + 1); ?>' value='A'>
+                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='A'>
                                                     &nbsp;A. <?php echo $v->getPaA(); ?>
                                                 </label><br>
                                                 <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
                                             </div>
                                             <?php
-                                                    $j++;
-                                                    ?>
-                                            <div class='choose<?php echo $j; ?>'
-                                                onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                style='margin-bottom:0.6em;'>
+                                            $j++;
+                                            ?>
+                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                 <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                    <input class='choose<?php echo ($k + 1); ?>' type='radio'
-                                                        id='tcau<?php echo ($k + 1); ?>'
-                                                        name='cau<?php echo ($k + 1); ?>' value='B'> &nbsp;B.
-                                                    <?php echo $v->getPaB(); ?> </label><br>
+                                                    <input class='choose<?php echo ($k + 1); ?>' type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='B' checked>
+                                                    &nbsp;B. <?php echo $v->getPaB(); ?>
+                                                </label><br>
                                                 <?php if (!empty($cdata['imgviauPasai1'])) reg($cdata['imgviauPasai1'], "imgdapan"); ?>
                                             </div>
                                             <?php
-                                                    $j++;
-                                                    ?>
-                                            <div class='choose<?php echo $j; ?>'
-                                                onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                style='margin-bottom:0.6em;'>
+                                            $j++;
+                                            ?>
+                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                 <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                        name='cau<?php echo ($k + 1); ?>' value='C' checked>
+                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='C'>
                                                     &nbsp;C. <?php echo $v->getPaC(); ?>
                                                 </label><br>
                                                 <?php if (!empty($cdata['imgviauPasai2'])) reg($cdata['imgviauPasai2'], "imgdapan"); ?>
                                             </div>
                                             <?php
-                                                    $j++;
-                                                    ?>
-                                            <div class='choose<?php echo $j; ?>'
-                                                onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                style='margin-bottom:0.6em;'>
+                                            $j++;
+                                            ?>
+                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                 <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                        name='cau<?php echo ($k + 1); ?>' value='D'>
+                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='D'>
                                                     &nbsp;D. <?php echo $v->getPaD(); ?>
                                                 </label>
                                                 <?php if (!empty($cdata['imgviauPasai3'])) reg($cdata['imgviauPasai3'], "imgdapan"); ?>
                                             </div>
                                         </div>
-                                        <?php
+                                    <?php
 
-                                            $j++;
-                                            break;
-                                        case 'D':
-                                            ?>
+                                    $j++;
+                                    break;
+                                case 'C':
+                                    ?>
                                         <div class='areaexam'>
                                             <div class='cauhoi' id='ch<?= $k + 1 ?>'>
                                                 Câu hỏi
@@ -350,70 +252,115 @@
                                                 <div class='tencauhoi'>
                                                     <?= $v->getCauhoi() ?>
                                                     <?php if (!empty($cdata['imgviauTencauhoi']))
-                                                                reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
+                                                        reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
                                                 </div>
                                                 <script>
-                                                fillBackground('s<?php echo ($k + 1); ?>');
+                                                    fillBackground('s<?php echo ($k + 1); ?>');
                                                 </script>
                                                 <div class='dapan'>
-                                                    <div class='choose<?php echo $j; ?>'
-                                                        onclick="writechoose('choose<?php echo $j; ?>')"
-                                                        style='margin-bottom:0.6em;'>
+                                                    <div class='choose<?php echo $j; ?>' onclick="writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                                name='cau<?php echo ($k + 1); ?>' value='A'>
+                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='A'>
                                                             &nbsp;A. <?php echo $v->getPaA(); ?>
                                                         </label><br>
                                                         <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
                                                     </div>
                                                     <?php
-                                                            $j++;
-                                                            ?>
-                                                    <div class='choose<?php echo $j; ?>'
-                                                        onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                        style='margin-bottom:0.6em;'>
+                                                    $j++;
+                                                    ?>
+                                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                            <input class='choose<?php echo ($k + 1); ?>' type='radio'
-                                                                id='tcau<?php echo ($k + 1); ?>'
-                                                                name='cau<?php echo ($k + 1); ?>' value='B'> &nbsp;B.
+                                                            <input class='choose<?php echo ($k + 1); ?>' type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='B'> &nbsp;B.
                                                             <?php echo $v->getPaB(); ?> </label><br>
                                                         <?php if (!empty($cdata['imgviauPasai1'])) reg($cdata['imgviauPasai1'], "imgdapan"); ?>
                                                     </div>
                                                     <?php
-                                                            $j++;
-                                                            ?>
-                                                    <div class='choose<?php echo $j; ?>'
-                                                        onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                        style='margin-bottom:0.6em;'>
+                                                    $j++;
+                                                    ?>
+                                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                                name='cau<?php echo ($k + 1); ?>' value='C'>
+                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='C' checked>
                                                             &nbsp;C. <?php echo $v->getPaC(); ?>
                                                         </label><br>
                                                         <?php if (!empty($cdata['imgviauPasai2'])) reg($cdata['imgviauPasai2'], "imgdapan"); ?>
                                                     </div>
                                                     <?php
-                                                            $j++;
-                                                            ?>
-                                                    <div class='choose<?php echo $j; ?>'
-                                                        onclick=" writechoose('choose<?php echo $j; ?>')"
-                                                        style='margin-bottom:0.6em;'>
+                                                    $j++;
+                                                    ?>
+                                                    <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
                                                         <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
-                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>'
-                                                                name='cau<?php echo ($k + 1); ?>' value='D' checked>
+                                                            <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='D'>
                                                             &nbsp;D. <?php echo $v->getPaD(); ?>
                                                         </label>
                                                         <?php if (!empty($cdata['imgviauPasai3'])) reg($cdata['imgviauPasai3'], "imgdapan"); ?>
                                                     </div>
                                                 </div>
+                                            <?php
+
+                                            $j++;
+                                            break;
+                                        case 'D':
+                                            ?>
+                                                <div class='areaexam'>
+                                                    <div class='cauhoi' id='ch<?= $k + 1 ?>'>
+                                                        Câu hỏi
+                                                        <b>
+                                                            <?= $k + 1 ?>
+                                                        </b>:
+                                                        <div class='tencauhoi'>
+                                                            <?= $v->getCauhoi() ?>
+                                                            <?php if (!empty($cdata['imgviauTencauhoi']))
+                                                                reg($cdata['imgviauTencauhoi'], "imgcauhoi"); ?>
+                                                        </div>
+                                                        <script>
+                                                            fillBackground('s<?php echo ($k + 1); ?>');
+                                                        </script>
+                                                        <div class='dapan'>
+                                                            <div class='choose<?php echo $j; ?>' onclick="writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
+                                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='A'>
+                                                                    &nbsp;A. <?php echo $v->getPaA(); ?>
+                                                                </label><br>
+                                                                <?php if (!empty($cdata['imgviauPadung'])) reg($cdata['imgviauPadung'], "imgdapan"); ?>
+                                                            </div>
+                                                            <?php
+                                                            $j++;
+                                                            ?>
+                                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
+                                                                    <input class='choose<?php echo ($k + 1); ?>' type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='B'> &nbsp;B.
+                                                                    <?php echo $v->getPaB(); ?> </label><br>
+                                                                <?php if (!empty($cdata['imgviauPasai1'])) reg($cdata['imgviauPasai1'], "imgdapan"); ?>
+                                                            </div>
+                                                            <?php
+                                                            $j++;
+                                                            ?>
+                                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
+                                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='C'>
+                                                                    &nbsp;C. <?php echo $v->getPaC(); ?>
+                                                                </label><br>
+                                                                <?php if (!empty($cdata['imgviauPasai2'])) reg($cdata['imgviauPasai2'], "imgdapan"); ?>
+                                                            </div>
+                                                            <?php
+                                                            $j++;
+                                                            ?>
+                                                            <div class='choose<?php echo $j; ?>' onclick=" writechoose('choose<?php echo $j; ?>')" style='margin-bottom:0.6em;'>
+                                                                <label onClick="fillBackground('s<?php echo ($k + 1); ?>')">
+                                                                    <input type='radio' id='tcau<?php echo ($k + 1); ?>' name='cau<?php echo ($k + 1); ?>' value='D' checked>
+                                                                    &nbsp;D. <?php echo $v->getPaD(); ?>
+                                                                </label>
+                                                                <?php if (!empty($cdata['imgviauPasai3'])) reg($cdata['imgviauPasai3'], "imgdapan"); ?>
+                                                            </div>
+                                                        </div>
                                                 <?php
 
                                                 $j++;
                                                 break;
                                         } ?>
-                                            </div>
-                                        </div>
-                                        <?php endif ?>
+                                                    </div>
+                                                </div>
+                                            <?php endif ?>
                                         <?php endforeach; ?>
 
             </form>

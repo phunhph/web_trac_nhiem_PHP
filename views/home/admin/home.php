@@ -8,11 +8,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title for="">Thi trắc nhiêm trực tuyến</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="assets/style/sb-admin-2.min.css" rel="stylesheet" />
@@ -24,7 +26,8 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php?controller=homeAdmin">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="index.php?controller=homeAdmin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-user-cog"></i>
                 </div>
@@ -147,13 +150,15 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 lead">
                                     <?php print_r($_SESSION['admin']['maadmin']) ?>
                                 </span>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -245,7 +250,9 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,36 +296,39 @@
                         <!-- Content Column -->
                         <!-- Color System -->
                         <?php foreach ($kythi as $key => $value) : ?>
-                            <div class="col-lg-3 mb-4">
-                                <div class="card bg-dark text-white shadow">
-                                    <div class="card-body-item">
-                                        <p>Tên kỳ thi: <?= $value->getTenkythi() ?></p>
-                                        <p>Mã Kỳ thi: <?= $value->getMakythi() ?></p>
-                                        <p>Thời gian bắt đầu: </p>
-                                        <p><?= $value->getTgbatdua() ?></p>
-                                        <p>Thời gian kết thúc:</p>
-                                        <p><?= $value->getTgketthuc() ?></p>
-                                        <div class="row">
-                                            <div class="col-lg-3 mb-4">
-                                                <button type="button" class=" btn btn-secondary btn-sm shadow border btnFix" data-toggle="modal" data-target="#exampleModalLong" data-id="<?= $value->getMakythi() ?>">
-                                                    Sửa
-                                                </button>
+                        <div class="col-lg-3 mb-4">
+                            <div class="card bg-dark text-white shadow">
+                                <div class="card-body-item">
+                                    <p>Tên kỳ thi: <?= $value->getTenkythi() ?></p>
+                                    <p>Mã Kỳ thi: <?= $value->getMakythi() ?></p>
+                                    <p>Thời gian bắt đầu: </p>
+                                    <p><?= $value->getTgbatdua() ?></p>
+                                    <p>Thời gian kết thúc:</p>
+                                    <p><?= $value->getTgketthuc() ?></p>
+                                    <div class="row">
+                                        <div class="col-lg-3 mb-4">
+                                            <button type="button" class=" btn btn-secondary btn-sm shadow border btnFix"
+                                                data-toggle="modal" data-target="#exampleModalLong"
+                                                data-id="<?= $value->getMakythi() ?>">
+                                                Sửa
+                                            </button>
 
-                                            </div>
-                                            <div class="col-lg-3 mb-4">
-                                                <button class="btn btn-secondary btn-sm shadow border btnDelete" data-id="<?= $value->getMakythi() ?>">
-                                                    Xoá
-                                                </button>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <button class="btn btn-secondary btn-sm shadow border">
-                                                    Quản lý
-                                                </button>
-                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 mb-4">
+                                            <button class="btn btn-secondary btn-sm shadow border btnDelete"
+                                                data-id="<?= $value->getMakythi() ?>">
+                                                Xoá
+                                            </button>
+                                        </div>
+                                        <div class="col-lg-6 mb-4">
+                                            <button class="btn btn-secondary btn-sm shadow border">
+                                                Quản lý
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <?php endforeach ?>
 
                         <div class="col-lg-3 mb-12">
@@ -333,7 +343,8 @@
                         </div>
                     </div>
                     <!-- sửa kỳ thi -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
 
                             <div class="modal-content">
@@ -352,11 +363,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="ma" style="color: dimgray">Mã kỳ thi:</label>
-                                        <input type="text" name="makythi_fix" class="form-control" id="makythi_fix" disabled>
+                                        <input type="text" name="makythi_fix" class="form-control" id="makythi_fix"
+                                            disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="start" style="color: dimgray">Thời gian bắt đầu:</label>
-                                        <input type="datetime-local" class="form-control" name="start_fix" id="start_fix">
+                                        <input type="datetime-local" class="form-control" name="start_fix"
+                                            id="start_fix">
                                     </div>
                                     <div class="form-group">
                                         <label for="end" style="color: dimgray">Thời gian kết thúc:</label>
@@ -365,13 +378,15 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="save_fix">Lưu</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        id="save_fix">Lưu</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- thêm mới kỳ thi -->
-                    <div class="modal fade" id="createExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" id="createExam" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
 
                             <div class="modal-content">
@@ -379,7 +394,8 @@
                                     <h5 class="modal-title" id="exampleModalLongTitle" style="color: black;">
                                         Tạo mới kỳ thi
                                     </h5>
-                                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" id="close" class="close" data-dismiss="modal"
+                                        aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -395,15 +411,18 @@
 
                                     <div class="form-group">
                                         <label for="start" style="color: dimgray">Thời gian bắt đầu:</label>
-                                        <input type="datetime-local" class="form-control" id="start_crate" name="name_craete">
+                                        <input type="datetime-local" class="form-control" id="start_crate"
+                                            name="name_craete">
                                     </div>
                                     <div class="form-group">
                                         <label for="end" style="color: dimgray">Thời gian kết thúc:</label>
-                                        <input type="datetime-local" class="form-control" id="end_create" name='end_create'>
+                                        <input type="datetime-local" class="form-control" id="end_create"
+                                            name='end_create'>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id='huy'>Huỷ</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        id='huy'>Huỷ</button>
                                     <button type="button" class="btn btn-primary" id="create" data-dismiss="modal">Tạo
                                         mới</button>
                                 </div>
@@ -436,7 +455,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -459,8 +479,8 @@
     </div>
     <!-- Script JavaScript -->
     <script>
-        // Dữ liệu được chuyển đổi từ PHP sang JavaScript
-        var kythi = <?php echo json_encode($kythi); ?>;
+    // Dữ liệu được chuyển đổi từ PHP sang JavaScript
+    var kythi = <?php echo json_encode($kythi); ?>;
     </script>
     <!-- js kỳ thi -->
     <script src="assets/js/kythi.js"></script>
