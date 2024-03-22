@@ -19,11 +19,11 @@
                     <h2 class="title">Đăng nhập</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="username" name="username" placeholder="Số báo danh" />
+                        <input type="text" id="username" name="username" placeholder="Số báo danh" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="password" name="password" placeholder="Mật khẩu" />
+                        <input type="password" id="password" name="password" placeholder="Mật khẩu" required />
                     </div>
                     <?php if (date("Y") <= 2107) echo "<button type='submit' class='btn' name='submit1' id='signinBtn'>Đăng nhập</button>"; ?>
                 </form>
@@ -31,11 +31,11 @@
                     <h2 class="title">Trang quản trị</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="taikhoan" name="taikhoan" />
+                        <input type="text" placeholder="Username" id="taikhoan" name="taikhoan" required />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="matkhau" name="matkhau" />
+                        <input type="password" placeholder="Password" id="matkhau" name="matkhau" required />
                     </div>
                     <input type="submit" class="btn" value="Đăng nhập" />
                 </form>

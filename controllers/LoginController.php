@@ -58,8 +58,8 @@ class LoginController
             $matkhau = $_POST['matkhau'];
 
             if ($tk == "" || $matkhau == "") {
-                echo "false";
-                die();
+                header('location: index.php');
+                exit();
             }
 
             $user = $this->loginDAO->loginAdmin($tk, $matkhau);
@@ -67,7 +67,10 @@ class LoginController
                 $_SESSION["admin"] = $user;
                 header('location: index.php?controller=homeAdmin');
                 exit();
-            } else echo "false";
+            } else {
+                header('location: index.php');
+                exit();
+            }
         }
     }
     public function logout()
